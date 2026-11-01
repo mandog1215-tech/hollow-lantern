@@ -25,7 +25,7 @@ body { font-family: Georgia, 'Times New Roman', serif; margin: 0; background: va
 main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.25rem 4rem; }
 h1 { font-size: 2.3rem; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
 .tag { color: var(--gold); font-style: italic; margin-top: 0; }
-h2 { color: var(--gold); margin-top: 2.2rem; font-size: 1.22rem; text-transform: uppercase; letter-spacing: 0.08em; }
+h2 { color: var(--gold); margin-top: 2.8rem; font-size: 1.22rem; text-transform: uppercase; letter-spacing: 0.08em; }
 h3 { font-size: 1.05rem; }
 p, li { line-height: 1.55; }
 a { color: var(--gold); }
@@ -84,6 +84,7 @@ figcaption strong { color: var(--ink); }
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
 th, td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.45; }
 td { overflow-wrap: anywhere; } /* long URLs and hashes wrap inside cells instead of forcing page-wide horizontal scroll */
+.timeline td:first-child { white-space: nowrap; } /* dates keep one line on desktop */
 th { color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8rem; }
 .ok { color: var(--ok); } .bad { color: var(--bad); }
 .diagram { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 1rem; margin: 1.2rem 0; overflow-x: auto; }
@@ -105,9 +106,17 @@ svg text { font-family: Georgia, serif; }
   h1 { font-size: 1.8rem; }
   main { padding-top: 1.4rem; }
   nav.top, nav.sub { gap: 0.35rem 0.9rem; }
-  /* Wide tables (status, timeline, registry) scroll within their
-     own box on narrow screens instead of stretching the page. */
+  /* Wide tables (status, registry) scroll within their own box
+     on narrow screens instead of stretching the page. */
   table { display: block; overflow-x: auto; }
   th, td { padding: 0.45rem 0.55rem; }
   .nums div { flex: 1 1 7rem; }
+  /* The timeline leaves the table grid entirely on narrow
+     screens: each event becomes a stacked, readable entry with
+     its date on one line. Desktop keeps the table above. */
+  table.timeline { overflow-x: visible; }
+  .timeline tr { display: block; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.55rem 0.8rem; margin-bottom: 0.6rem; }
+  .timeline tr.hrow { display: none; }
+  .timeline td { display: block; border: none; padding: 0.15rem 0; white-space: normal; }
+  .timeline td:first-child { color: var(--gold); font-weight: bold; }
 }
