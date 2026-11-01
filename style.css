@@ -123,6 +123,10 @@ nav.sub .sect { color: var(--faint); margin-right: 0.4rem; text-transform: upper
 .projhero.slim { padding-bottom: 1rem; }
 .projhero.bs { border-top: 3px solid var(--acc-bs); }
 .projhero.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(201,106,44,0.045) 12px 13px); pointer-events: none; }
+.projhero.as { border-top: 3px solid var(--acc-as); background-image: linear-gradient(rgba(127,168,201,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(127,168,201,0.05) 1px, transparent 1px); background-size: 28px 28px; }
+.projhero.wf { border-top: 3px solid var(--acc-wf); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%239db36a' stroke-opacity='0.08'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); }
+.projhero.gold { border-top: 3px solid var(--gold); }
+.status-chip .pill + .pill { margin-left: 0.35rem; }
 
 /* Record strip — designed data row for project heroes (system component) */
 .record-strip { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin: 1rem 0; font-family: var(--mono); }
