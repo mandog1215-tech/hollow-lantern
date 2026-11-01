@@ -1,59 +1,125 @@
-/* Hollow Lantern Interactive — unified studio site design system.
-   Evolved from the shared stylesheet of the project sites
-   (byte-identical across the AirportSim and Blacksite sites at
-   migration time); the base rules below are that sheet, extended
-   with studio-level components (variables, status pills, project
-   accents, sub-navigation, focus states). One system, three
-   project accents — the skeleton never changes. */
+/* Hollow Lantern Interactive — studio design system, R1 (2026-11-01).
+   "Lanternlight, documented": charcoal + aged gold, editorial serif for
+   narrative, a monospace technical voice for data. Evolved from the
+   Stage 1/2 sheet under the approved redesign proposal — every component
+   class from that sheet is preserved; tokens, header, and homepage
+   components are new. One file, no JavaScript, no external assets. */
 
 :root {
-  --bg: #10131a;
-  --panel: #171b26;
-  --ink: #e8e4d8;
+  --bg: #0c0e13;
+  --panel: #141824;
+  --panel-2: #1a1f2e;
+  --ink: #ece7d9;
   --gold: #c9a227;
-  --line: #4c5261;
+  --gold-hi: #e3c04a;
+  --line: #2a2f3d;
   --dim: #bdb8a6;
-  --faint: #a39f8f; /* lightened 2026-11-01 (was #8b8778): muted text now clears the background with more contrast at small sizes */
+  --faint: #a39f8f; /* contrast-corrected 2026-11-01 (was #8b8778) — kept */
   --ok: #7fc48a;
   --bad: #e08a7d;
-  --acc-bs: #c96a2c;   /* Blacksite — rust/amber, tactical */
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  --acc-bs: #c96a2c;   /* Blacksite — rust, tactical */
   --acc-as: #7fa8c9;   /* AirportSim — steel blue, operational */
   --acc-wf: #9db36a;   /* WorldForge — moss, expansive */
 }
 
 body { font-family: Georgia, 'Times New Roman', serif; margin: 0; background: var(--bg); color: var(--ink); }
 main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.25rem 4rem; }
-h1 { font-size: 2.3rem; margin-bottom: 0.2rem; letter-spacing: 0.02em; }
+main.wide { max-width: 58rem; }
+h1 { font-size: clamp(2rem, 5vw, 2.6rem); margin-bottom: 0.2rem; letter-spacing: 0.02em; line-height: 1.15; }
 .tag { color: var(--gold); font-style: italic; margin-top: 0; }
 h2 { color: var(--gold); margin-top: 2.8rem; font-size: 1.22rem; text-transform: uppercase; letter-spacing: 0.08em; }
 h3 { font-size: 1.05rem; }
 p, li { line-height: 1.55; }
 a { color: var(--gold); }
+a:hover { color: var(--gold-hi); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 footer { margin-top: 3rem; color: var(--faint); font-size: 0.9rem; }
 .skip { position: absolute; left: -9999px; top: 0; background: var(--panel); padding: 0.6rem 1rem; z-index: 10; }
 .skip:focus { left: 0.5rem; top: 0.5rem; }
+.mono { font-family: var(--mono); }
 
-/* Navigation — one top bar everywhere; project pages add a sub-bar */
-nav.top { border-bottom: 1px solid var(--line); padding: 0.7rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; max-width: 46rem; margin: 0 auto; }
+/* The emblem — original stroke mark: hexagonal lantern frame, diamond
+   light core, ground line. Defined once per page as an SVG <symbol>
+   (#hl-emblem) and instanced with <use>. */
+.emblem { width: 30px; height: 30px; flex: none; }
+.emblem use, .emblem path, .emblem circle { vector-effect: non-scaling-stroke; }
+
+/* Navigation — full-width header bar (R1): brand left, links right,
+   independent of the content column. Project pages add a sub-bar. */
+nav.top { background: var(--panel); box-shadow: 0 1px 0 var(--line), 0 2px 0 -1px rgba(201,162,39,0.35); padding: 0.65rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.3rem; }
+nav.top .brandset { display: flex; align-items: center; gap: 0.6rem; margin-right: auto; }
+nav.top .brand { font-weight: bold; color: var(--ink); font-size: 1.05rem; letter-spacing: 0.01em; }
 nav.top a { text-decoration: none; font-size: 0.98rem; }
 nav.top a.here { color: var(--ink); border-bottom: 2px solid var(--gold); }
-nav.top .brand { font-weight: bold; color: var(--ink); margin-right: 0.6rem; }
-nav.sub { padding: 0.55rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; max-width: 46rem; margin: 0 auto; border-bottom: 1px solid var(--line); font-size: 0.93rem; }
+nav.sub { padding: 0.55rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; border-bottom: 1px solid var(--line); font-size: 0.93rem; background: var(--bg); }
 nav.sub a { text-decoration: none; }
 nav.sub a.here { color: var(--ink); border-bottom: 2px solid currentColor; }
 nav.sub .sect { color: var(--faint); margin-right: 0.4rem; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; align-self: center; }
+@media (min-width: 48rem) { nav.sub { position: sticky; top: 0; z-index: 5; } }
+/* Persistent per-section status chip (design-system component; the
+   project sections adopt it in their redesign phases). */
+.status-chip { margin-left: auto; align-self: center; }
 
 /* Status block + pills — one vocabulary across the whole studio */
 .status { border: 1px solid var(--gold); padding: 0.9rem 1.1rem; border-radius: 6px; background: var(--panel); }
-.pill { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.14rem 0.55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); vertical-align: 0.12em; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.16rem 0.55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); vertical-align: 0.12em; white-space: nowrap; }
 .pill.held { border-color: #a03a30; color: var(--bad); }
 .pill.dev { border-color: #4a7fb5; color: #9cc0e8; }
 .pill.verified { border-color: #3f7d46; color: var(--ok); }
 .pill.shelved { border-color: var(--line); color: var(--faint); }
 .pill.intent { border-color: var(--gold); color: var(--gold); }
 
-/* Project cards on the studio home, accent-coded */
+/* Homepage hero — emblem, glow, and the status strip (truth before scroll) */
+.hero { text-align: left; padding: 2.6rem 0 0.4rem; position: relative; }
+.hero::before { content: ""; position: absolute; inset: -1rem -2rem auto -2rem; height: 22rem; background: radial-gradient(ellipse 60% 55% at 18% 30%, rgba(201,162,39,0.09), transparent 70%); pointer-events: none; }
+.hero .emblem { width: 74px; height: 74px; }
+.hero h1 { font-size: clamp(2.6rem, 7vw, 3.6rem); margin: 0.8rem 0 0.2rem; }
+.hero .tag { font-size: 1.15rem; }
+.status-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.4rem 0 0.4rem; font-family: var(--mono); }
+.status-strip a { display: flex; align-items: center; gap: 0.6rem; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.55rem 0.85rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; letter-spacing: 0.04em; }
+.status-strip a:hover { border-color: var(--gold); }
+
+/* Project bands on the homepage — editorial presentations, one per
+   project, each with its texture treatment. */
+.band { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; align-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 1.3rem; margin: 1.2rem 0; position: relative; overflow: hidden; }
+.band .shot img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px; }
+.band h3 { font-size: 1.55rem; margin: 0 0 0.3rem; }
+.band h3 a { text-decoration: none; }
+.band p { margin: 0.35rem 0; }
+.band .links { font-size: 0.95rem; margin-top: 0.6rem; }
+.band.bs { border-top: 3px solid var(--acc-bs); }
+.band.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(201,106,44,0.045) 12px 13px); pointer-events: none; }
+.band.bs h3 a { color: var(--acc-bs); }
+.band.as { border-top: 3px solid var(--acc-as); background-image: linear-gradient(rgba(127,168,201,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(127,168,201,0.05) 1px, transparent 1px); background-size: 28px 28px; }
+.band.as h3 a { color: var(--acc-as); }
+.band.wf { border-top: 3px solid var(--acc-wf); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%239db36a' stroke-opacity='0.08'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); }
+.band.wf h3 a { color: var(--acc-wf); }
+@media (max-width: 48rem) { .band { grid-template-columns: 1fr; } }
+
+/* Engineering ladder + archive doors (homepage) */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 1rem 0; }
+.ladder div { border: 1px solid var(--line); border-top: 3px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1rem; }
+.ladder div:nth-child(2) { border-top-color: var(--gold); }
+.ladder div:nth-child(3) { border-top-color: var(--ok); }
+.ladder h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+.ladder p { margin: 0.2rem 0; font-size: 0.92rem; }
+@media (max-width: 48rem) { .ladder { grid-template-columns: 1fr; } }
+.doors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1rem 0; }
+.doors a { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.85rem 1rem; text-decoration: none; }
+.doors a b { display: block; color: var(--ink); font-size: 1.02rem; margin-bottom: 0.2rem; }
+.doors a span { color: var(--dim); font-size: 0.88rem; line-height: 1.45; display: block; }
+.doors a:hover { border-color: var(--gold); }
+@media (max-width: 48rem) { .doors { grid-template-columns: 1fr 1fr; } }
+
+/* Record strip — designed data row for project heroes (system component) */
+.record-strip { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin: 1rem 0; font-family: var(--mono); }
+.record-strip div { padding: 0.55rem 0.9rem; border-right: 1px solid var(--line); background: var(--panel); }
+.record-strip div:last-child { border-right: none; }
+.record-strip span { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
+.record-strip b { font-size: 0.95rem; color: var(--ink); font-weight: normal; }
+
+/* Project cards (kept for compatibility) + project page heads */
 .proj { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.9rem 1.1rem; margin: 0.9rem 0; }
 .proj h3 { margin: 0 0 0.25rem; font-size: 1.2rem; }
 .proj p { margin: 0.25rem 0; font-size: 0.97rem; }
@@ -61,7 +127,6 @@ nav.sub .sect { color: var(--faint); margin-right: 0.4rem; text-transform: upper
 .proj.as { border-left-color: var(--acc-as); } .proj.as h3 a { color: var(--acc-as); }
 .proj.wf { border-left-color: var(--acc-wf); } .proj.wf h3 a { color: var(--acc-wf); }
 .projhead { border-bottom: 3px solid var(--line); padding-bottom: 0.6rem; margin-bottom: 1rem; }
-.projhead.bs { border-bottom-color: var(--acc-bs); }
 .projhead .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; color: var(--faint); margin: 0; }
 
 figure { margin: 1.4rem 0; }
@@ -70,18 +135,15 @@ figcaption { color: var(--dim); font-size: 0.92rem; line-height: 1.5; margin-top
 figcaption strong { color: var(--ink); }
 .nums { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
 .nums div { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.6rem 0.9rem; }
-.nums b { display: block; font-size: 1.25rem; color: var(--gold); }
+.nums b { display: block; font-family: var(--mono); font-size: 1.25rem; color: var(--gold); }
 .nums span { font-size: 0.85rem; color: var(--dim); }
-.card { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+.card { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel-2); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
 .card h3 { margin: 0 0 0.25rem; }
 .card p { margin: 0.2rem 0; font-size: 0.96rem; }
 .st { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); }
 .st.ok { color: var(--ok); } .st.mid { color: var(--gold); } .st.low { color: var(--faint); } .st.no { color: var(--bad); }
 .gap { border-color: #a03a30; border-left-color: #a03a30; background: #1d1618; }
 .gap .st { color: var(--bad); }
-/* Components folded in from the WorldForge site at migration
-   (its system cards, cause-chain panel, and evidence rungs),
-   restated in the shared variables. */
 .sys { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
 .sys h3 { margin: 0 0 0.25rem; }
 .sys p { margin: 0.2rem 0; font-size: 0.95rem; }
@@ -93,12 +155,14 @@ figcaption strong { color: var(--ink); }
 .rung { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
 .rung h3 { margin: 0 0 0.25rem; }
 .rung p { margin: 0.2rem 0; font-size: 0.95rem; }
-.callout { border: 1px solid var(--gold); border-radius: 6px; background: #1a1c14; padding: 0.9rem 1.1rem; margin: 1.1rem 0; }
+.callout { border: 1px solid var(--gold); border-radius: 6px; background: #14150e; padding: 0.9rem 1.1rem; margin: 1.1rem 0; }
 .callout p { margin: 0.25rem 0; }
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
 th, td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.45; }
+tbody tr:nth-child(even) td { background: rgba(255,255,255,0.016); }
 td { overflow-wrap: anywhere; } /* long URLs and hashes wrap inside cells instead of forcing page-wide horizontal scroll */
-.timeline td:first-child { white-space: nowrap; } /* dates keep one line on desktop */
+.timeline td:first-child { white-space: nowrap; font-family: var(--mono); font-size: 0.88rem; } /* dates keep one line on desktop, in the technical voice */
+@media (min-width: 34.01rem) { table.timeline { border-left: 3px solid var(--gold); } } /* the gold rule of the timeline on wider screens */
 th { color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8rem; }
 .ok { color: var(--ok); } .bad { color: var(--bad); }
 .diagram { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 1rem; margin: 1.2rem 0; overflow-x: auto; }
@@ -108,7 +172,7 @@ svg text { font-family: Georgia, serif; }
 .stage h3 { margin: 0 0 0.25rem; }
 .stage p { margin: 0.2rem 0; font-size: 0.95rem; }
 .done { border-left-color: #3f7d46; } .done .st { color: var(--ok); }
-.now { border-color: #4a7fb5; border-left-color: #4a7fb5; background: #16202f; } .now .st { color: #9cc0e8; }
+.now { border-color: #4a7fb5; border-left-color: #4a7fb5; background: #101a29; } .now .st { color: #9cc0e8; }
 .gate { border-left-color: var(--gold); } .gate .st { color: var(--gold); }
 .arrow { text-align: center; color: var(--faint); font-size: 1.15rem; line-height: 1.5; }
 .arrow small { display: block; font-size: 0.8rem; letter-spacing: 0.04em; }
@@ -118,6 +182,8 @@ svg text { font-family: Georgia, serif; }
 
 @media (max-width: 34rem) {
   h1 { font-size: 1.8rem; }
+  .hero h1 { font-size: 2.2rem; }
+  .hero .emblem { width: 54px; height: 54px; }
   main { padding-top: 1.4rem; }
   nav.top, nav.sub { gap: 0.35rem 0.9rem; }
   /* Wide tables (status, registry) scroll within their own box
