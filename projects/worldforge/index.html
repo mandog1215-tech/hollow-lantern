@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorldForge — Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a href="../airportsim/index.html">AirportSim</a>
+  <a class="here" href="index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="WorldForge">
+  <span class="sect">WorldForge</span>
+  <a class="here" href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a href="history.html">History</a>
+  <a href="evidence.html">Evidence</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <div class="projhead" style="border-bottom-color: var(--acc-wf)">
+    <p class="kicker">Project · Living-world sandbox</p>
+    <h1>WorldForge</h1>
+    <p class="tag">A living-world sandbox where geography shapes civilizations, civilizations shape history.</p>
+  </div>
+
+  <div class="status">
+    <strong>Development status: SHELVED.</strong> The project owner shelved
+    WorldForge on <strong>2026-10-31</strong>, after five verified milestones.
+    It is not in active development. Everything in this section is the project's
+    record as it stood at shelving — preserved, not continued. There is no
+    public release and no downloads are offered; a 1.0.0 candidate build exists
+    and is <strong>HELD</strong> (see the Development Center's
+    <a href="../../development/releases.html">release records</a>).
+  </div>
+
+  <h2>About</h2>
+  <p>WorldForge generates a world — terrain, regions, resources — and then simulates the
+  civilizations that rise inside it: settlements are founded, grow, expand, trade food with
+  their neighbours, form kingdoms, and sometimes disappear. Everything is procedural and
+  seeded: the same seed always grows the same world, and every world's history can be
+  inspected and explained after the fact.</p>
+
+  <h2>Working today — as built by shelving</h2>
+  <ul>
+    <li>Procedural terrain generation whose landforms affect where civilizations can thrive</li>
+    <li>Settlements that form, grow, expand, migrate, and vanish — houses are built and
+      burned on the map, and a kingdom's territory follows its built footprint</li>
+    <li>Kingdoms with named rulers: lifespans, succession, and a stability measure whose
+      components a player can inspect</li>
+    <li>Diplomacy: contact between neighbouring kingdoms, grievances, wars, raids,
+      truces, alliances, and allies called to war</li>
+    <li>Warfare with mustered levies and granary supply, declared war goals, tribute paid
+      at truce, and occupation — kingdoms can conquer each other's villages outright</li>
+    <li>An inspectable chronicle that records major events with their reasons, plus
+      per-kingdom census and history panels</li>
+    <li>Instability: a weak kingdom can lose a village to a rival crown when a ruler
+      dies, or watch its best-fed village break away and found a kingdom of its own</li>
+    <li>Save and load in four slots, including diplomacy and ruler state; fully seeded
+      and reproducible</li>
+  </ul>
+
+  <h2>The road so far</h2>
+  <p>Five milestones, each designed, built, and verified before the next began. Every one
+  passed the full test suite on a fresh build before it was accepted. The full table —
+  including the milestones that were planned and never started — is on the
+  <a href="history.html">history page</a>.</p>
+
+  <div class="nums">
+    <div><b>45,056</b><span>tiles in every world (256 × 176)</span></div>
+    <div><b>1,060</b><span>automated checks, all passing</span></div>
+    <div><b>30,000</b><span>days in the long-run test worlds</span></div>
+    <div><b>0</b><span>asset files — everything is procedural</span></div>
+    <div><b>1 seed</b><span>reproduces a world's entire history</span></div>
+  </div>
+
+  <h2>The game as it stands</h2>
+  <p>Unretouched screenshots from development builds. What you see is the interface as
+  it stood — panels, diagnostics and all.</p>
+
+  <figure>
+    <img src="img/inspector-kingdom.png" alt="WorldForge world map with the history panel and a kingdom inspector open">
+    <figcaption><strong>History and inspection.</strong> The world history (right) records
+    foundings, falls, starvation and drought with their causes. Below it, the kingdom of
+    Selland: ruler Branfield, stability “Secure” at 88 — shown as the sum of its parts
+    (stores 23, peace 30, calm 20, reign 15), so the number can be checked, not just read.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/chronicle-secession.png" alt="A crowded year-116 world with war declarations, a secession, and diplomacy state in the inspector">
+    <figcaption><strong>A world at year 116.</strong> Wars declared with their motives,
+    grain moved to hungry villages, a truce signed from weariness — and Branton seceding
+    from Maria, cause recorded as chronic weakness. The selected kingdom, Kelia, is tense
+    with Maria: grievance 13 one way, 38 the other.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/inspector-war.png" alt="Kingdom inspector during wartime">
+    <figcaption><strong>Warfare, inspected.</strong> From the Marches milestone: a kingdom
+    at war, with its goals and state open to inspection while the war runs.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/dead-world.png" alt="Developer diagnostics over a world where every population reads zero">
+    <figcaption><strong>Field note — the world that died.</strong> This world was left
+    running unattended at triple speed and quietly went extinct: grazers, predators and
+    humans all at zero by about year 39, with only 19 history entries ever recorded.
+    Nobody knows yet exactly why — the record is too thin. That gap is precisely what the
+    observatory existed to close: its first phase (a truth panel) was built and merged
+    before the project was shelved; the permanent-history phase was not. The case itself
+    is registered as open case #33 on the <a href="evidence.html">evidence page</a>.</figcaption>
+  </figure>
+
+  <h2>What was planned — frozen, not promised</h2>
+  <p>Recorded as it stood at shelving. None of this is in development:</p>
+  <ul>
+    <li>A simulation observatory for the development tools: why values hold, permanent
+      history, causal investigation <em>(Phase A built and merged; Phases B–E unbuilt —
+      frozen at shelving)</em></li>
+    <li>Living diplomacy: grievances that arise without a war, and alliances that form
+      in ordinary play <em>(designed; implementation never began — frozen at shelving)</em></li>
+    <li>Inter-kingdom trade and caravans; then physical settlements — more building
+      types, roads, and city walls <em>(planned only)</em></li>
+    <li>Seasons and climate that act on farming and survival; rivers with mechanical
+      effects <em>(planned only)</em></li>
+    <li>A first-play build for hands-on evaluation <em>(planned only)</em></li>
+  </ul>
+
+  <footer>
+    <p>WorldForge is a Hollow Lantern project. This section distinguishes what was
+    implemented from what was planned, and is frozen with the project: it changes
+    only if the owner resumes development.</p>
+  </footer>
+</main>
+</body>
+</html>

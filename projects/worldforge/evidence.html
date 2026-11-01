@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorldForge — evidence &amp; quality · Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a href="../airportsim/index.html">AirportSim</a>
+  <a class="here" href="index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="WorldForge">
+  <span class="sect">WorldForge</span>
+  <a href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a href="history.html">History</a>
+  <a class="here" href="evidence.html">Evidence</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <div class="status">
+    <strong>Development status: SHELVED.</strong> The project owner shelved
+    WorldForge on <strong>2026-10-31</strong>, after five verified milestones.
+    It is not in active development. Everything in this section is the project's
+    record as it stood at shelving — preserved, not continued. There is no
+    public release and no downloads are offered; a 1.0.0 candidate build exists
+    and is <strong>HELD</strong> (see the Development Center's
+    <a href="../../development/releases.html">release records</a>).
+  </div>
+  <h1>Evidence &amp; quality</h1>
+  <p class="tag">How this project knows what it claims to know — and what it admits it doesn't.</p>
+
+  <h2>Three grades of “it works”</h2>
+  <p>Every claim about the simulation carries one of three grades. The grades are not
+  interchangeable, and this site uses them literally.</p>
+
+  <div class="rung">
+    <h3>1 · Implemented</h3>
+    <p>The code exists and the automated suite passes — currently 1,060 checks across the
+    ordinary and safety-instrumented builds, plus fuzz testing of the save format.
+    Implementation proves a mechanism <em>can</em> work. It says nothing about whether
+    the living world actually uses it.</p>
+  </div>
+
+  <div class="rung">
+    <h3>2 · Demonstrated</h3>
+    <p>A controlled, reproducible experiment shows the behaviour happening for the stated
+    reason. Example: warfare was accepted after twelve worlds × 30,000 days produced
+    896 war onsets and 80 conquests through the designed mechanisms — counted by
+    instruments, not inferred from anecdotes.</p>
+  </div>
+
+  <div class="rung">
+    <h3>3 · Established</h3>
+    <p>The behaviour holds across varied conditions and the wider simulation is unharmed.
+    Example: the current terrain model was adopted only after a 100-seed matched
+    comparison showed it non-inferior on every endpoint — and the two seeds where it
+    did worse are documented by name, not averaged away.</p>
+  </div>
+
+  <h2>Claims are allowed to fail</h2>
+  <p>A relationship described in a design document but not found by measurement stays
+  <em>described</em> — it is never promoted by enthusiasm. Standing example: the warfare
+  design expected distance from home to change how occupation plays out. Measured at
+  every supply setting the design allowed, it did not. That is recorded as an open
+  limitation in the project's register, with a design rethink owed — not tuned until
+  the numbers confessed.</p>
+
+  <h2>Known gaps — shown, not hidden</h2>
+
+  <div class="gap">
+    <p class="st">Open case · #33</p>
+    <h3>The world that died unexplained</h3>
+    <p>A randomly seeded world went extinct in every species by about year 39 while
+    running unattended. Its fate reproduces exactly from its seed — but its 19 history
+    entries were never written to disk, so <em>why</em> it died is unknown. The case is
+    registered as future test material for the observatory's autopsy tools. Unknown
+    means unknown until the evidence exists.</p>
+  </div>
+
+  <div class="gap">
+    <p class="st">Technical debt · TD-5</p>
+    <h3>History is kept in a rolling window</h3>
+    <p>The chronicle retains the most recent 1,024 entries — enough for recent events,
+    not for centuries. The permanent history record (observatory Phase B) is the fix,
+    designed around completeness, consistency with what actually happened, and fast
+    retrieval. Until it ships, long-horizon history is honestly partial.</p>
+  </div>
+
+  <div class="card">
+    <p class="st ok">Invariant gap · INV-2 · CLOSED 2026-10-31 (record update)</p>
+    <h3>One purity proof was indirect — now direct</h3>
+    <p>Recording history must never disturb the simulation's randomness. That was
+    proven directly for the relief system; for history-writing itself, the proof
+    was indirect (identical chronicles across save/load), and this register
+    recorded that the observatory's first phase must close it with a direct test
+    or report it still open. <strong>It closed it:</strong> Observatory Phase A
+    proved it with a direct test and was merged before the project was shelved
+    (PR #34; verification gate 1,143 checks, 0 failed). This entry is updated in
+    place — the original indirect state above is the history, not deleted.</p>
+  </div>
+
+  <div class="gap">
+    <p class="st">Measured limitation</p>
+    <h3>Kingdoms cap at 24</h3>
+    <p>Kingdoms only disappear when their last village does, so long-lived worlds
+    eventually fill all 24 kingdom slots and founding stops — while wars, successions
+    and defections continue. Measured, classified as a design decision owed in the
+    long-term milestone, and not counted as a defect until its gameplay cost is
+    judged. The simulation does not halt at the cap: one test world recorded 82,602
+    births over 30,000 days in that state.</p>
+  </div>
+
+  <div class="gap">
+    <p class="st">Long-horizon evidence</p>
+    <h3>Ecology over centuries</h3>
+    <p>Some long test worlds collapse ecologically over 30,000 days; others saturate.
+    Whether that is defensible turnover or a defect is an open judgment, assigned to
+    the long-term milestone with the evidence preserved. It is not being quietly
+    tuned in the meantime.</p>
+  </div>
+
+  <h2>Where the records live</h2>
+  <p>The game's source repository is private, so this site carries the public
+  record: milestone closeouts, this page's gap register, and the
+  <a href="roadmap.html">roadmap</a> are all drawn from the same development log
+  the team works from — never written separately for show. The project's records
+  are preserved in its repository and evidence archive, shelved with it.</p>
+
+  <footer>
+    <p>If a claim on this site ever conflicts with the development record, the record
+    is right and the site gets corrected.</p>
+  </footer>
+</main>
+</body>
+</html>

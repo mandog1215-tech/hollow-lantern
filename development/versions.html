@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Version records — Development Center · Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../index.html">Home</a>
+  <a href="../studio.html">Studio</a>
+  <a href="../projects/blacksite/index.html">Blacksite</a>
+  <a href="../projects/airportsim/index.html">AirportSim</a>
+  <a href="../projects/worldforge/index.html">WorldForge</a>
+  <a href="../engine-lab/index.html">Engine Lab</a>
+  <a class="here" href="index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="Development Center">
+  <span class="sect">Development</span>
+  <a href="index.html">Dashboard</a>
+  <a href="evidence.html">Evidence</a>
+  <a class="here" href="versions.html">Versions</a>
+  <a href="releases.html">Releases</a>
+</nav>
+<main id="main">
+  <h1>Version records</h1>
+  <p class="tag">Three projects, three registries, one page — each project's own registry governs.</p>
+
+  <h2>Blacksite</h2>
+  <table>
+    <tr><th>Item</th><th>Record</th></tr>
+    <tr><td>Current version</td><td><strong>1.5.0</strong> (<em>BS_VERSION</em>, <em>src/version.h</em>) — built 2026-10-28, status <strong>HELD</strong></td></tr>
+    <tr><td>Codename</td><td>None assigned — none has ever existed for this project</td></tr>
+    <tr><td>Engine</td><td>Halcyon Engine 3.0 (lineage: Claudio 1.0 → 2.0 → Halcyon 3.0)</td></tr>
+    <tr><td>Save format</td><td>Version 11 (loaders accept 8 and 9)</td></tr>
+    <tr><td>Registry</td><td>RELEASES.md in the (private) game repository, seeded 2026-11-01 at the GitHub transfer</td></tr>
+  </table>
+
+  <h2>AirportSim</h2>
+  <table>
+    <tr><th>Item</th><th>Record</th></tr>
+    <tr><td>Current version</td><td><strong>0.5.3</strong> (<em>GAME_VERSION</em>, <em>src/game.h</em>) — status Development; M1 merged on top without a version change</td></tr>
+    <tr><td>Version history</td><td>15 tagged versions, <em>v0.1.0</em> → <em>v0.5.3</em> (2026-10-29 → 30), plus the <em>v0.5.2-handoff</em> marker tag — full table on the project's <a href="../projects/airportsim/versions.html">versions page</a></td></tr>
+    <tr><td>Codenames</td><td>None assigned — none have ever existed for this project (changelog descriptive titles are not codenames)</td></tr>
+    <tr><td>Engine</td><td>“Halcyon 2.5D”, <em>HALCYON_VERSION "2.5.0"</em> — no recorded lineage (see the <a href="../engine-lab/index.html">Engine Laboratory</a>)</td></tr>
+    <tr><td>Save format</td><td>Version 10 (migration fixtures cover v4 → v10)</td></tr>
+    <tr><td>Registry</td><td>RELEASES.md, established 2026-11-01 from the repository's tags and changelog (standing as an open pull request at this page's publication; its contents are drawn from the same records either way)</td></tr>
+  </table>
+
+  <h2>WorldForge</h2>
+  <table>
+    <tr><th>Item</th><th>Record</th></tr>
+    <tr><td>Current line</td><td><strong>0.5.0-dev</strong>, codename <strong>Schism</strong> (M5) — status Development at shelving; project shelved 2026-10-31</td></tr>
+    <tr><td>Codename line</td><td>M1 First Chronicle (0.1.0) · M2 Threshold (0.2.0) · M3 Sovereign (0.3.0) · M4 Marches (0.4.0) · M5 Schism (0.5.0) — complete; M6 Parley · M7 Caravan · M8 Deluge · M9 Bedrock — planned, never completed</td></tr>
+    <tr><td>Engine</td><td>None — the project has no engine name (see the <a href="../engine-lab/index.html">Engine Laboratory</a>)</td></tr>
+    <tr><td>Save format</td><td>Version 5</td></tr>
+    <tr><td>Held candidate</td><td>1.0.0 candidate, tag → <em>48cedd9</em>, codename <strong>none assigned</strong> — status HELD (see <a href="releases.html">release records</a>)</td></tr>
+    <tr><td>Registry</td><td>RELEASES.md + versioning policy on the development line — the studio's reference implementation of versioning practice</td></tr>
+  </table>
+
+  <h2>Conventions</h2>
+  <p>Semantic versioning everywhere; the 0.x line tracks milestones in
+  WorldForge's scheme; a completed milestone advances a version line but does
+  not create a release. No codename is ever invented for a past version — where
+  a project has none, this page says so. The full conventions live in the
+  <a href="../engine-lab/index.html">Engine Laboratory</a> and each project's
+  records.</p>
+
+  <footer>
+    <p>Sources: the three releases registries and the records cited on the
+    project pages. If this page and a registry disagree, the registry is right.</p>
+  </footer>
+</main>
+</body>
+</html>

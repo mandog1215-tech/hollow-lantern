@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AirportSim — the Halcyon 2.5D engine · Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a class="here" href="index.html">AirportSim</a>
+  <a href="../worldforge/index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="AirportSim">
+  <span class="sect">AirportSim</span>
+  <a href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a class="here" href="engine.html">Engine</a>
+  <a href="testing.html">Engineering &amp; testing</a>
+  <a href="versions.html">Versions</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <h1>The engine — Halcyon 2.5D, honestly scoped</h1>
+  <p class="tag">What the name covers, what it doesn't, and where the version number came from (nobody knows).</p>
+
+  <h2>What carries the name</h2>
+  <p>In AirportSim's source tree, <em>src/engine/</em> contains exactly two files:
+  <em>halcyon.h</em> — the identity header, defining <em>HALCYON_NAME "Halcyon
+  2.5D"</em> and <em>HALCYON_VERSION "2.5.0"</em> — and <em>boot.c</em>, which runs
+  the boot sequence: the Hollow Lantern studio card, the "powered by" card and
+  title, the F3 developer overlay, and the F2 credits. That is the whole of the
+  "engine" as a directory: a branding and boot layer.</p>
+
+  <h2>What actually renders</h2>
+  <p>The renderer the name sits on lives in the flat <em>src/</em> tree: an
+  SDL_RenderGeometry triangle batcher (<em>render.c</em>, <em>render_layout.c</em>)
+  with an isometric projection (<em>iso.c</em>) and painter's-sort drawing. It is
+  this game's own work, written for this game's 2.5D presentation. The studio
+  Engine Registry records the relationship precisely: the audit found no evidence
+  establishing a shared engine codebase between this layer and the studio's other
+  games — see the <a href="../../engine-lab/index.html">Engine Laboratory</a> for
+  the full, qualified finding.</p>
+
+  <h2>The version number</h2>
+  <div class="card"><p class="st mid">No recorded lineage</p>
+    <h3>"2.5.0" was assigned at birth</h3>
+    <p><em>halcyon.h</em> was introduced in commit <em>626ec77</em> (2026-10-29) as
+    a boot/branding module added to an already-working renderer, and it has
+    exactly one commit in its history: the version was <em>"2.5.0"</em> in that
+    first commit and has never changed. No 1.0 or 2.0 exists anywhere in the
+    project's history or changelog, and why that number was chosen is not
+    recorded. It is not a point on Blacksite's Halcyon scale (whose 1.0 → 2.0 →
+    3.0 lineage is documented), and the two numbers should never be compared.</p></div>
+
+  <h2>Recorded open item</h2>
+  <div class="card gap"><p class="st">Documentation discipline · Not yet in force</p>
+    <h3>Engine changes have no changelog of their own</h3>
+    <p>Because nothing records engine-layer changes separately, the version
+    constant could drift from the code unrecorded. The Engine Registry's
+    recommended control — an explicit engine line in the game's changelog
+    practice — is adopted at the game's next documentation pass. Until then it
+    is recorded here as an open item, not a practice.</p></div>
+
+  <h2>What is not claimed</h2>
+  <p>An engine development phase for AirportSim is scheduled in the studio's
+  locked order — after this website, before Development Mode — beginning with an
+  evidence-backed review and a proposed first milestone. <strong>It has not
+  begun.</strong> Nothing on this page describes an engine improvement as
+  implemented, because none has been: this page describes the engine exactly as
+  it stands in version 0.5.3.</p>
+
+  <footer>
+    <p>Sources: <em>src/engine/halcyon.h</em> and its git history, the studio
+    Halcyon audit (2026-11-01) and its review, and the studio Engine Registry.
+    If this page and those records disagree, the records are right.</p>
+  </footer>
+</main>
+</body>
+</html>

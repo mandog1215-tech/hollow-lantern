@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AirportSim — Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a class="here" href="index.html">AirportSim</a>
+  <a href="../worldforge/index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="AirportSim">
+  <span class="sect">AirportSim</span>
+  <a class="here" href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a href="engine.html">Engine</a>
+  <a href="testing.html">Engineering &amp; testing</a>
+  <a href="versions.html">Versions</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <div class="projhead" style="border-bottom-color: var(--acc-as)">
+    <p class="kicker">Project · Airport management simulation</p>
+    <h1>AirportSim</h1>
+    <p class="tag">Run an airport — inside a world that flies whether you watch it or not.</p>
+  </div>
+
+  <div class="status">
+    <strong>Development status:</strong> in active development (adopted for continued
+    development on 2026-10-31; current state version 0.5.3, C11 + SDL2, in-house
+    Halcyon 2.5D engine). No public release is recorded in the available repository
+    release records, and no downloads are offered from this page. Current status
+    summary: <a href="versions.html">versions &amp; status records</a>.
+  </div>
+
+  <p>This section keeps three things separate, on purpose:
+  <a href="#today">the game today</a> (verified), <a href="#building">what is being built</a>
+  (active work), and <a href="#vision">the long-term vision</a> (intent, not inventory).</p>
+
+  <h2>About — two scales, one simulation</h2>
+  <p><strong>Global scale:</strong> a living aviation network runs across a real-Earth
+  map — 4,531 airports, flights airborne around the clock, day and night sweeping the
+  map, weather systems and real METAR reports, incidents that close runways.</p>
+  <p><strong>Airport scale:</strong> inside that world you own and operate one airport —
+  gates, construction, money, airline deals — or step into the work itself: pilot, air
+  traffic controller, passenger, ramp worker, gate agent, security, airport
+  firefighter. Eight playable roles, one coherent simulation underneath all of them.
+  It is not an idle tycoon with mini-games attached; the management game and the
+  operational game are the same world seen from different seats.</p>
+
+  <h2 id="today">The game today — verified</h2>
+  <p>Established by a full baseline audit on 2026-10-31 (build, launch and test results
+  on the <a href="testing.html">engineering &amp; testing page</a>):</p>
+  <ul>
+    <li>A living world network: in the captured test session, <strong>1,405 flights
+      airborne on 1,659 routes, under 23 weather systems</strong> — a reported baseline
+      observation, not a guaranteed constant</li>
+    <li>Airport ownership play: construction, gates, economy, airline deals, a home
+      airport that can start half-broken and be built up</li>
+    <li>Ground operations and air traffic control at 26 real layouts (Boston,
+      Heathrow, Kelowna and 23 more)</li>
+    <li>Eight playable roles in the same simulation</li>
+    <li>Weather with real METAR data; country and locale data for 232 territories</li>
+    <li>Saves that migrate forward across versions — fixtures from five versions back
+      load cleanly in the test suite today</li>
+  </ul>
+
+  <div class="nums">
+    <div><b>162,315</b><span>simulation checks, 0 failed</span></div>
+    <div><b>9,676</b><span>interface checks, 0 failed</span></div>
+    <div><b>4,531</b><span>airports in the world data</span></div>
+    <div><b>26</b><span>real airport layouts</span></div>
+    <div><b>~31,500</b><span>lines of C11 — no asset files</span></div>
+  </div>
+  <p>Check totals are the adoption assessment's measured results. They show the tested
+  behaviour holds; they are not, by themselves, proof that every feature works —
+  the per-system grades live on the <a href="systems.html">systems page</a>.</p>
+
+  <figure>
+    <img src="img/worldmap.png" alt="AirportSim world map with live flights and weather">
+    <figcaption><strong>The world map, live in testing.</strong> Flights, routes and
+    weather systems across the real Earth, with the day/night terminator sweeping
+    through. This is the world your one airport lives in.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/cylw.png" alt="Kelowna airport in the owner view">
+    <figcaption><strong>Home airport: Kelowna (CYLW).</strong> The owner's seat — the
+    standard campaign starts here with a crumbling terminal and a balance sheet.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/egll.png" alt="Heathrow airport during a session">
+    <figcaption><strong>Heathrow (EGLL) in session.</strong> During baseline testing an
+    unscripted bird strike closed a runway here. That is one observed event, reported
+    as such — not proof that every possible incident behaves correctly.</figcaption>
+  </figure>
+
+  <h2 id="building">What is being built</h2>
+  <p><strong>M1 — “Green gate &amp; safe repository” — is complete and accepted</strong>
+  (2026-11-01): the strict gate passes from a fresh clone of the default branch, the
+  repository trap is closed, and the documents agree with the code again. What comes
+  next was re-ordered by the owner after M1 <em>(dated update, 2026-11-01)</em>: the
+  studio's unified website first; then the <strong>AirportSim engine</strong> phase —
+  beginning with an evidence-backed engine review and a proposed first milestone,
+  reviewed before any engine change; <strong>Development Mode</strong> follows only
+  after the engine work reaches its accepted completion milestone. Neither the
+  engine phase nor Development Mode has begun, and nothing on this site describes
+  either as done. M1's criteria, for the record:</p>
+  <ul>
+    <li>A clean clone of the default branch passes the strict release gate</li>
+    <li>Test counts at or above the baseline (162,315 / 9,676), zero failures</li>
+    <li>The automated pipeline passes on the same commit</li>
+    <li>The source diff contains only the approved one-line gate fix (+ justified kin)</li>
+    <li>The five documentation discrepancies are reconciled</li>
+    <li>The default-branch problem is closed by the owner's approved route</li>
+  </ul>
+  <p>All eight were satisfied with evidence — the details live on the
+  <a href="testing.html">engineering &amp; testing page</a>. Still openly unresolved, and staying on
+  the register: Windows remains unverified (K3), and the full end-to-end matrix has
+  not yet been rerun on the current version (K6).</p>
+
+  <h2 id="vision">The long-term vision</h2>
+  <p>Intent, not inventory: a sophisticated, polished airport simulation where depth
+  serves decisions — a new player can get in and enjoy it, the living world keeps
+  surprising its owner, and the business game underneath rewards long-term thinking.
+  The phases that lead there are on the roadmap page, each with the gate that must
+  pass before the next begins.</p>
+
+  <footer>
+    <p>AirportSim is a Hollow Lantern project. The game's source repository is private
+    during development, so this site carries the public record. Statuses here derive
+    from the project's development record; if the two ever disagree, the record is
+    right and this site gets corrected.</p>
+  </footer>
+</main>
+</body>
+</html>

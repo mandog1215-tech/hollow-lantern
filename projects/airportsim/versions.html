@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AirportSim — versions &amp; status records · Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a class="here" href="index.html">AirportSim</a>
+  <a href="../worldforge/index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="AirportSim">
+  <span class="sect">AirportSim</span>
+  <a href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a href="engine.html">Engine</a>
+  <a href="testing.html">Engineering &amp; testing</a>
+  <a class="here" href="versions.html">Versions</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <h1>Versions &amp; status records</h1>
+  <p class="tag">The short version, kept current — details live on the linked pages.</p>
+
+  <h2>Status summary (updated 2026-11-01 — M1 accepted)</h2>
+  <table>
+    <tr><th>Item</th><th>State</th></tr>
+    <tr><td>Verified baseline</td><td>Version 0.5.3 — commit <em>ba389b8</em>, 192 commits of project history preserved; M1 merged on top (merge commit <em>181794d</em>)</td></tr>
+    <tr><td>Latest build &amp; test evidence</td><td>Fresh clone of the default branch, 2026-11-01: strict gate passes (exit 0, zero warnings) · 162,315 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end flows pass · CI green on the pre-merge commit</td></tr>
+    <tr><td>Release-gate status</td><td class="ok">Green — on the actual default branch, from a fresh clone (K2 closed)</td></tr>
+    <tr><td>Current milestone</td><td>M1 — Green gate &amp; safe repository: <strong>COMPLETE and accepted</strong> (all eight criteria; evidence on the <a href="testing.html">engineering &amp; testing page</a>)</td></tr>
+    <tr><td>Outstanding blockers</td><td>None for M1. Open issues carried forward honestly: K3 (Windows unverified), K4 (documented pilot-test flake), K6 (full end-to-end matrix not yet rerun on the current version), K7 (ATC final speed control)</td></tr>
+    <tr><td>Next step</td><td><em>(Updated 2026-11-01 — dated correction.)</em> The studio's unified website, then the AirportSim engine phase (review package and proposed first milestone first), then Development Mode. The earlier "Development Mode next" ordering is superseded; see the <a href="roadmap.html">roadmap</a>.</td></tr>
+    <tr><td>Releases</td><td>No public release is recorded in the available repository release records. The held standard: a release requires the completion standard met and the owner's explicit approval.</td></tr>
+  </table>
+
+  <h2>Version record</h2>
+  <p>From the project's releases registry (established 2026-11-01), seeded only
+  from the repository's own tags, its changelog, and each tagged tree's own
+  save-format constant. Every version's status is <strong>Development</strong>;
+  codenames: <strong>none assigned</strong> — none have ever existed for this
+  project, and none are invented here. (Changelog entries carry descriptive
+  titles; those are not codenames.)</p>
+  <table>
+    <tr><th>Version</th><th>Date</th><th>Tag → commit</th><th>Save format</th><th>Status</th></tr>
+    <tr><td>0.1.0</td><td>2026-10-29</td><td><em>v0.1.0</em> → <em>76a6921</em></td><td>1</td><td>Development</td></tr>
+    <tr><td>0.1.1</td><td>2026-10-29</td><td><em>v0.1.1</em> → <em>c02d5f5</em></td><td>1</td><td>Development</td></tr>
+    <tr><td>0.2.0</td><td>2026-10-29</td><td><em>v0.2.0</em> → <em>1189d32</em></td><td>4</td><td>Development</td></tr>
+    <tr><td>0.2.1</td><td>2026-10-29</td><td><em>v0.2.1</em> → <em>f17adf0</em></td><td>4</td><td>Development</td></tr>
+    <tr><td>0.2.2</td><td>2026-10-29</td><td><em>v0.2.2</em> → <em>bd20ef7</em></td><td>4</td><td>Development</td></tr>
+    <tr><td>0.3.0</td><td>2026-10-29</td><td><em>v0.3.0</em> → <em>7df8bd6</em></td><td>6</td><td>Development</td></tr>
+    <tr><td>0.3.1</td><td>2026-10-29</td><td><em>v0.3.1</em> → <em>76347ef</em></td><td>7</td><td>Development</td></tr>
+    <tr><td>0.3.2</td><td>2026-10-29</td><td><em>v0.3.2</em> → <em>bdf6c7b</em></td><td>7</td><td>Development</td></tr>
+    <tr><td>0.3.3</td><td>2026-10-29</td><td><em>v0.3.3</em> → <em>d486264</em></td><td>8</td><td>Development</td></tr>
+    <tr><td>0.3.4</td><td>2026-10-29</td><td><em>v0.3.4</em> → <em>0969748</em></td><td>8</td><td>Development</td></tr>
+    <tr><td>0.4.0</td><td>2026-10-29</td><td><em>v0.4.0</em> → <em>d91d0a1</em></td><td>9</td><td>Development</td></tr>
+    <tr><td>0.5.0</td><td>2026-10-29</td><td><em>v0.5.0</em> → <em>b6fc06f</em></td><td>10</td><td>Development</td></tr>
+    <tr><td>0.5.1</td><td>2026-10-30</td><td><em>v0.5.1</em> → <em>b22a002</em></td><td>10</td><td>Development</td></tr>
+    <tr><td>0.5.2</td><td>2026-10-30</td><td><em>v0.5.2</em> → <em>fcd9b8b</em></td><td>10</td><td>Development</td></tr>
+    <tr><td>0.5.3</td><td>2026-10-30</td><td><em>v0.5.3</em> → <em>ba389b8</em></td><td>10</td><td>Development</td></tr>
+  </table>
+  <p>Plus one marker tag, not a version: <em>v0.5.2-handoff</em> → <em>437e931</em>
+  (2026-10-30), a handoff marker on the 0.5.2 line. The registry also records what
+  it does not claim: no per-tag gate evidence survives for the historical versions,
+  and no Windows build of any version has ever been run (K3).</p>
+
+  <h2>Authoritative records</h2>
+  <p>The repository's records outrank this website. If they disagree: the discrepancy
+  is identified, the record and the implementation evidence are inspected, and the
+  website is corrected.</p>
+  <p>The records the project is run from (in the private development repository;
+  named here so their existence and role are public, without pretending private
+  documents are publicly readable):</p>
+  <ul>
+    <li><strong>AGENTS.md</strong> — the working rules for anyone developing the game</li>
+    <li><strong>PROJECT_STATE.md</strong> — the single source of truth for current state</li>
+    <li><strong>ARCHITECTURE.md</strong> — the verified system architecture</li>
+    <li><strong>TESTS.md</strong> — what the test suites are and how to run them</li>
+    <li><strong>RELEASES.md</strong> — the releases registry this page renders (established 2026-11-01; at the time of this page's publication it stands as an open, unmerged pull request in the repository — its contents are drawn from the same tags and changelog either way)</li>
+    <li><strong>docs/adoption/VISION.md &amp; DESIGN.md</strong> — the adopted vision and design record</li>
+    <li><strong>docs/adoption/ROADMAP.md</strong> — the milestone plan this site's roadmap renders</li>
+    <li><strong>docs/adoption/KNOWN_ISSUES.md</strong> — the issue register behind the testing page</li>
+    <li><strong>The adoption assessment</strong> — the Stage 1 baseline audit every figure on this site traces to</li>
+  </ul>
+  <p>The game's source tree is deliberately <em>not</em> reorganized: its layout is
+  load-bearing for the build, the tests, and these documents' references. The
+  organization work happened in documentation and metadata, where it is safe.</p>
+
+  <footer>
+    <p>This summary is updated at milestone closeouts, in the same pass as the work's
+    report — never ahead of the evidence.</p>
+  </footer>
+</main>
+</body>
+</html>

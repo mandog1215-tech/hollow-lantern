@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Development Center — Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../index.html">Home</a>
+  <a href="../studio.html">Studio</a>
+  <a href="../projects/blacksite/index.html">Blacksite</a>
+  <a href="../projects/airportsim/index.html">AirportSim</a>
+  <a href="../projects/worldforge/index.html">WorldForge</a>
+  <a href="../engine-lab/index.html">Engine Lab</a>
+  <a class="here" href="index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="Development Center">
+  <span class="sect">Development</span>
+  <a class="here" href="index.html">Dashboard</a>
+  <a href="evidence.html">Evidence</a>
+  <a href="versions.html">Versions</a>
+  <a href="releases.html">Releases</a>
+</nav>
+<main id="main">
+  <h1>The Development Center</h1>
+  <p class="tag">One dashboard for the studio — every status below traces to a project record, dated.</p>
+
+  <h2>Status dashboard (as of 2026-11-01)</h2>
+  <table>
+    <tr><th>Project</th><th>Version</th><th>Status</th><th>Latest verified evidence</th></tr>
+    <tr>
+      <td><a href="../projects/blacksite/index.html"><strong>Blacksite</strong></a></td>
+      <td>1.5.0</td>
+      <td><span class="pill held">Held</span> Development paused at a verified state; release decision is the owner's, unscheduled.</td>
+      <td>2026-11-01 — GitHub transfer verified: fresh clone builds, 478 checks / 0 failed, strict gate passes, CI green (run 41276914585).</td>
+    </tr>
+    <tr>
+      <td><a href="../projects/airportsim/index.html"><strong>AirportSim</strong></a></td>
+      <td>0.5.3</td>
+      <td><span class="pill dev">Development</span> Active. M1 complete and accepted; the engine phase is next in the locked order, not yet begun.</td>
+      <td>2026-11-01 — M1 gate on merged master (fresh clone): 162,315 checks / 0 failed · 9,676 / 0 · end-to-end pass · CI green.</td>
+    </tr>
+    <tr>
+      <td><a href="../projects/worldforge/index.html"><strong>WorldForge</strong></a></td>
+      <td>0.5.0-dev</td>
+      <td><span class="pill shelved">Shelved</span> Shelved by the owner 2026-10-31 after M5. Not in active development.</td>
+      <td>2026-10-31 — M5 gate: suite 1,060 / 0 on a fresh build; Observatory Phase A merged (1,143 / 0) the same day, before the shelve.</td>
+    </tr>
+  </table>
+  <p>The locked order of work from here: this website's completion and acceptance →
+  the AirportSim engine phase (review package first, implementation only after
+  separate authorization) → AirportSim Development Mode (after the engine reaches
+  its accepted completion milestone). Blacksite's future and any WorldForge
+  resumption are owner decisions, unscheduled.</p>
+
+  <h2>The rooms</h2>
+  <div class="card"><h3><a href="evidence.html">Evidence</a></h3>
+    <p>The verified build and test record across the studio — what was run, on
+    which commit, with what result, and what has explicitly <em>not</em> been
+    verified.</p></div>
+  <div class="card"><h3><a href="versions.html">Versions</a></h3>
+    <p>Version and codename records for all three projects, in one place — drawn
+    from each project's own registry.</p></div>
+  <div class="card"><h3><a href="releases.html">Releases</a></h3>
+    <p>Release status, kept blunt: what has been published (nothing), and the two
+    held builds, with their records.</p></div>
+
+  <footer>
+    <p>This dashboard updates at milestone closeouts and owner decisions — never
+    ahead of the evidence. Project records outrank this page.</p>
+  </footer>
+</main>
+</body>
+</html>

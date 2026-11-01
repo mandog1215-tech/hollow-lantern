@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorldForge — development history · Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a href="../airportsim/index.html">AirportSim</a>
+  <a class="here" href="index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="WorldForge">
+  <span class="sect">WorldForge</span>
+  <a href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a class="here" href="history.html">History</a>
+  <a href="evidence.html">Evidence</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <h1>Development history</h1>
+  <p class="tag">Founded 2026-10-30. Five milestones in two days. Shelved 2026-10-31, mid-flight, by the owner's decision.</p>
+
+  <div class="status">
+    <strong>Development status: SHELVED</strong> (2026-10-31). This page is the
+    project's history as it stood — nothing below is current work.
+  </div>
+
+  <h2>The milestones</h2>
+  <p>From the project's releases registry. Milestones are development objectives,
+  not releases; the version line is the registry's 0.x development line.</p>
+  <table>
+    <tr><th>Milestone</th><th>Build</th><th>What it added</th><th>Status</th></tr>
+    <tr><td>M1 · First Chronicle</td><td>0.1.0</td><td>A structured world history with reasons — why wars started, why truces were signed — with filters and click-to-locate.</td><td class="ok">Complete</td></tr>
+    <tr><td>M2 · Threshold</td><td>0.2.0</td><td>First-run guidance, help, major-event banners, a census panel, and four save slots.</td><td class="ok">Complete</td></tr>
+    <tr><td>M3 · Sovereign</td><td>0.3.0</td><td>Named rulers with lifespans and succession, and a kingdom stability score whose parts can be inspected.</td><td class="ok">Complete</td></tr>
+    <tr><td>M4 · Marches</td><td>0.4.0</td><td>Real warfare: mustered levies fed from granaries, declared war goals, tribute, occupation, and outright conquest of villages.</td><td class="ok">Complete</td></tr>
+    <tr><td>M5 · Schism</td><td>0.5.0</td><td>Kingdoms under strain: succession crises and villages breaking away to found rival crowns.</td><td class="ok">Complete</td></tr>
+    <tr><td>M6 · Parley</td><td>—</td><td>Living diplomacy: grievances without war, alliances in ordinary play. The design was completed and reviewed; <strong>no implementation was ever committed</strong>.</td><td>Shelved at design</td></tr>
+    <tr><td>M7 · Caravan</td><td>—</td><td>Inter-kingdom trade and caravans.</td><td>Planned — never started</td></tr>
+    <tr><td>M8 · Deluge</td><td>—</td><td>Seasons, climate wiring, rivers with mechanical effects.</td><td>Planned — never started</td></tr>
+    <tr><td>M9 · Bedrock</td><td>—</td><td>Long-horizon hardening: the 24-kingdom cap question, century-scale ecology evidence, completion standard.</td><td>Planned — never started</td></tr>
+  </table>
+  <p>Suite state at the last completed milestone: <strong>1,060 checks, 0 failed</strong>
+  (M5, fresh build), save format version 5. Earlier gates along the way: the diplomacy
+  model was validated by controlled experiment before acceptance as the development
+  baseline (Gate 1, closed on the evidence), and the terrain model was adopted only
+  after a 100-seed matched comparison showed it non-inferior on every endpoint.</p>
+
+  <h2>The observatory — the work in flight when the shelve landed</h2>
+  <p>A developer-tools workstream (truth panel, permanent history, world autopsy,
+  health monitor, integrated interface), designed and approved as a five-phase plan.
+  Where each phase stood on 2026-10-31:</p>
+  <table>
+    <tr><th>Phase</th><th>State at shelving</th></tr>
+    <tr><td>A — Truth Panel</td><td class="ok">Complete and merged (PR #34; gate 1,143 checks, 0 failed; fuzz 400/0). Closed gap INV-2 with a direct test.</td></tr>
+    <tr><td>B — Historical Investigation</td><td>Halted mid-flight with <strong>zero commits</strong>. Its branch state is preserved exactly as it stood.</td></tr>
+    <tr><td>C — World Autopsy · D — Health Monitor · E — Integrated Interface</td><td>Never started.</td></tr>
+  </table>
+
+  <h2>How work travelled here</h2>
+  <p>The project's own method, recorded while it ran: every stage was a gate, not a
+  formality — design before implementation, fresh builds before any test result was
+  trusted, evidence reviewed against criteria written in advance, and a release
+  possible only with the owner's explicit approval. Failing a gate sent work back,
+  not forward. That method produced the record above; the shelving itself was the
+  owner's decision, executed with the worktrees preserved so a future resumption —
+  if one is ever directed — starts from exactly this state.</p>
+
+  <footer>
+    <p>Sources: the project's releases registry (RELEASES.md) and versioning policy,
+    the observatory plan and gate records, and the shelve record of 2026-10-31. If
+    this page and those records disagree, the records are right.</p>
+  </footer>
+</main>
+</body>
+</html>

@@ -79,6 +79,20 @@ figcaption strong { color: var(--ink); }
 .st.ok { color: var(--ok); } .st.mid { color: var(--gold); } .st.low { color: var(--faint); } .st.no { color: var(--bad); }
 .gap { border-color: #a03a30; border-left-color: #a03a30; background: #1d1618; }
 .gap .st { color: var(--bad); }
+/* Components folded in from the WorldForge site at migration
+   (its system cards, cause-chain panel, and evidence rungs),
+   restated in the shared variables. */
+.sys { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+.sys h3 { margin: 0 0 0.25rem; }
+.sys p { margin: 0.2rem 0; font-size: 0.95rem; }
+.sys .st { color: var(--ok); } .sys .st.plan { color: var(--faint); }
+.chain { border: 1px solid var(--gold); border-radius: 6px; background: var(--panel); padding: 1rem 1.2rem; margin: 1.2rem 0; }
+.chain p { margin: 0.3rem 0; text-align: center; font-size: 1.02rem; }
+.chain .arr { color: var(--gold); text-align: center; margin: 0; }
+.chain .loop { font-size: 0.9rem; color: var(--dim); font-style: italic; }
+.rung { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+.rung h3 { margin: 0 0 0.25rem; }
+.rung p { margin: 0.2rem 0; font-size: 0.95rem; }
 .callout { border: 1px solid var(--gold); border-radius: 6px; background: #1a1c14; padding: 0.9rem 1.1rem; margin: 1.1rem 0; }
 .callout p { margin: 0.25rem 0; }
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
