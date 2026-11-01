@@ -13,7 +13,7 @@
   --gold: #c9a227;
   --line: #4c5261;
   --dim: #bdb8a6;
-  --faint: #8b8778;
+  --faint: #a39f8f; /* lightened 2026-11-01 (was #8b8778): muted text now clears the background with more contrast at small sizes */
   --ok: #7fc48a;
   --bad: #e08a7d;
   --acc-bs: #c96a2c;   /* Blacksite — rust/amber, tactical */
@@ -83,6 +83,7 @@ figcaption strong { color: var(--ink); }
 .callout p { margin: 0.25rem 0; }
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
 th, td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.45; }
+td { overflow-wrap: anywhere; } /* long URLs and hashes wrap inside cells instead of forcing page-wide horizontal scroll */
 th { color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8rem; }
 .ok { color: var(--ok); } .bad { color: var(--bad); }
 .diagram { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 1rem; margin: 1.2rem 0; overflow-x: auto; }
@@ -104,4 +105,9 @@ svg text { font-family: Georgia, serif; }
   h1 { font-size: 1.8rem; }
   main { padding-top: 1.4rem; }
   nav.top, nav.sub { gap: 0.35rem 0.9rem; }
+  /* Wide tables (status, timeline, registry) scroll within their
+     own box on narrow screens instead of stretching the page. */
+  table { display: block; overflow-x: auto; }
+  th, td { padding: 0.45rem 0.55rem; }
+  .nums div { flex: 1 1 7rem; }
 }
