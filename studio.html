@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hollow Lantern Interactive — the studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="index.html">Home</a>
+  <a class="here" href="studio.html">Studio</a>
+  <a href="projects/blacksite/index.html">Blacksite</a>
+  <a href="engine-lab/index.html">Engine Lab</a>
+</nav>
+<main id="main">
+  <h1>The studio</h1>
+  <p class="tag">Mission, philosophy, and how AI-assisted engineering is actually run here.</p>
+
+  <h2>Mission</h2>
+  <p>Build real games — fun, detailed, and complex underneath a simple surface —
+  with AI developers doing the engineering and a human owner making the decisions
+  that matter. The studio's products are the games; its method is the proof that
+  the games are what we say they are.</p>
+
+  <h2>Who does what</h2>
+  <table>
+    <tr><th>Role</th><th>Who</th><th>Responsibility</th></tr>
+    <tr><td>Owner &amp; director</td><td>Andrew</td><td>Sets priorities, approves phases and releases, makes the calls that stop or start work. Releases happen only by his decision.</td></tr>
+    <tr><td>Lead developer</td><td>Diesel (AI)</td><td>Designs, builds, tests, documents, and operates the projects day to day — repositories, websites, verification, and this site.</td></tr>
+    <tr><td>Creator of Blacksite &amp; AirportSim</td><td>Grok Bot (AI)</td><td>Built the studio's two larger games; Blacksite is the studio's engineering blueprint.</td></tr>
+    <tr><td>Independent assessor</td><td>ChatGPT (AI)</td><td>Reviews progress reports, challenges conclusions, and drafts the directives the owner issues. Its conclusions enter a project only through the owner.</td></tr>
+  </table>
+
+  <h2>Development philosophy</h2>
+  <div class="card"><h3>Evidence, or it didn't happen</h3>
+    <p>Every "done" report quotes its evidence: the test counts on the exact
+    commit, the gate's exit code, the checksum. A successful compile is evidence
+    the code compiles — nothing more. Claims are graded on a ladder —
+    <strong>Implemented</strong> (the code exists), <strong>Demonstrated</strong>
+    (it ran and behaved), <strong>Established</strong> (it held up across varied
+    conditions) — and the grade is never upgraded for presentation.</p></div>
+  <div class="card"><h3>Records outrank websites</h3>
+    <p>Each project is run from its own records: a releases registry, a changelog,
+    a project-state file, architecture and test documents. This website is a
+    public echo of those records. If the site and a record disagree, the record
+    is right and the site gets corrected.</p></div>
+  <div class="card"><h3>Small, reversible, verified steps</h3>
+    <p>Work proceeds in milestones with explicit gates: a plan is reviewed before
+    implementation, results are reported with their evidence, and the owner
+    accepts each phase before the next begins. Failure is reported with its
+    evidence preserved — a failed experiment is a result, not an embarrassment
+    to be quietly tuned away.</p></div>
+  <div class="card"><h3>Held is a first-class status</h3>
+    <p>A finished build is not a release. Blacksite 1.5.0 and the WorldForge
+    1.0.0 candidate are both built, recorded, and <strong>held</strong> — their
+    registries say so in plain words, and a local tag is never treated as a
+    publication. Statuses change on evidence and owner decisions, not on the
+    calendar.</p></div>
+
+  <h2>The shared foundation</h2>
+  <p>Every Hollow Lantern game is built the same way at the foundation level:
+  C11 and SDL2 only; 100% procedural assets (no loaded art, sound, or music
+  files); the shared Hollow Lantern studio card opening every game; a written
+  project brain (state, architecture, roadmap, tests, decisions) kept beside the
+  code; and the same release bar for a small game as for a large one. What the
+  games do <em>not</em> share is an engine codebase — that finding, and what it
+  does and does not establish, is recorded in the
+  <a href="engine-lab/index.html">Engine Laboratory</a>.</p>
+
+  <footer>
+    <p>The studio standard itself is a project record (STUDIO.md, kept with the
+    studio's internal records). This page summarizes it; the record governs.</p>
+  </footer>
+</main>
+</body>
+</html>

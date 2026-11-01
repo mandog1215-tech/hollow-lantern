@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blacksite — game &amp; engine · Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a class="here" href="index.html">Blacksite</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+</nav>
+<nav class="sub" aria-label="Blacksite">
+  <span class="sect">Blacksite</span>
+  <a href="index.html">Overview</a>
+  <a class="here" href="systems.html">Game &amp; engine</a>
+  <a href="history.html">History</a>
+  <a href="evidence.html">Evidence</a>
+  <a href="roadmap.html">Roadmap</a>
+</nav>
+<main id="main">
+  <h1>Game &amp; engine</h1>
+  <p class="tag">What Blacksite is made of — described from the project's own records and code.</p>
+
+  <h2>The Halcyon Engine 3.0</h2>
+  <p>Blacksite's own engine, written for this game: a DDA raycaster at 640×400 with
+  sliding doors, push walls, floor and ceiling casting, and fog; a PS2-style
+  low-poly model pipeline with a signature fractal facet pass and dark outlines;
+  coloured baked and dynamic lighting, light shafts and night-sky vistas; quality
+  presets; and a threaded software renderer whose boot time was cut from 571 ms to
+  83 ms in 1.5.0.</p>
+  <div class="card"><p class="st ok">Engine lineage — verified</p>
+    <h3>Claudio Engine → Halcyon Engine 3.0</h3>
+    <p>The engine began as Grok Bot's “Claudio Engine” (versions 1.0 and 2.0 in the
+    project's changelog) and was renamed Halcyon Engine 3.0 for the 1.5.0 release.
+    One honest wart, recorded rather than polished away: a comment in the engine
+    header still calls the predecessor “Halcyon Engine 2.0” where the changelog and
+    the rename commit say Claudio 2.0.</p></div>
+  <div class="card"><p class="st mid">Studio naming — stated accurately</p>
+    <h3>What “Halcyon” means across the studio</h3>
+    <p>Halcyon is a studio family name, not one shared codebase. A cross-project
+    audit (2026-11-01) found <strong>no evidence establishing a shared engine
+    codebase or a common code lineage</strong> between the studio's games: a
+    whole-file comparison found no byte-identical source files in any pairing,
+    and fragment-level reuse is not established either way. Each engine's version
+    numbers are its own. The full finding lives in the
+    <a href="../../engine-lab/index.html">Engine Laboratory</a>; this page
+    describes Blacksite's engine only.</p></div>
+
+  <h2>The game systems</h2>
+  <div class="card"><p class="st ok">In 1.5.0 — from the project's own release notes</p>
+    <h3>Combat &amp; movement</h3>
+    <p>Style meter (D–SSS) rewarding aggressive play; quick melee that heals and
+    refills on kills; dodge with brief invincibility; sprint-slide with i-frames;
+    recoil and trauma shake; layered impact sound.</p></div>
+  <div class="card"><p class="st ok">In 1.5.0</p>
+    <h3>Arsenal &amp; enemies</h3>
+    <p>Weapons including FROSTBITE (freeze + shatter, cryo-nova alt-fire), SHREDDER
+    (spin-up minigun) and STORM LANCE (chain lightning); mods grew from three to six
+    (FREEZE, SHOCK, BOUNCER added); OVERCLOCK pickups double fire rate for 10 s.
+    Enemies telegraph their attacks and use cover, flanks and grenades; new in 1.5:
+    SPECTRE, MIMIC, FROST WARDEN, SAPPER, plus gold elites and per-level bounties.</p></div>
+  <div class="card"><p class="st ok">In 1.5.0</p>
+    <h3>Modes &amp; meta</h3>
+    <p>11-level campaign with a scripted set piece per level; Carnage (endless waves;
+    runs save and load, including perk loadouts); Daily Carnage seeded by date;
+    New Game+ with gold guns and doubled bounties; time trials against your own
+    ghost; photo mode; 32 achievements and lifetime records; save format version 11,
+    with loaders accepting versions 8 and 9.</p></div>
+  <div class="card"><p class="st ok">In 1.5.0</p>
+    <h3>Editor &amp; presentation</h3>
+    <p>A built-in level editor (all 11 levels were overhauled in it: loop-back routes,
+    second secrets, cover and lighting passes); animated 3D menu flythrough; full
+    mouse support in every menu; tactical HUD; results screens with ranks; credits
+    roll; ambient wildlife (rats and moths) for atmosphere.</p></div>
+
+  <footer>
+    <p>Descriptions trace to the project's README, manual and changelog — the same
+    records the repository holds. If this page and those records disagree, the
+    records are right.</p>
+  </footer>
+</main>
+</body>
+</html>

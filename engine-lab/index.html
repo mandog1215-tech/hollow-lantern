@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engine Laboratory — Hollow Lantern Interactive</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brand">Hollow Lantern Interactive</span>
+  <a href="../index.html">Home</a>
+  <a href="../studio.html">Studio</a>
+  <a href="../projects/blacksite/index.html">Blacksite</a>
+  <a class="here" href="index.html">Engine Lab</a>
+</nav>
+<main id="main">
+  <h1>The Engine Laboratory</h1>
+  <p class="tag">What each game's engine actually is — from the studio Engine Registry, the authoritative record.</p>
+
+  <p>Two of the studio's games carry the name <strong>Halcyon</strong> on their
+  engine layer. This page exists so that name is never allowed to imply more
+  than the evidence supports. The registry's standing finding, in full:</p>
+
+  <div class="callout">
+    <p><strong>The three games' rendering/engine layers are maintained as
+    independent implementations.</strong></p>
+    <p><strong>Verified:</strong> a comparison of every source file across the
+    three projects (MD5, whole files) found <strong>no byte-identical source
+    files</strong> in any pairing.</p>
+    <p><strong>Not established:</strong> whether fragment-level reuse, adapted
+    code, or common code ancestry exists between the projects. The comparison
+    compared whole files byte-for-byte; it cannot rule out copied or adapted
+    fragments, and no fragment-level investigation has been performed.</p>
+    <p><strong>Conclusion:</strong> a cross-project audit (2026-11-01) found
+    <strong>no evidence establishing a shared engine codebase or a common code
+    lineage</strong>. That is the accurate claim — it is not a proof that no
+    code was ever copied or adapted.</p>
+  </div>
+
+  <p>Sharing the Halcyon name does <strong>not</strong> establish shared code,
+  shared ancestry of code, portability of fixes, or comparability of version
+  numbers: a version number in one game implies nothing about any other game.
+  What the games genuinely share is conventions — C11 + SDL2 only, procedural
+  assets only, and the Hollow Lantern boot card — each implemented
+  independently, three times.</p>
+
+  <h2>The registry, in summary</h2>
+  <table>
+    <tr><th>Game</th><th>Engine identity</th><th>Version (source of truth)</th><th>Technique</th></tr>
+    <tr><td><a href="../projects/blacksite/index.html">Blacksite</a></td><td>Halcyon Engine</td><td>3.0 — <em>HALCYON_VERSION</em> in <em>src/engine.h</em></td><td>Threaded DDA raycaster, floor/ceiling casting, baked lightmaps</td></tr>
+    <tr><td>AirportSim</td><td>Halcyon 2.5D</td><td>2.5.0 — <em>HALCYON_VERSION</em> in <em>src/engine/halcyon.h</em></td><td>SDL triangle batcher, isometric projection (the "engine" directory itself is a boot/branding layer)</td></tr>
+    <tr><td>WorldForge</td><td><em>none — unnamed</em></td><td>— (versions with the game)</td><td>Tile renderer in flat <em>src/</em>, written for that game</td></tr>
+  </table>
+
+  <h2>Per-engine records</h2>
+  <div class="card"><p class="st ok">Lineage — documented</p>
+    <h3>Blacksite — Halcyon Engine 3.0</h3>
+    <p>Grok Bot's engine for Blacksite, with a recorded lineage in the game's
+    changelog: <strong>Claudio Engine 1.0 → Claudio Engine 2.0 → Halcyon Engine
+    3.0</strong> (renamed at game 1.5.0, commit <em>8836b9a</em>). Limit, stated
+    in the registry: this repository's history begins at the 1.3.0 transfer
+    snapshot, so the 1.0/2.0 era is attested by the changelog rather than by
+    commits in the repo — partially verified. One recorded wart: a comment in
+    the engine header calls the predecessor "Halcyon Engine 2.0" where the
+    changelog and rename commit say Claudio 2.0. It is recorded here, not
+    polished away. Detail: <a href="../projects/blacksite/systems.html">Blacksite —
+    game &amp; engine</a>.</p></div>
+
+  <div class="card"><p class="st mid">Lineage — none recorded</p>
+    <h3>AirportSim — Halcyon 2.5D, version 2.5.0</h3>
+    <p>The name arrived as a boot/branding module (<em>src/engine/</em> =
+    <em>halcyon.h</em> + <em>boot.c</em>: studio card, dev overlay, credits)
+    added to an already-working renderer, in commit <em>626ec77</em>
+    (2026-10-29). The version constant has exactly one commit in its history:
+    it was "2.5.0" from its first commit and has never changed. <strong>No 1.0
+    or 2.0 exists anywhere in that project's history or changelog — the number
+    has no recorded lineage</strong>, and why it was chosen is not recorded.
+    It is not a point on Blacksite's scale.</p></div>
+
+  <div class="card"><p class="st low">Shelved project — inspected, not developed</p>
+    <h3>WorldForge — no engine name</h3>
+    <p>The word "Halcyon" appears nowhere in WorldForge's code or records. Its
+    rendering layer is its own, written for that game from its founding commit.
+    The registry deliberately assigns it no name: naming a shelved, frozen
+    codebase from outside would invent history. If development ever resumes,
+    naming its layer is a decision for that time.</p></div>
+
+  <h2>How the registry is kept</h2>
+  <ul>
+    <li><strong>Constants are authoritative; the registry mirrors.</strong> Each
+      game's in-code version constant is the source of truth; the registry is
+      updated at milestone closeouts — never the reverse.</li>
+    <li><strong>No propagation.</strong> Because no shared engine codebase is
+      established and the implementations are maintained independently, an
+      engine change in one game neither needs nor gets porting. A defect
+      pattern genuinely appearing in two games is handled as a studio advisory,
+      fixed per game under that game's own gate.</li>
+    <li><strong>No synchronized versions, no engine codenames, no backfilled
+      history</strong> — each solves a problem the evidence does not show.</li>
+    <li><strong>The unification tripwire.</strong> If future work ever proposes
+      sharing an actual code component between games, that proposal must supply
+      its own engine-level tests, version pinning, per-game integration
+      evidence, and a priced cost analysis. Until then, there is nothing to
+      safeguard, and nothing is built for it.</li>
+  </ul>
+
+  <footer>
+    <p>Source of truth: the studio Engine Registry (established 2026-11-01),
+    itself grounded in the cross-project Halcyon audit and its review of the
+    same date. Per-engine architecture pages and the versioning-conventions
+    page join this Lab as the site grows; the registry summary above is
+    complete as it stands.</p>
+  </footer>
+</main>
+</body>
+</html>
