@@ -31,15 +31,61 @@
 </nav>
 <main id="main">
   <div class="projhero as slim">
-    
+    <svg class="skybg" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#96b9dc" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#96b9dc" stop-opacity="0.10"/>
+          <stop offset="1" stop-color="#96b9dc" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="skyblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect class="skyterm" x="-480" y="-40" width="440" height="420" fill="url(#skyfade)"/>
+      <g fill="#cfe3f5">
+        <circle cx="80" cy="42" r="1.3" opacity="0.5"/><circle cx="210" cy="96" r="1" opacity="0.35"/>
+        <circle cx="330" cy="30" r="1.5" opacity="0.55"/><circle cx="470" cy="70" r="1" opacity="0.3"/>
+        <circle cx="590" cy="38" r="1.2" opacity="0.45"/><circle cx="720" cy="92" r="1" opacity="0.3"/>
+        <circle cx="845" cy="34" r="1.4" opacity="0.5"/><circle cx="965" cy="78" r="1" opacity="0.35"/>
+        <circle cx="1080" cy="44" r="1.2" opacity="0.45"/><circle cx="1145" cy="110" r="1" opacity="0.3"/>
+        <circle cx="150" cy="150" r="1" opacity="0.25"/><circle cx="660" cy="150" r="1" opacity="0.22"/>
+        <circle cx="1035" cy="170" r="1" opacity="0.25"/><circle cx="415" cy="120" r="1" opacity="0.2"/>
+      </g>
+      <path id="sky-r2" d="M-20,110 C320,30 760,190 1220,70" fill="none" stroke="#7fa8c9" stroke-opacity="0.34" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r3" d="M-20,322 C420,244 820,118 1220,238" fill="none" stroke="#7fa8c9" stroke-opacity="0.22" stroke-width="1.1" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r1" d="M-20,262 C280,140 640,300 1220,150" fill="none" stroke="#c9a227" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <g>
+        <circle cx="250" cy="232" r="2" fill="#c9a227" opacity="0.55"/><circle cx="700" cy="118" r="2" fill="#c9a227" opacity="0.5"/>
+        <circle cx="982" cy="252" r="2" fill="#c9a227" opacity="0.5"/><circle cx="520" cy="84" r="1.8" fill="#9cc0e8" opacity="0.5"/>
+      </g>
+      <g class="skycloud" opacity="0.055" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="210" cy="66" rx="95" ry="17"/><ellipse cx="265" cy="82" rx="60" ry="13"/>
+      </g>
+      <g class="skycloud c2" opacity="0.05" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="950" cy="288" rx="110" ry="19"/><ellipse cx="890" cy="272" rx="58" ry="12"/>
+      </g>
+      <g opacity="0.85">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#e6c65c"/>
+        <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r1"/></animateMotion>
+      </g>
+      <g opacity="0.7">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#bcd6ee" transform="scale(0.8)"/>
+        <animateMotion dur="38s" begin="-14s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r2"/></animateMotion>
+      </g>
+      <g>
+        <circle r="6.5" fill="#9cc0e8" opacity="0.18"/><circle r="2.6" fill="#cfe3f5" opacity="0.9"/>
+        <animateMotion dur="46s" begin="-31s" repeatCount="indefinite"><mpath href="#sky-r3"/></animateMotion>
+      </g>
+    </svg>
   </div>
 
-  <p>The M1 baseline is now established: a fresh clone of the default branch passed the
-  strict gate on 2026-11-01. Subsequent Development Mode and performance-baseline work
-  has completed on the development line, but the integrated gate recorded an exit-code-2
-  failure and the merge stack is still subject to ordered verification. Phase status below
-  distinguishes completed work from integration and from work not yet started. Gates, not
-  calendar dates, determine progression.</p>
+  <p>The M1 baseline is established: a fresh clone of the default branch passed the
+  strict gate on 2026-11-01. Development Mode and the performance-baseline work
+  completed on the development line. On 2026-11-02 the owner-authorized integration
+  sequence ran in dependency order: nine of its eleven packages are merged to the
+  default branch, each verified after merging; PR #9, PR #11 and the Development
+  Mode branch remain, followed by a final full gate on the integrated tree.
+  Phase status below distinguishes completed work from integration and from work
+  not yet started. Gates, not calendar dates, determine progression.</p>
 
   <div class="legend">
     <span class="lg-done">Completed &amp; verified</span>
@@ -93,7 +139,7 @@
   <div class="arrow">↓</div>
 
   <div class="stage done">
-    <p class="st">Completed on the development line — evidence recorded through 2026-11-02</p>
+    <p class="st">Completed on the development line — merges last in the integration sequence</p>
     <h3>WP-03 — Development Mode</h3>
     <p>Five stages integrated the F3 diagnostic overlay, state identity, invariant status,
     delay explanation, trace inspection, snapshot capture/compare, and measured step cost.
@@ -103,7 +149,11 @@
     <p><strong>Qualification:</strong> the integrated full gate exited 2. Matched base/current
     comparisons reproduced the business-window and topbar-overlap failure signatures,
     supporting attribution as pre-existing defects; this does not turn the original gate
-    into a pass. The integration/merge stack remains subject to ordered verification.</p>
+    into a pass. Both signatures were later addressed in the integration: the top-bar
+    overlap is fixed (PR #13, merged) and the nondeterminism behind the intermittent
+    business-window failures is fixed by seeding the test worlds (PR #13 merged;
+    PR #11 pending); the remaining cosmetic truncation of long airline names in the
+    Business window stays open as issue #14.</p>
   </div>
   <div class="arrow">↓</div>
   <div class="stage done">
@@ -112,30 +162,105 @@
     <p>A measured step-cost model was recorded: fixed overhead, active-aircraft count,
     and simulated time step. The fit is useful as a baseline, not yet a license to optimize:
     the aircraft-count coefficient is weakly identified because long-run windows confound
-    world age with aircraft count. Performance budgets are accepted for future comparisons;
-    no unmeasured largest-hub performance claim is made.</p>
+    world age with aircraft count. Performance budgets are accepted for future comparisons
+    (owner-accepted 2026-11-02: step cost at or below 45 µs against a measured median of
+    14.1 µs per call; at or below 1.7 s per simulated clock-day against a measured
+    0.56 s); no unmeasured largest-hub performance claim is made.</p>
   </div>
   <div class="stage now">
     <p class="st">Current position — 2026-11-02</p>
-    <h3>Integration verification, then WP-02 / WP-05 sequencing</h3>
-    <p>The authorized merge stack is to be integrated in dependency order, with checks
-    rerun after each merge and mandatory stop conditions preserved around the known
-    business-window failure. Once the merge stack is verified, the next roadmap candidates
-    are <strong>WP-02 — Windows verification</strong> and <strong>WP-05 — new-player entry</strong>.
-    Native Windows runtime verification remains unresolved; cross-compilation is not a
-    substitute for a real Windows session.</p>
+    <h3>Integration — nine of eleven packages merged</h3>
+    <p>The owner-authorized merge stack is being integrated in dependency order, with
+    checks rerun after each merge and the mandatory stop conditions honoured:
+    PR #8's first fresh check reproduced the documented intermittent signature and
+    was rerun once under the recorded rule (it passed; both runs are preserved);
+    two branch conflicts — a build-file overlap and a test-registration overlap —
+    were resolved as unions and verified by full local gates before merging.</p>
+    <p><strong>Merged:</strong> PR #3 (OwnerBook save/load fix, save v11), PR #5
+    (FleetBook accumulator fix, save v12), PR #6 (cargo save/reload audit), PR #8
+    (whole-world reproducibility tests), PR #10 (simulation-clock widening, save
+    v13), PR #12 (save-loader fuzz harness), PR #4 (adoption framework documents),
+    PR #7 (test tooling — CI now runs four jobs) and PR #13 (three fixes:
+    deterministic test worlds for the game binary, top-bar overlap, latitude
+    conversion). <strong>Remaining:</strong> PR #9 (screenshot-capture reliability —
+    verification in progress), PR #11 (test-world seeding for the suite), the
+    Development Mode branch (stages 1–5 plus save-loader hardening — merges last),
+    and the final full gate on the integrated tree. Integration is not complete
+    until that gate passes.</p>
+  </div>
+
+  <div class="diagram" role="img" aria-label="Diagram: the 2026-11-02 integration sequence — nine packages merged, two packages and the Development Mode branch remaining, then the final gate">
+    <svg viewBox="0 0 660 208" width="660" style="max-width:100%">
+      <defs>
+        <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c9a227"/></marker>
+      </defs>
+      <text x="10" y="18" fill="#c9a227" font-size="12">THE INTEGRATION SEQUENCE — STATE AT 2026-11-02</text>
+      <text x="10" y="42" fill="#3f7d46" font-size="11.5">MERGED TO THE DEFAULT BRANCH — EACH VERIFIED AFTER ITS MERGE</text>
+      <g font-size="12">
+        <rect x="10" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="41" y="71" fill="#e8e4d8" text-anchor="middle">#3 ✓</text>
+        <rect x="82" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="113" y="71" fill="#e8e4d8" text-anchor="middle">#5 ✓</text>
+        <rect x="154" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="185" y="71" fill="#e8e4d8" text-anchor="middle">#6 ✓</text>
+        <rect x="226" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="257" y="71" fill="#e8e4d8" text-anchor="middle">#8 ✓</text>
+        <rect x="298" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="329" y="71" fill="#e8e4d8" text-anchor="middle">#10 ✓</text>
+        <rect x="370" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="401" y="71" fill="#e8e4d8" text-anchor="middle">#12 ✓</text>
+        <rect x="442" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="473" y="71" fill="#e8e4d8" text-anchor="middle">#4 ✓</text>
+        <rect x="514" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="545" y="71" fill="#e8e4d8" text-anchor="middle">#7 ✓</text>
+        <rect x="586" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="617" y="71" fill="#e8e4d8" text-anchor="middle">#13 ✓</text>
+      </g>
+      <text x="10" y="106" fill="#9cc0e8" font-size="11.5">REMAINING — IN ORDER</text>
+      <rect x="10" y="114" width="130" height="40" rx="6" fill="#101a29" stroke="#4a7fb5"/>
+      <text x="75" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">#9 · capture</text>
+      <text x="75" y="147" fill="#9cc0e8" font-size="10.5" text-anchor="middle">verification running</text>
+      <rect x="160" y="114" width="130" height="40" rx="6" fill="#171b26" stroke="#4c5261"/>
+      <text x="225" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">#11 · suite seed</text>
+      <text x="225" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">queued</text>
+      <rect x="310" y="114" width="180" height="40" rx="6" fill="#171b26" stroke="#4c5261"/>
+      <text x="400" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">Development Mode branch</text>
+      <text x="400" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">stages 1–5 · merges last</text>
+      <line x1="492" y1="134" x2="516" y2="134" stroke="#c9a227" marker-end="url(#ar3)"/>
+      <rect x="520" y="114" width="130" height="40" rx="6" fill="#171b26" stroke="#c9a227" stroke-width="2"/>
+      <text x="585" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">Final full gate</text>
+      <text x="585" y="147" fill="#c9a227" font-size="10.5" text-anchor="middle">on the integrated tree</text>
+      <text x="10" y="182" fill="#bdb8a6" font-size="11">Green: merged and verified. Blue: in verification. Grey: not yet merged. Gold: the gate that completes integration.</text>
+      <text x="10" y="198" fill="#bdb8a6" font-size="11">This diagram is a state snapshot, not a promise — it is redrawn at the next closeout.</text>
+    </svg>
+    <p class="cap"><strong>The integration, drawn.</strong> Nine packages are in;
+    the sequence ends only when the final full gate passes on everything
+    together. Until then, nothing on this page calls the integration complete.</p>
   </div>
 
   <div class="stage">
-    <p class="st">Phase 0 · Planned</p>
+    <p class="st">Next — first after integration · Owner-authorized 2026-11-02</p>
+    <h3>The save/reload continuation investigation (issue #15)</h3>
+    <p>A reloaded game continues <em>slightly differently</em> from one that was
+    never interrupted. The divergence is measured, not anecdotal: it begins at the
+    first step after reload, and the first differing byte sits in the economy's
+    double-precision region. One suspect — a private random stream — has been
+    eliminated experimentally as the sole cause; the cause is not yet attributed
+    and no fix is claimed. The owner unparked this investigation on 2026-11-02,
+    rated it a crucial fix, and placed it first after integration completes.
+    After it: <strong>WP-09</strong> grows Development Mode into a full diagnostic
+    environment in six increments.</p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage">
+    <p class="st">Phase 0 · Route decided 2026-11-02</p>
     <h3>M2 — Windows verification path</h3>
-    <p>Choose and execute a real Windows verification: <strong>(a)</strong> a Windows
-    runner in the cloud pipeline, <strong>(b)</strong> a real Windows environment, or
-    <strong>(c)</strong> Wine as a weaker preliminary check. The choice is an explicit
-    open decision for the owner — cross-compilation alone will never be called
-    verification.</p>
-    <p><strong>Gate:</strong> a recorded Windows session — launch, data and layouts
-    found, gameplay, save/load — at a real airport layout.</p>
+    <p>The route is decided: <strong>(a)</strong> — the GitHub-hosted Windows runners
+    already used by CI — extended into a scripted native test harness: build,
+    launch, scripted scenarios, a save/load round-trip in the real save location,
+    and automated frame capture with blank/size checks. The owner's own PC stays
+    out until release. Cross-compilation alone will never be called verification.</p>
+    <p><strong>Interim evidence (2026-11-02):</strong> the owner played a
+    pre-adoption Windows build (0.5.4, built by the original author) for about an
+    hour at Detroit — it launched and played correctly; its graphics looked
+    somewhat low-resolution (presentation only; cause uninvestigated). Saves were
+    not tested, and the current code's Windows build has never run natively — so
+    this is provisional demonstration for an older build, not verification of the
+    current one.</p>
+    <p><strong>Gate:</strong> a recorded Windows session of the current code —
+    launch, data and layouts found, gameplay, save/load — at a real airport layout.</p>
   </div>
   <div class="arrow">↓</div>
 
@@ -194,6 +319,11 @@
     <p>AirportSim is a Hollow Lantern project. This page reflects the adoption
     roadmap; the repository's roadmap document is authoritative if they ever differ.</p>
   </footer>
+  <script>
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg.skybg').forEach(function (s) { if (s.pauseAnimations) { s.pauseAnimations(); } });
+  }
+  </script>
 </main>
 </body>
 </html>

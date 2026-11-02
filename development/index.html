@@ -45,8 +45,8 @@
     <tr>
       <td><a href="../projects/airportsim/index.html"><strong>AirportSim</strong></a></td>
       <td>0.5.3</td>
-      <td><span class="pill dev">Development</span> Active. M1 is complete. Development Mode (five stages) and the performance-baseline work package are complete on the development line; integration/merge verification is in progress. No release is authorized.</td>
-      <td>2026-11-01 to 2026-11-02 — M1 baseline remains verified. Newer branch evidence includes deterministic snapshot/trace safeguards, an integrated F3 diagnostic overlay, and a measured step-cost model. The integrated full gate exited 2; matched base/current runs support attribution of its two UI failure signatures as pre-existing, not a green-gate claim.</td>
+      <td><span class="pill dev">Development</span> Active. M1 is complete. On 2026-11-02, nine of eleven packages in the owner-authorized integration sequence merged to the default branch, each verified after merging; PR #9 (verification in progress), PR #11 and the Development Mode branch remain, then a final full gate on the integrated tree. No release is authorized.</td>
+      <td>2026-11-02 — latest full gate on the integration tree: 162,608 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end pass · the same tree passed all four CI jobs. The intermittent failure that shadowed the sequence (an unseeded test world) is fixed for determinism. The Development Mode branch's earlier exit-2 gate remains in the record as failed, its two UI failure signatures attributed as pre-existing.</td>
     </tr>
     <tr>
       <td><a href="../projects/worldforge/index.html"><strong>WorldForge</strong></a></td>
@@ -55,7 +55,7 @@
       <td>2026-10-31 — M5 gate: suite 1,060 / 0 on a fresh build; Observatory Phase A merged (1,143 / 0) the same day, before the shelve.</td>
     </tr>
   </table>
-  <p>AirportSim is now in the controlled integration and verification stage for the completed Development Mode and performance-baseline work. Next roadmap work is Windows verification (WP-02) and new-player entry (WP-05), with ordering constrained by the active merge stack and the unresolved choice of a native Windows verification environment. No release is authorized. Blacksite's future and any WorldForge resumption remain owner decisions; WorldForge stays shelved.</p>
+  <p>AirportSim is in the final stage of its controlled integration. Next, in order: the save/reload continuation investigation (issue #15 — owner-unparked 2026-11-02 and rated a crucial fix), WP-09 (Development Mode grown into a full diagnostic environment), and the Windows verification harness on GitHub-hosted runners (route decided 2026-11-02; the owner's PC stays out until release). New-player entry (WP-05) follows on the roadmap. No release is authorized. Blacksite's development is cancelled; WorldForge stays shelved.</p>
 
   <h2>The rooms</h2>
   <div class="card"><h3><a href="evidence.html">Evidence</a></h3>

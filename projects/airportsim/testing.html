@@ -31,7 +31,51 @@
 </nav>
 <main id="main">
   <div class="projhero as slim">
-    
+    <svg class="skybg" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#96b9dc" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#96b9dc" stop-opacity="0.10"/>
+          <stop offset="1" stop-color="#96b9dc" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="skyblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect class="skyterm" x="-480" y="-40" width="440" height="420" fill="url(#skyfade)"/>
+      <g fill="#cfe3f5">
+        <circle cx="80" cy="42" r="1.3" opacity="0.5"/><circle cx="210" cy="96" r="1" opacity="0.35"/>
+        <circle cx="330" cy="30" r="1.5" opacity="0.55"/><circle cx="470" cy="70" r="1" opacity="0.3"/>
+        <circle cx="590" cy="38" r="1.2" opacity="0.45"/><circle cx="720" cy="92" r="1" opacity="0.3"/>
+        <circle cx="845" cy="34" r="1.4" opacity="0.5"/><circle cx="965" cy="78" r="1" opacity="0.35"/>
+        <circle cx="1080" cy="44" r="1.2" opacity="0.45"/><circle cx="1145" cy="110" r="1" opacity="0.3"/>
+        <circle cx="150" cy="150" r="1" opacity="0.25"/><circle cx="660" cy="150" r="1" opacity="0.22"/>
+        <circle cx="1035" cy="170" r="1" opacity="0.25"/><circle cx="415" cy="120" r="1" opacity="0.2"/>
+      </g>
+      <path id="sky-r2" d="M-20,110 C320,30 760,190 1220,70" fill="none" stroke="#7fa8c9" stroke-opacity="0.34" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r3" d="M-20,322 C420,244 820,118 1220,238" fill="none" stroke="#7fa8c9" stroke-opacity="0.22" stroke-width="1.1" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r1" d="M-20,262 C280,140 640,300 1220,150" fill="none" stroke="#c9a227" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <g>
+        <circle cx="250" cy="232" r="2" fill="#c9a227" opacity="0.55"/><circle cx="700" cy="118" r="2" fill="#c9a227" opacity="0.5"/>
+        <circle cx="982" cy="252" r="2" fill="#c9a227" opacity="0.5"/><circle cx="520" cy="84" r="1.8" fill="#9cc0e8" opacity="0.5"/>
+      </g>
+      <g class="skycloud" opacity="0.055" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="210" cy="66" rx="95" ry="17"/><ellipse cx="265" cy="82" rx="60" ry="13"/>
+      </g>
+      <g class="skycloud c2" opacity="0.05" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="950" cy="288" rx="110" ry="19"/><ellipse cx="890" cy="272" rx="58" ry="12"/>
+      </g>
+      <g opacity="0.85">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#e6c65c"/>
+        <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r1"/></animateMotion>
+      </g>
+      <g opacity="0.7">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#bcd6ee" transform="scale(0.8)"/>
+        <animateMotion dur="38s" begin="-14s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r2"/></animateMotion>
+      </g>
+      <g>
+        <circle r="6.5" fill="#9cc0e8" opacity="0.18"/><circle r="2.6" fill="#cfe3f5" opacity="0.9"/>
+        <animateMotion dur="46s" begin="-31s" repeatCount="indefinite"><mpath href="#sky-r3"/></animateMotion>
+      </g>
+    </svg>
   </div>
 
   <h2>Current development-line addendum (2026-11-02)</h2>
@@ -50,6 +94,75 @@
   <p>These results are development-line evidence, not a claim that the full gate passed or that
   all changes have merged to the default branch. The merge sequence requires checks after
   each merge, with a mandatory stop if the business-window failure persists or changes.</p>
+
+  <h2>Integration addendum (2026-11-02)</h2>
+  <p>The merge sequence described above ran on 2026-11-02, under those rules. Results:</p>
+  <table>
+    <tr><th>Work / check</th><th>Recorded result</th></tr>
+    <tr><td>Latest full gate (integration fixes tree)</td><td class="ok"><strong>Exit 0</strong> · 162,608 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end menu/swap/fuzz/load-loop pass. The same tree passed all four CI jobs on GitHub.</td></tr>
+    <tr><td>Integration progress</td><td>Nine of eleven packages merged to the default branch (head <em>676f0775</em>), each with fresh checks after its merge. PR #8's first fresh check reproduced the documented intermittent signature (an unseeded test world) and was rerun once under the recorded rule — passed; both runs preserved. Two branch conflicts were resolved as unions and verified by full local gates before merging.</td></tr>
+    <tr><td>The intermittent failure</td><td>Root-caused to an unseeded test world and fixed for determinism: the game binary's test world is seeded in PR #13 (merged); the suite's half is PR #11 (pending). The related cosmetic defect — the Business window truncating long airline names — remains open as issue #14.</td></tr>
+    <tr><td>Still remaining</td><td>PR #9 (screenshot-capture reliability — verification in progress), PR #11, the Development Mode branch (merges last), and the final full gate on the integrated tree. The exit-2 gate in the addendum above remains in the record as failed; nothing here rewrites it.</td></tr>
+  </table>
+
+  <div class="diagram" role="img" aria-label="Diagram: the verification pipeline — local strict gate, then four CI jobs, merge only on green">
+    <svg viewBox="0 0 660 178" width="660" style="max-width:100%">
+      <defs>
+        <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c9a227"/></marker>
+      </defs>
+      <text x="10" y="18" fill="#c9a227" font-size="12">THE VERIFICATION PIPELINE — EVERY PACKAGE, EVERY MERGE</text>
+      <rect x="10" y="30" width="180" height="48" rx="6" fill="#171b26" stroke="#c9a227"/>
+      <text x="100" y="50" fill="#e8e4d8" font-size="12.5" text-anchor="middle">Local strict gate</text>
+      <text x="100" y="67" fill="#bdb8a6" font-size="10.5" text-anchor="middle">make check · zero warnings</text>
+      <line x1="192" y1="54" x2="216" y2="54" stroke="#c9a227" marker-end="url(#ar4)"/>
+      <rect x="220" y="30" width="200" height="48" rx="6" fill="#171b26" stroke="#4c5261"/>
+      <text x="320" y="50" fill="#e8e4d8" font-size="12.5" text-anchor="middle">Fresh checks on GitHub</text>
+      <text x="320" y="67" fill="#bdb8a6" font-size="10.5" text-anchor="middle">four CI jobs, below</text>
+      <line x1="422" y1="54" x2="446" y2="54" stroke="#c9a227" marker-end="url(#ar4)"/>
+      <rect x="450" y="30" width="200" height="48" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="550" y="50" fill="#e8e4d8" font-size="12.5" text-anchor="middle">Merge — only on green</text>
+      <text x="550" y="67" fill="#bdb8a6" font-size="10.5" text-anchor="middle">head &amp; base identity verified first</text>
+      <g font-size="11.5">
+        <rect x="10" y="102" width="150" height="36" rx="6" fill="#171b26" stroke="#4c5261"/><text x="85" y="124" fill="#e8e4d8" text-anchor="middle">Gate suite</text>
+        <rect x="173" y="102" width="150" height="36" rx="6" fill="#171b26" stroke="#4c5261"/><text x="248" y="124" fill="#e8e4d8" text-anchor="middle">Sanitizers</text>
+        <rect x="336" y="102" width="150" height="36" rx="6" fill="#171b26" stroke="#4c5261"/><text x="411" y="124" fill="#e8e4d8" text-anchor="middle">Static analysis</text>
+        <rect x="499" y="102" width="150" height="36" rx="6" fill="#171b26" stroke="#4c5261"/><text x="574" y="124" fill="#e8e4d8" text-anchor="middle">Windows build</text>
+      </g>
+      <text x="10" y="160" fill="#bdb8a6" font-size="11">The four CI jobs (tooling from PR #7, merged 2026-11-02; the Windows job is a staged cross-build — signal, never “Windows verification”).</text>
+    </svg>
+    <p class="cap"><strong>How a change earns a merge.</strong> The same pipeline
+    ran for every package in the 2026-11-02 integration; a red check stops the
+    sequence rather than being waved through.</p>
+  </div>
+
+  <figure>
+    <img src="img/gate-business-2026-11-02.png" alt="Business window in the layout-test world during the gate run of 2026-11-02">
+    <figcaption><strong>The layout-test world, Business window (gate capture,
+    2026-11-02).</strong> The test world deliberately signs airlines with
+    over-long names and feed lines “with a long tail to clip”, so the interface's
+    behaviour under stress is exercised every run. The known cosmetic defect —
+    long airline names truncating in this window — is exactly what issue #14
+    tracks; the nondeterminism that once made this test intermittent is fixed.
+    Captured headless on the dummy video driver from a development build.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/gate-cargo-2026-11-02.png" alt="Cargo window and airport view during the gate run of 2026-11-02">
+    <figcaption><strong>Cargo window over Detroit (KDTW), same gate run.</strong>
+    The feed at the bottom records the capture tooling saving its own screenshot
+    (“Screenshot saved: build/shots/…”) — the capture-reliability work of PR #9,
+    whose verification is in progress. A MAYDAY call sits in the radio log: the
+    test world is a working simulation, not a static screen.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/gate-swap-2026-11-02.png" alt="World map during the airport-swap end-to-end flow, gate run of 2026-11-02">
+    <figcaption><strong>The airport-swap end-to-end flow.</strong> The scripted
+    flow sells Detroit (KDTW) and takes over Man (DIMN) — 1,399 flights airborne
+    on 1,705 routes in the test world at capture time. End-to-end flows like this
+    one drive the real game, which is what makes them evidence about gameplay
+    rather than about rules alone.</figcaption>
+  </figure>
 
   <h2>How to read the grades</h2>
   <p><strong>Implemented</strong> — the functionality exists in the code. This does not
@@ -79,7 +192,7 @@
     <tr><td>Linux launch verification</td><td class="ok">Launches; sessions screenshotted and inspected</td></tr>
     <tr><td>Strict release gate (<em>make check</em>)</td><td class="bad">At adoption: failed — one warning-as-error under GCC 13.3</td></tr>
     <tr><td>GitHub CI</td><td class="bad">At adoption: reproduced the same gate failure</td></tr>
-    <tr><td>Windows build &amp; runtime</td><td class="bad">Not verified — never run</td></tr>
+    <tr><td>Windows build &amp; runtime</td><td class="bad">Not verified — never run <em>(at adoption; narrowed 2026-11-02 — see K3 below)</em></td></tr>
     <tr><td><strong>Post-M1 verification (2026-11-01)</strong></td><td class="ok"><strong>Strict gate on the default branch, fresh clone of merge commit 181794d: exit 0, zero warnings · 162,315 checks, 0 failed · 9,676 checks, 0 failed · end-to-end menu/swap/fuzz/load-loop pass · CI green on the fix commit 9ab96c39</strong></td></tr>
   </table>
   <p>The gate failure is a format-truncation warning promoted to an error at one line
@@ -87,8 +200,8 @@
   toolchain. It does not stop the game building or playing — it stops anyone from
   <em>proving</em> a later change is safe, which is why fixing it is milestone M1.</p>
   <p><strong>Strongest evidence on record:</strong> save migration (Established —
-  fixtures from five versions back load in-suite, memory-safety clean) and multi-day
-  traffic stability soaks (Established within the tested scope).</p>
+  fixtures spanning save versions 4 through 13 load in-suite, memory-safety clean)
+  and multi-day traffic stability soaks (Established within the tested scope).</p>
   <p><strong>Not yet measured at all:</strong> performance at the largest hubs. No
   number exists, so none is published.</p>
 
@@ -110,11 +223,19 @@
     fresh clone of the merged default branch (exit 0, zero warnings, counts at
     baseline).</p></div>
 
-  <div class="card gap"><p class="st">K3 · Unverified behaviour</p>
-    <h3>Windows build and runtime are unverified</h3>
-    <p>The Windows build exists as code and has never been executed. Cross-compiling
-    is not verification. <em>Closes when:</em> a real session is recorded — launch,
-    data and layouts found, gameplay, save/load — by the route chosen for M2.</p></div>
+  <div class="card gap"><p class="st">K3 · Unverified behaviour — narrowed 2026-11-02</p>
+    <h3>Windows runtime: provisionally demonstrated on an older build; the current code is unverified</h3>
+    <p>The current code's Windows build has never been executed natively.
+    Cross-compiling is not verification. What changed on 2026-11-02: the owner
+    played a pre-adoption Windows build (0.5.4, built by the original author) for
+    about an hour at Detroit — it launched and played correctly, so gameplay is
+    provisionally demonstrated <em>for that older build only</em>; saves were not
+    tested. The route is decided: the GitHub-hosted Windows CI runners will be
+    extended into a scripted native harness (build, launch, scenarios, save/load
+    round-trip in the real save location, automated frame capture), and the
+    owner's own PC stays out until release. <em>Closes when:</em> the harness
+    records the full session — launch, data and layouts found, gameplay,
+    save/load — on the current code.</p></div>
 
   <div class="card gap"><p class="st">K4 · Documented, not reproduced serially</p>
     <h3>Pilot end-to-end test can flake under parallel load</h3>
@@ -148,8 +269,10 @@
     <li><strong>Map data:</strong> keep layouts baked into the game, or fetch map data
       at runtime? Undecided.</li>
     <li><strong>Mod support:</strong> whether, and what scope? Undecided.</li>
-    <li><strong>Windows verification route:</strong> cloud runner, real hardware, or
-      Wine for preliminary checks? The owner's decision, needed for M2.</li>
+    <li><strong>Windows verification route:</strong> <em>decided 2026-11-02</em> —
+      the GitHub-hosted Windows runners, extended into a scripted native test
+      harness; the owner's PC stays out until release. Recorded here because this
+      list is where the question lived; it is no longer undecided.</li>
     <li><strong>Tutorial design:</strong> how a new player is taught a deep simulation
       — Phase 1 work, not yet designed.</li>
     <li><strong>The ambient world:</strong> should the player be able to influence the
@@ -163,6 +286,11 @@
     <p>Grades and statuses change only on recorded evidence. If this page and the
     development record disagree, the record is right and this page gets corrected.</p>
   </footer>
+  <script>
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg.skybg').forEach(function (s) { if (s.pauseAnimations) { s.pauseAnimations(); } });
+  }
+  </script>
 </main>
 </body>
 </html>

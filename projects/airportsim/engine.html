@@ -31,7 +31,51 @@
 </nav>
 <main id="main">
   <div class="projhero as slim">
-    
+    <svg class="skybg" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#96b9dc" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#96b9dc" stop-opacity="0.10"/>
+          <stop offset="1" stop-color="#96b9dc" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="skyblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect class="skyterm" x="-480" y="-40" width="440" height="420" fill="url(#skyfade)"/>
+      <g fill="#cfe3f5">
+        <circle cx="80" cy="42" r="1.3" opacity="0.5"/><circle cx="210" cy="96" r="1" opacity="0.35"/>
+        <circle cx="330" cy="30" r="1.5" opacity="0.55"/><circle cx="470" cy="70" r="1" opacity="0.3"/>
+        <circle cx="590" cy="38" r="1.2" opacity="0.45"/><circle cx="720" cy="92" r="1" opacity="0.3"/>
+        <circle cx="845" cy="34" r="1.4" opacity="0.5"/><circle cx="965" cy="78" r="1" opacity="0.35"/>
+        <circle cx="1080" cy="44" r="1.2" opacity="0.45"/><circle cx="1145" cy="110" r="1" opacity="0.3"/>
+        <circle cx="150" cy="150" r="1" opacity="0.25"/><circle cx="660" cy="150" r="1" opacity="0.22"/>
+        <circle cx="1035" cy="170" r="1" opacity="0.25"/><circle cx="415" cy="120" r="1" opacity="0.2"/>
+      </g>
+      <path id="sky-r2" d="M-20,110 C320,30 760,190 1220,70" fill="none" stroke="#7fa8c9" stroke-opacity="0.34" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r3" d="M-20,322 C420,244 820,118 1220,238" fill="none" stroke="#7fa8c9" stroke-opacity="0.22" stroke-width="1.1" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r1" d="M-20,262 C280,140 640,300 1220,150" fill="none" stroke="#c9a227" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <g>
+        <circle cx="250" cy="232" r="2" fill="#c9a227" opacity="0.55"/><circle cx="700" cy="118" r="2" fill="#c9a227" opacity="0.5"/>
+        <circle cx="982" cy="252" r="2" fill="#c9a227" opacity="0.5"/><circle cx="520" cy="84" r="1.8" fill="#9cc0e8" opacity="0.5"/>
+      </g>
+      <g class="skycloud" opacity="0.055" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="210" cy="66" rx="95" ry="17"/><ellipse cx="265" cy="82" rx="60" ry="13"/>
+      </g>
+      <g class="skycloud c2" opacity="0.05" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="950" cy="288" rx="110" ry="19"/><ellipse cx="890" cy="272" rx="58" ry="12"/>
+      </g>
+      <g opacity="0.85">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#e6c65c"/>
+        <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r1"/></animateMotion>
+      </g>
+      <g opacity="0.7">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#bcd6ee" transform="scale(0.8)"/>
+        <animateMotion dur="38s" begin="-14s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r2"/></animateMotion>
+      </g>
+      <g>
+        <circle r="6.5" fill="#9cc0e8" opacity="0.18"/><circle r="2.6" fill="#cfe3f5" opacity="0.9"/>
+        <animateMotion dur="46s" begin="-31s" repeatCount="indefinite"><mpath href="#sky-r3"/></animateMotion>
+      </g>
+    </svg>
   </div>
 
   <h2>What carries the name</h2>
@@ -85,6 +129,11 @@
     Halcyon audit (2026-11-01) and its review, and the studio Engine Registry.
     If this page and those records disagree, the records are right.</p>
   </footer>
+  <script>
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg.skybg').forEach(function (s) { if (s.pauseAnimations) { s.pauseAnimations(); } });
+  }
+  </script>
 </main>
 </body>
 </html>

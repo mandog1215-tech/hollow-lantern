@@ -31,14 +31,59 @@
 </nav>
 <main id="main">
   <div class="projhero as">
+    <svg class="skybg" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#96b9dc" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#96b9dc" stop-opacity="0.10"/>
+          <stop offset="1" stop-color="#96b9dc" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="skyblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect class="skyterm" x="-480" y="-40" width="440" height="420" fill="url(#skyfade)"/>
+      <g fill="#cfe3f5">
+        <circle cx="80" cy="42" r="1.3" opacity="0.5"/><circle cx="210" cy="96" r="1" opacity="0.35"/>
+        <circle cx="330" cy="30" r="1.5" opacity="0.55"/><circle cx="470" cy="70" r="1" opacity="0.3"/>
+        <circle cx="590" cy="38" r="1.2" opacity="0.45"/><circle cx="720" cy="92" r="1" opacity="0.3"/>
+        <circle cx="845" cy="34" r="1.4" opacity="0.5"/><circle cx="965" cy="78" r="1" opacity="0.35"/>
+        <circle cx="1080" cy="44" r="1.2" opacity="0.45"/><circle cx="1145" cy="110" r="1" opacity="0.3"/>
+        <circle cx="150" cy="150" r="1" opacity="0.25"/><circle cx="660" cy="150" r="1" opacity="0.22"/>
+        <circle cx="1035" cy="170" r="1" opacity="0.25"/><circle cx="415" cy="120" r="1" opacity="0.2"/>
+      </g>
+      <path id="sky-r2" d="M-20,110 C320,30 760,190 1220,70" fill="none" stroke="#7fa8c9" stroke-opacity="0.34" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r3" d="M-20,322 C420,244 820,118 1220,238" fill="none" stroke="#7fa8c9" stroke-opacity="0.22" stroke-width="1.1" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r1" d="M-20,262 C280,140 640,300 1220,150" fill="none" stroke="#c9a227" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <g>
+        <circle cx="250" cy="232" r="2" fill="#c9a227" opacity="0.55"/><circle cx="700" cy="118" r="2" fill="#c9a227" opacity="0.5"/>
+        <circle cx="982" cy="252" r="2" fill="#c9a227" opacity="0.5"/><circle cx="520" cy="84" r="1.8" fill="#9cc0e8" opacity="0.5"/>
+      </g>
+      <g class="skycloud" opacity="0.055" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="210" cy="66" rx="95" ry="17"/><ellipse cx="265" cy="82" rx="60" ry="13"/>
+      </g>
+      <g class="skycloud c2" opacity="0.05" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="950" cy="288" rx="110" ry="19"/><ellipse cx="890" cy="272" rx="58" ry="12"/>
+      </g>
+      <g opacity="0.85">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#e6c65c"/>
+        <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r1"/></animateMotion>
+      </g>
+      <g opacity="0.7">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#bcd6ee" transform="scale(0.8)"/>
+        <animateMotion dur="38s" begin="-14s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r2"/></animateMotion>
+      </g>
+      <g>
+        <circle r="6.5" fill="#9cc0e8" opacity="0.18"/><circle r="2.6" fill="#cfe3f5" opacity="0.9"/>
+        <animateMotion dur="46s" begin="-31s" repeatCount="indefinite"><mpath href="#sky-r3"/></animateMotion>
+      </g>
+    </svg>
     <p class="kicker">Project · Airport management simulation</p>
     <h1>AirportSim</h1>
     <p class="tag">Run an airport — inside a world that flies whether you watch it or not.</p>
     <div class="record-strip" aria-label="AirportSim record">
       <div><span>Version</span><b>0.5.3 · Development</b></div>
       <div><span>World</span><b>4,531 airports · 26 real layouts</b></div>
-      <div><span>Save format</span><b>Version 10</b></div>
-      <div><span>Simulation suite</span><b>162,315 checks · 0 failed</b></div>
+      <div><span>Save format</span><b>Version 13</b></div>
+      <div><span>Simulation suite</span><b>162,608 checks · 0 failed</b></div>
     </div>
   </div>
 
@@ -78,20 +123,22 @@
       Heathrow, Kelowna and 23 more)</li>
     <li>Eight playable roles in the same simulation</li>
     <li>Weather with real METAR data; country and locale data for 232 territories</li>
-    <li>Saves that migrate forward across versions — fixtures from five versions back
-      load cleanly in the test suite today</li>
+    <li>Saves that migrate forward across versions — save fixtures spanning
+      versions 4 through 13 load cleanly in the test suite today</li>
   </ul>
 
   <div class="nums">
-    <div><b>162,315</b><span>simulation checks, 0 failed</span></div>
+    <div><b>162,608</b><span>simulation checks, 0 failed</span></div>
     <div><b>9,676</b><span>interface checks, 0 failed</span></div>
     <div><b>4,531</b><span>airports in the world data</span></div>
     <div><b>26</b><span>real airport layouts</span></div>
     <div><b>~31,500</b><span>lines of C11 — no asset files</span></div>
   </div>
-  <p>Check totals are the adoption assessment's measured results. They show the tested
-  behaviour holds; they are not, by themselves, proof that every feature works —
-  the per-system grades live on the <a href="systems.html">systems page</a>.</p>
+  <p>Check totals are the latest full gate's measured results (2026-11-02, on the
+  current integration tree; the adoption baseline was 162,315 simulation checks).
+  They show the tested behaviour holds; they are not, by themselves, proof that
+  every feature works — the per-system grades live on the
+  <a href="systems.html">systems page</a>.</p>
 
   <figure>
     <img src="img/worldmap.png" alt="AirportSim world map with live flights and weather">
@@ -113,17 +160,56 @@
     as such — not proof that every possible incident behaves correctly.</figcaption>
   </figure>
 
+  <figure>
+    <img src="img/gate-world-2026-11-02.png" alt="World map during the automated gate run of 2026-11-02">
+    <figcaption><strong>The world map, from the automated gate (2026-11-02).</strong>
+    Captured by the gate itself from the current development build, running headless
+    on a dummy video driver: 1,515 flights airborne on 1,728 routes in the test
+    world at capture time. A test-world observation, not a gameplay beauty shot —
+    the gate's captures exist so the interface can be inspected, not admired.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/gate-airport-2026-11-02.png" alt="Toronto Pearson airport view during the automated gate run of 2026-11-02">
+    <figcaption><strong>Toronto Pearson (CYYZ), from the same gate run.</strong> The
+    end-to-end menu flow loaded a game and the capture shows live approach traffic,
+    flight strips and the radio log. Same capture conditions as above: automated,
+    headless, dated 2026-11-02.</figcaption>
+  </figure>
+
   <h2 id="building">What is being built</h2>
   <p><strong>M1 — “Green gate &amp; safe repository” — is complete and accepted</strong>
   (2026-11-01): a fresh clone of the default branch passed the strict gate, the
   repository trap was closed, and the adoption documentation was reconciled. Since
   then, the development line has completed the five-stage Development Mode workstream
-  and the performance-baseline work package. The current integration stack is being
-  merged in a controlled order; until those merges and required checks are verified,
-  the newer work is described as development-branch evidence, not as part of the public
-  default-branch baseline. The next roadmap packages are Windows verification (WP-02)
-  and player entry/onboarding (WP-05), sequenced against the current merge stack and
-  the unresolved Windows-environment decision. M1's original criteria remain:</p>
+  and the performance-baseline work package.</p>
+  <p><strong>The integration (2026-11-02).</strong> The owner authorized a
+  dependency-ordered sequence of eleven packages. Nine are merged to the default
+  branch, each verified after its merge: the save-persistence fixes (OwnerBook
+  attribution, save format v11; FleetBook accumulators, v12; the simulation-clock
+  widening, v13), the cargo save/reload audit, the whole-world reproducibility
+  tests, the save-loader fuzz harness, the adoption framework documents, the test
+  tooling (CI now runs four jobs), and a three-fix package (deterministic test
+  worlds for the game binary, a top-bar overlap fix, and a latitude-conversion
+  undefined-behaviour fix). Remaining: PR #9 (screenshot-capture reliability —
+  verification in progress), PR #11 (the same test-world seeding for the test
+  suite), then the Development Mode branch merges last, and a final full gate on
+  the integrated tree. <strong>Integration is not complete until that gate
+  passes</strong>, and the default-branch baseline claims on this site will be
+  updated when it does.</p>
+  <p>The intermittent failure that shadowed the sequence — an unseeded test world
+  making the interface test nondeterministic — is fixed for determinism. A related
+  cosmetic defect remains open and tracked (issue #14): the Business window
+  truncates long airline names.</p>
+  <p><strong>Next, in order:</strong> the save/reload continuation investigation
+  (issue #15 — a reloaded game continues slightly differently from an uninterrupted
+  one; the owner unparked the investigation on 2026-11-02 and rated it a crucial
+  fix, so it runs first after integration); then WP-09, which grows Development
+  Mode into a full diagnostic environment; and the Windows verification harness —
+  the environment question is decided: the GitHub-hosted Windows CI runners will
+  be extended into a scripted native test harness, and the owner's own PC stays
+  out until release. Player entry/onboarding (WP-05) follows on the
+  <a href="roadmap.html">roadmap</a>. M1's original criteria remain:</p>
   <ul>
     <li>A clean clone of the default branch passes the strict release gate</li>
     <li>Test counts at or above the baseline (162,315 / 9,676), zero failures</li>
@@ -133,9 +219,13 @@
     <li>The default-branch problem is closed by the owner's approved route</li>
   </ul>
   <p>All eight were satisfied with evidence — the details live on the
-  <a href="testing.html">engineering &amp; testing page</a>. Still openly unresolved, and staying on
-  the register: Windows remains unverified (K3), and the full end-to-end matrix has
-  not yet been rerun on the current version (K6).</p>
+  <a href="testing.html">engineering &amp; testing page</a>. Still openly unresolved, and
+  staying on the register: native Windows verification of the current code (K3) —
+  on 2026-11-02 the owner played a pre-adoption Windows build (0.5.4, by the
+  original author) for about an hour at Detroit; it launched and played correctly,
+  so gameplay on that older build is provisionally demonstrated, but saves were
+  not tested and the current code's Windows build has never run natively — and
+  the full end-to-end matrix has not yet been rerun on the current version (K6).</p>
 
   <h2 id="vision">The long-term vision</h2>
   <p>Intent, not inventory: a sophisticated, polished airport simulation where depth
@@ -150,6 +240,11 @@
     from the project's development record; if the two ever disagree, the record is
     right and this site gets corrected.</p>
   </footer>
+  <script>
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg.skybg').forEach(function (s) { if (s.pauseAnimations) { s.pauseAnimations(); } });
+  }
+  </script>
 </main>
 </body>
 </html>

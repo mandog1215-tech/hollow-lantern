@@ -31,20 +31,64 @@
 </nav>
 <main id="main">
   <div class="projhero as slim">
-    
+    <svg class="skybg" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#96b9dc" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#96b9dc" stop-opacity="0.10"/>
+          <stop offset="1" stop-color="#96b9dc" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="skyblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect class="skyterm" x="-480" y="-40" width="440" height="420" fill="url(#skyfade)"/>
+      <g fill="#cfe3f5">
+        <circle cx="80" cy="42" r="1.3" opacity="0.5"/><circle cx="210" cy="96" r="1" opacity="0.35"/>
+        <circle cx="330" cy="30" r="1.5" opacity="0.55"/><circle cx="470" cy="70" r="1" opacity="0.3"/>
+        <circle cx="590" cy="38" r="1.2" opacity="0.45"/><circle cx="720" cy="92" r="1" opacity="0.3"/>
+        <circle cx="845" cy="34" r="1.4" opacity="0.5"/><circle cx="965" cy="78" r="1" opacity="0.35"/>
+        <circle cx="1080" cy="44" r="1.2" opacity="0.45"/><circle cx="1145" cy="110" r="1" opacity="0.3"/>
+        <circle cx="150" cy="150" r="1" opacity="0.25"/><circle cx="660" cy="150" r="1" opacity="0.22"/>
+        <circle cx="1035" cy="170" r="1" opacity="0.25"/><circle cx="415" cy="120" r="1" opacity="0.2"/>
+      </g>
+      <path id="sky-r2" d="M-20,110 C320,30 760,190 1220,70" fill="none" stroke="#7fa8c9" stroke-opacity="0.34" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r3" d="M-20,322 C420,244 820,118 1220,238" fill="none" stroke="#7fa8c9" stroke-opacity="0.22" stroke-width="1.1" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r1" d="M-20,262 C280,140 640,300 1220,150" fill="none" stroke="#c9a227" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <g>
+        <circle cx="250" cy="232" r="2" fill="#c9a227" opacity="0.55"/><circle cx="700" cy="118" r="2" fill="#c9a227" opacity="0.5"/>
+        <circle cx="982" cy="252" r="2" fill="#c9a227" opacity="0.5"/><circle cx="520" cy="84" r="1.8" fill="#9cc0e8" opacity="0.5"/>
+      </g>
+      <g class="skycloud" opacity="0.055" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="210" cy="66" rx="95" ry="17"/><ellipse cx="265" cy="82" rx="60" ry="13"/>
+      </g>
+      <g class="skycloud c2" opacity="0.05" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="950" cy="288" rx="110" ry="19"/><ellipse cx="890" cy="272" rx="58" ry="12"/>
+      </g>
+      <g opacity="0.85">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#e6c65c"/>
+        <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r1"/></animateMotion>
+      </g>
+      <g opacity="0.7">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#bcd6ee" transform="scale(0.8)"/>
+        <animateMotion dur="38s" begin="-14s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r2"/></animateMotion>
+      </g>
+      <g>
+        <circle r="6.5" fill="#9cc0e8" opacity="0.18"/><circle r="2.6" fill="#cfe3f5" opacity="0.9"/>
+        <animateMotion dur="46s" begin="-31s" repeatCount="indefinite"><mpath href="#sky-r3"/></animateMotion>
+      </g>
+    </svg>
   </div>
 
-  <h2>Status summary (updated 2026-11-01 — M1 accepted)</h2>
+  <h2>Status summary (updated 2026-11-02 — integration in progress)</h2>
   <table>
     <tr><th>Item</th><th>State</th></tr>
-    <tr><td>Verified baseline</td><td>Version 0.5.3 — commit <em>ba389b8</em>, 192 commits of project history preserved; M1 merged on top (merge commit <em>181794d</em>)</td></tr>
-    <tr><td>Latest build &amp; test evidence</td><td>Fresh clone of the default branch, 2026-11-01: strict gate passes (exit 0, zero warnings) · 162,315 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end flows pass · CI green on the pre-merge commit</td></tr>
-    <tr><td>Release-gate status</td><td class="ok">Green — on the actual default branch, from a fresh clone (K2 closed)</td></tr>
-    <tr><td>Current milestone</td><td>M1 — Green gate &amp; safe repository: <strong>COMPLETE and accepted</strong> (all eight criteria; evidence on the <a href="testing.html">engineering &amp; testing page</a>)</td></tr>
-    <tr><td>Latest published proposal (PR #10)</td><td>Save-format <strong>v13</strong> on the open, unmerged DEF-013 branch: <em>sim_time</em> is widened to double precision and pre-v13 save layouts receive migration handling. The reported branch gate passed with 162,600 simulation checks, 0 failed; 9,676 interface checks, 0 failed; end-to-end passed. <strong>Not merged</strong>: the default branch remains at save format v10 and game version 0.5.3. Branch-gate evidence is not default-branch evidence.</td></tr>
-    <tr><td>Earlier persistence proposals</td><td>PR #3 (save format v11, OwnerBook attribution) and PR #5 (save format v12, FleetBook accumulators) remain historical, unmerged proposals in the public repository. Do not treat either as the current default-branch state or as a release.</td></tr>
-    <tr><td>Outstanding blockers</td><td>None for M1. Open issues carried forward honestly: K3 (Windows unverified), K4 (documented pilot-test flake), K6 (full end-to-end matrix not yet rerun on the current version), K7 (ATC final speed control)</td></tr>
-    <tr><td>Next step</td><td><em>(Updated 2026-11-01 — dated correction.)</em> The studio's unified website, then the AirportSim engine phase (review package and proposed first milestone first), then Development Mode. The earlier "Development Mode next" ordering is superseded; see the <a href="roadmap.html">roadmap</a>.</td></tr>
+    <tr><td>Verified baseline</td><td>Version 0.5.3 — commit <em>ba389b8</em>, 192 commits of project history preserved; M1 merged on top (merge commit <em>181794d</em>). The default branch has since advanced through the 2026-11-02 integration to head <em>676f0775</em>; the game version remains 0.5.3.</td></tr>
+    <tr><td>Latest build &amp; test evidence</td><td>Latest full gate, on the integration (fixes) tree, 2026-11-02: exit 0 · 162,608 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end flows pass · the same tree passed all four CI jobs on GitHub. The adoption/M1 baseline (2026-11-01: 162,315 / 9,676 from a fresh clone) is kept on the <a href="testing.html">engineering &amp; testing page</a>.</td></tr>
+    <tr><td>Release-gate status</td><td class="ok">M1 gate green on the default branch, from a fresh clone (K2 closed, 2026-11-01). The 2026-11-02 integration closes with a final full gate on the integrated tree — still to run; until it passes, integration is not complete.</td></tr>
+    <tr><td>Current milestone</td><td>Integration of the owner-authorized package sequence: <strong>nine of eleven packages merged</strong> on 2026-11-02, each verified after merging. Remaining: PR #9 (screenshot-capture reliability, verification in progress), PR #11 (test-suite world seeding), the Development Mode branch (merges last), and the final integrated gate. M1 — Green gate &amp; safe repository — remains <strong>COMPLETE and accepted</strong> (all eight criteria; evidence on the <a href="testing.html">engineering &amp; testing page</a>).</td></tr>
+    <tr><td>Save format v13 (PR #10)</td><td><strong>MERGED</strong> to the default branch on 2026-11-02: <em>sim_time</em> is widened to double precision and pre-v13 save layouts receive migration handling. The default branch is now at save format <strong>v13</strong>; the game version remains 0.5.3.</td></tr>
+    <tr><td>Earlier persistence work</td><td>PR #3 (save format v11, OwnerBook attribution) and PR #5 (save format v12, FleetBook accumulators) were <strong>merged</strong> to the default branch on 2026-11-02, as the first steps of the integration sequence. Neither is a release.</td></tr>
+    <tr><td>Outstanding blockers</td><td>None for M1. Open items carried forward honestly: K3 narrowed — gameplay is provisionally demonstrated on a pre-adoption Windows build (0.5.4, played by the owner on 2026-11-02; saves not tested), while the current code's Windows build has never run natively; the decided route is a scripted harness on GitHub-hosted Windows runners. K4 (documented pilot-test flake), K6 (full end-to-end matrix not yet rerun on the current version), K7 (ATC final speed control). Plus the save/reload continuation finding (issue #15): a reloaded game continues slightly differently from an uninterrupted one — cause not yet attributed; the owner unparked the investigation on 2026-11-02 and it runs first after integration.</td></tr>
+    <tr><td>Next step</td><td><em>(Updated 2026-11-02.)</em> Finish the integration: PR #9, PR #11, the Development Mode branch last, then the final full gate on the integrated tree. Then the save/reload continuation investigation (issue #15), then WP-09 — Development Mode grown into a full diagnostic environment — and the Windows runner harness. See the <a href="roadmap.html">roadmap</a>.</td></tr>
     <tr><td>Releases</td><td>No public release is recorded in the available repository release records. The held standard: a release requires the completion standard met and the owner's explicit approval.</td></tr>
   </table>
 
@@ -52,9 +96,12 @@
   <p>From the project's releases registry (established 2026-11-01), seeded only
   from the repository's own tags, its changelog, and each tagged tree's own
   save-format constant. Every version's status is <strong>Development</strong>;
-  codenames: <strong>none assigned</strong> — none have ever existed for this
-  project, and none are invented here. (Changelog entries carry descriptive
-  titles; those are not codenames.)</p>
+  no tagged version carries a codename, and none are invented here for them.
+  (Changelog entries carry descriptive titles; those are not codenames.) One
+  codename now exists — for a build that has not been tagged: the forthcoming
+  integrated build will be <strong>“Threshold”</strong>, the developer's choice,
+  delegated by the owner on 2026-11-02. Its version number has not been decided;
+  that decision is the owner's and is pending, so no number is stated here.</p>
   <table>
     <tr><th>Version</th><th>Date</th><th>Tag → commit</th><th>Save format</th><th>Status</th></tr>
     <tr><td>0.1.0</td><td>2026-10-29</td><td><em>v0.1.0</em> → <em>76a6921</em></td><td>1</td><td>Development</td></tr>
@@ -75,8 +122,48 @@
   </table>
   <p>Plus one marker tag, not a version: <em>v0.5.2-handoff</em> → <em>437e931</em>
   (2026-10-30), a handoff marker on the 0.5.2 line. The registry also records what
-  it does not claim: no per-tag gate evidence survives for the historical versions,
-  and no Windows build of any version has ever been run (K3).</p>
+  it does not claim: no per-tag gate evidence survives for the historical versions.
+  One earlier statement is corrected here (2026-11-02): a Windows build of the
+  pre-adoption 0.5.4 line <em>was</em> run by the owner on 2026-11-02 — about an
+  hour of gameplay at Detroit; it launched and played correctly, and saves were
+  not tested. No Windows build of the <em>current</em> code has ever been run (K3).</p>
+
+  <div class="diagram" role="img" aria-label="Diagram: save format evolution on the default branch, v10 to v13">
+    <svg viewBox="0 0 660 168" width="660" style="max-width:100%">
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c9a227"/></marker>
+      </defs>
+      <text x="10" y="18" fill="#c9a227" font-size="12">SAVE FORMAT — DEFAULT BRANCH, AS OF 2026-11-02</text>
+      <rect x="10" y="30" width="130" height="56" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="75" y="54" fill="#e8e4d8" font-size="15" text-anchor="middle">v10</text>
+      <text x="75" y="72" fill="#bdb8a6" font-size="10.5" text-anchor="middle">0.5.3 tagged baseline</text>
+      <rect x="180" y="30" width="130" height="56" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="245" y="54" fill="#e8e4d8" font-size="15" text-anchor="middle">v11</text>
+      <text x="245" y="72" fill="#bdb8a6" font-size="10.5" text-anchor="middle">OwnerBook fix · PR #3</text>
+      <rect x="350" y="30" width="130" height="56" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="415" y="54" fill="#e8e4d8" font-size="15" text-anchor="middle">v12</text>
+      <text x="415" y="72" fill="#bdb8a6" font-size="10.5" text-anchor="middle">FleetBook fix · PR #5</text>
+      <rect x="520" y="30" width="130" height="56" rx="6" fill="#171b26" stroke="#c9a227" stroke-width="2"/>
+      <text x="585" y="54" fill="#e8e4d8" font-size="15" text-anchor="middle">v13</text>
+      <text x="585" y="72" fill="#bdb8a6" font-size="10.5" text-anchor="middle">clock widened · PR #10</text>
+      <line x1="142" y1="58" x2="176" y2="58" stroke="#c9a227" marker-end="url(#ar2)"/>
+      <line x1="312" y1="58" x2="346" y2="58" stroke="#c9a227" marker-end="url(#ar2)"/>
+      <line x1="482" y1="58" x2="516" y2="58" stroke="#c9a227" marker-end="url(#ar2)"/>
+      <line x1="10" y1="118" x2="650" y2="118" stroke="#4c5261"/>
+      <line x1="10" y1="112" x2="10" y2="124" stroke="#4c5261"/>
+      <line x1="650" y1="112" x2="650" y2="124" stroke="#4c5261"/>
+      <text x="10" y="108" fill="#bdb8a6" font-size="11">v4</text>
+      <text x="650" y="108" fill="#bdb8a6" font-size="11" text-anchor="end">v13</text>
+      <text x="330" y="140" fill="#e8e4d8" font-size="12" text-anchor="middle">Migration fixtures kept for every format from v4 through v13 — all load cleanly in the suite</text>
+      <text x="330" y="158" fill="#bdb8a6" font-size="11" text-anchor="middle">Each step shipped with a migration for older saves; no step is a release, and the game version stayed 0.5.3 throughout</text>
+    </svg>
+    <p class="cap"><strong>The save format's year in one line.</strong> Three
+    persistence fixes moved the default branch from v10 to v13 during the
+    2026-11-02 integration; v13 (gold) is the current format. The tagged
+    versions in the table above keep the save format of their own trees —
+    0.5.3's tag is a v10 tree; the branch has moved on without a version
+    change.</p>
+  </div>
 
   <h2>Authoritative records</h2>
   <p>The repository's records outrank this website. If they disagree: the discrepancy
@@ -90,7 +177,7 @@
     <li><strong>PROJECT_STATE.md</strong> — the single source of truth for current state</li>
     <li><strong>ARCHITECTURE.md</strong> — the verified system architecture</li>
     <li><strong>TESTS.md</strong> — what the test suites are and how to run them</li>
-    <li><strong>RELEASES.md</strong> — the releases registry this page renders (established 2026-11-01; at the time of this page's publication it stands as an open, unmerged pull request in the repository — its contents are drawn from the same tags and changelog either way)</li>
+    <li><strong>RELEASES.md</strong> — the releases registry this page renders (established 2026-11-01; the pull request that carried it, PR #2, was closed unmerged by the owner's decision on 2026-11-02 — its contents are drawn from the same tags and changelog either way)</li>
     <li><strong>docs/adoption/VISION.md &amp; DESIGN.md</strong> — the adopted vision and design record</li>
     <li><strong>docs/adoption/ROADMAP.md</strong> — the milestone plan this site's roadmap renders</li>
     <li><strong>docs/adoption/KNOWN_ISSUES.md</strong> — the issue register behind the testing page</li>
@@ -104,6 +191,11 @@
     <p>This summary is updated at milestone closeouts, in the same pass as the work's
     report — never ahead of the evidence.</p>
   </footer>
+  <script>
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg.skybg').forEach(function (s) { if (s.pauseAnimations) { s.pauseAnimations(); } });
+  }
+  </script>
 </main>
 </body>
 </html>
