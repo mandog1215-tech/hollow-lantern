@@ -34,6 +34,23 @@
     
   </div>
 
+  <h2>Current development-line addendum (2026-11-02)</h2>
+  <p>The five-stage Development Mode workstream and the performance-baseline work package
+  are reported complete on the development line. They are not being presented as part of
+  the default-branch baseline until the authorized merge stack and its post-merge checks
+  are complete.</p>
+  <table>
+    <tr><th>Work / check</th><th>Recorded result</th></tr>
+    <tr><td>Development Mode — integrated F3 diagnostic overlay</td><td>State identity, invariant status, delay explanation, trace inspection, snapshot capture/compare, and step-cost display integrated on the development line.</td></tr>
+    <tr><td>Trace non-interference</td><td>Trace-on/off paired trajectories were byte-identical; a planted RNG-draw negative control was detected.</td></tr>
+    <tr><td>Diagnostic cost</td><td>Full snapshot hashing measured at about 1.95 ms, so full identity refresh is on demand. Light invariant/delay refresh measured about 10 μs at 2 Hz.</td></tr>
+    <tr><td>Integrated full gate</td><td><strong>Exit code 2 — failed.</strong> The result remains failed in the record. Matched base/current comparisons reproduced the business-window truncation and topbar-overlap signatures, supporting attribution as pre-existing rather than a regression introduced by the diagnostic work.</td></tr>
+    <tr><td>Performance baseline</td><td>Model fitted for fixed overhead, active-aircraft count, and simulated time step. The aircraft-count coefficient remains weakly identified because world age and aircraft count are confounded in long-run windows; no optimization claim is made from the fit alone.</td></tr>
+  </table>
+  <p>These results are development-line evidence, not a claim that the full gate passed or that
+  all changes have merged to the default branch. The merge sequence requires checks after
+  each merge, with a mandatory stop if the business-window failure persists or changes.</p>
+
   <h2>How to read the grades</h2>
   <p><strong>Implemented</strong> — the functionality exists in the code. This does not
   establish that it behaves correctly.<br>
