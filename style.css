@@ -1,43 +1,73 @@
-/* Hollow Lantern Interactive — studio design system, R1 (2026-11-01).
-   "Lanternlight, documented": charcoal + aged gold, editorial serif for
-   narrative, a monospace technical voice for data. Evolved from the
-   Stage 1/2 sheet under the approved redesign proposal — every component
-   class from that sheet is preserved; tokens, header, and homepage
-   components are new. One file, no JavaScript, no external assets. */
+/* Hollow Lantern Interactive — design system "STRIP & BLUEPRINT" (2026-11-02).
+   Owner-directed redesign: the gold-on-dark card grid is replaced by a
+   bespoke language drawn from the studio's own world — flight-progress
+   strips, blueprint title blocks, ruler edges, instrument readouts and
+   evidence plates. Type: Space Grotesk (display + text) and JetBrains
+   Mono (data), loaded per page with system fallbacks. One file, no
+   build step, JavaScript only for the reduced-motion sky pause. */
 
 :root {
-  --bg: #0c0e13;
-  --panel: #141824;
-  --panel-2: #1a1f2e;
-  --ink: #ece7d9;
+  --bg: #06080f;
+  --bg-deep: #04060b;
+  --panel: #0b101d;
+  --panel-2: #101828;
+  --panel-3: #0a0f1c;
+  --ink: #e9edf5;
   --gold: #c9a227;
-  --gold-hi: #e3c04a;
-  --line: #2a2f3d;
-  --dim: #bdb8a6;
-  --faint: #a39f8f; /* contrast-corrected 2026-11-01 (was #8b8778) — kept */
-  --ok: #7fc48a;
-  --bad: #e08a7d;
-  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
-  --acc-bs: #c96a2c;   /* Blacksite — rust, tactical */
-  --acc-as: #7fa8c9;   /* AirportSim — steel blue, operational */
-  --acc-wf: #9db36a;   /* WorldForge — moss, expansive */
+  --gold-hi: #ecc95c;
+  --gold-dim: rgba(201,162,39,0.55);
+  --line: #26314a;
+  --line-soft: #1a2338;
+  --dim: #bcc6da;
+  --faint: #8d99b4; /* >= 4.5:1 on panel — secondary text */
+  --ok: #8fd49a;
+  --bad: #f09a8a;
+  --red-line: #b0402f;
+  --disp: "Space Grotesk", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  --acc-bs: #d97e40;   /* Blacksite — phosphor rust, terminal */
+  --acc-as: #8fc1ec;   /* AirportSim — radar blue, operational */
+  --acc-wf: #aec97e;   /* WorldForge — archival moss */
+  --ruler: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 12px);
+  --grid-as: linear-gradient(rgba(143,193,236,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(143,193,236,0.055) 1px, transparent 1px);
 }
 
-body { font-family: Georgia, 'Times New Roman', serif; margin: 0; background: var(--bg); color: var(--ink); }
-main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.25rem 4rem; }
-main.wide { max-width: 58rem; }
-h1 { font-size: clamp(2rem, 5vw, 2.6rem); margin-bottom: 0.2rem; letter-spacing: 0.02em; line-height: 1.15; }
-.tag { color: var(--gold); font-style: italic; margin-top: 0; }
-h2 { color: var(--gold); margin-top: 2.8rem; font-size: 1.22rem; text-transform: uppercase; letter-spacing: 0.08em; }
-h3 { font-size: 1.05rem; }
-p, li { line-height: 1.55; }
-a { color: var(--gold); }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--disp);
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.075rem);
+  margin: 0; color: var(--ink);
+  background:
+    linear-gradient(rgba(143,193,236,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143,193,236,0.028) 1px, transparent 1px),
+    radial-gradient(ellipse 90% 34rem at 50% -8rem, rgba(201,162,39,0.055), transparent 70%),
+    var(--bg);
+  background-size: 28px 28px, 28px 28px, 100% 100%, 100% 100%;
+}
+main { max-width: 47rem; margin: 0 auto; padding: 2.4rem 1.25rem 4.5rem; }
+main.wide { max-width: 61rem; }
+::selection { background: var(--gold); color: #0a0c12; }
+
+h1 { font-family: var(--disp); font-weight: 700; font-size: clamp(2.1rem, 5.4vw, 2.9rem); margin-bottom: 0.2rem; letter-spacing: -0.015em; line-height: 1.08; }
+.tag { color: var(--gold); font-style: italic; margin-top: 0; font-size: 1.06em; }
+h2 {
+  font-family: var(--disp); font-weight: 600; color: var(--ink);
+  margin-top: 3.2rem; font-size: 1.28rem; text-transform: uppercase; letter-spacing: 0.06em;
+  padding-bottom: 0.45rem; border-bottom: 1px solid var(--line);
+  box-shadow: 0 3px 0 -2px var(--gold-dim);
+}
+h2::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em; background: var(--gold); margin-right: 0.55em; vertical-align: 0.08em; }
+h3 { font-family: var(--disp); font-weight: 600; font-size: 1.08rem; letter-spacing: 0.005em; }
+p, li { line-height: 1.62; }
+a { color: var(--gold); text-underline-offset: 0.18em; }
 a:hover { color: var(--gold-hi); }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-footer { margin-top: 3rem; color: var(--faint); font-size: 0.9rem; }
-.skip { position: absolute; left: -9999px; top: 0; background: var(--panel); padding: 0.6rem 1rem; z-index: 10; }
+a:focus-visible, button:focus-visible { outline: 2px dashed var(--gold); outline-offset: 3px; }
+footer { margin-top: 3.5rem; color: var(--faint); font-size: 0.9rem; border-top: 1px solid var(--line-soft); padding-top: 1rem; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--panel-2); color: var(--ink); padding: 0.6rem 1rem; z-index: 20; font-family: var(--mono); font-size: 0.85rem; }
 .skip:focus { left: 0.5rem; top: 0.5rem; }
 .mono { font-family: var(--mono); }
+img, svg { max-width: 100%; }
 
 /* The emblem — original stroke mark: hexagonal lantern frame, diamond
    light core, ground line. Defined once per page as an SVG <symbol>
@@ -45,89 +75,104 @@ footer { margin-top: 3rem; color: var(--faint); font-size: 0.9rem; }
 .emblem { width: 30px; height: 30px; flex: none; }
 .emblem use, .emblem path, .emblem circle { vector-effect: non-scaling-stroke; }
 
-/* Navigation — full-width header bar (R1): brand left, links right,
-   independent of the content column. Project pages add a sub-bar. */
-nav.top { background: var(--panel); box-shadow: 0 1px 0 var(--line), 0 2px 0 -1px rgba(201,162,39,0.35); padding: 0.65rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.3rem; }
+/* Header — an ops-board bar: brand as a wordmark plate, links as mono
+   tabs; the current tab is punched with a gold underline block. */
+nav.top { background: var(--bg-deep); border-bottom: 1px solid var(--line); box-shadow: 0 4px 0 -3px var(--gold-dim); padding: 0.6rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 1.25rem; }
 nav.top .brandset { display: flex; align-items: center; gap: 0.6rem; margin-right: auto; }
-nav.top .brand { font-weight: bold; color: var(--ink); font-size: 1.05rem; letter-spacing: 0.01em; }
-nav.top a { text-decoration: none; font-size: 0.98rem; }
-nav.top a.here { color: var(--ink); border-bottom: 2px solid var(--gold); }
-nav.sub { padding: 0.55rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; border-bottom: 1px solid var(--line); font-size: 0.93rem; background: var(--bg); }
-nav.sub a { text-decoration: none; }
-nav.sub a.here { color: var(--ink); border-bottom: 2px solid currentColor; }
-nav.sub .sect { color: var(--faint); margin-right: 0.4rem; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; align-self: center; }
-@media (min-width: 48rem) { nav.sub { position: sticky; top: 0; z-index: 5; } }
-/* Persistent per-section status chip (design-system component; the
-   project sections adopt it in their redesign phases). */
-.status-chip { margin-left: auto; align-self: center; }
+nav.top .brand { font-weight: 700; color: var(--ink); font-size: 1.06rem; letter-spacing: 0.01em; }
+nav.top a { text-decoration: none; font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--dim); padding: 0.3rem 0.1rem; }
+nav.top a:hover { color: var(--gold-hi); }
+nav.top a.here { color: var(--gold); box-shadow: inset 0 -3px 0 var(--gold); }
 
-/* Status block + pills — one vocabulary across the whole studio */
-.status { border: 1px solid var(--gold); padding: 0.9rem 1.1rem; border-radius: 6px; background: var(--panel); }
-.pill { display: inline-block; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.16rem 0.55rem; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); vertical-align: 0.12em; white-space: nowrap; }
-.pill.held { border-color: #a03a30; color: var(--bad); }
-.pill.dev { border-color: #4a7fb5; color: #9cc0e8; }
+/* Sub-navigation — a flight-strip bay: dashed perforation under the
+   strip, mono destinations, section name as the strip's callsign. */
+nav.sub { padding: 0.5rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; gap: 0.3rem 1.05rem; border-bottom: 1px dashed var(--line); font-size: 0.85rem; background: var(--panel-3); font-family: var(--mono); }
+nav.sub a { text-decoration: none; color: var(--dim); padding: 0.22rem 0.05rem; }
+nav.sub a:hover { color: var(--gold-hi); }
+nav.sub a.here { color: var(--ink); box-shadow: inset 0 -2px 0 currentColor; }
+nav.sub .sect { color: var(--gold); margin-right: 0.4rem; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; align-self: center; }
+@media (min-width: 48rem) { nav.sub { position: sticky; top: 0; z-index: 5; } }
+.status-chip { margin-left: auto; align-self: center; }
+.status-chip .pill + .pill { margin-left: 0.35rem; }
+
+/* Status stamps — statuses are annotations stamped onto the record,
+   not rounded pills: rectangular, mono, punched with a hole dot.
+   Held carries a double-rule stamp border; Shelved is dashed, like an
+   archive marking; Development is an active blue stamp. */
+.pill { display: inline-block; font-family: var(--mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; padding: 0.3rem 0.6rem 0.3rem 0.85rem; border-radius: 2px; border: 1.5px solid var(--line); color: var(--dim); vertical-align: 0.14em; white-space: nowrap; position: relative; background: var(--bg-deep); }
+.pill::before { content: ""; position: absolute; left: 0.32rem; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; border: 1px solid currentColor; opacity: 0.75; }
+.pill.held { border-color: var(--red-line); color: var(--bad); box-shadow: inset 0 0 0 2px var(--bg-deep), inset 0 0 0 3.5px rgba(176,64,47,0.6); }
+.pill.dev { border-color: #4a7fb5; color: var(--acc-as); }
 .pill.verified { border-color: #3f7d46; color: var(--ok); }
-.pill.shelved { border-color: var(--line); color: var(--faint); }
+.pill.shelved { border-style: dashed; border-color: #55617c; color: var(--faint); }
 .pill.intent { border-color: var(--gold); color: var(--gold); }
 
-/* Homepage hero — emblem, glow, and the status strip (truth before scroll) */
-.hero { text-align: left; padding: 2.6rem 0 0.4rem; position: relative; }
-.hero::before { content: ""; position: absolute; inset: -1rem -2rem auto -2rem; height: 22rem; background: radial-gradient(ellipse 60% 55% at 18% 30%, rgba(201,162,39,0.09), transparent 70%); pointer-events: none; }
-.hero .emblem { width: 74px; height: 74px; }
-.hero h1 { font-size: clamp(2.6rem, 7vw, 3.6rem); margin: 0.8rem 0 0.2rem; }
-.hero .tag { font-size: 1.15rem; }
-.status-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.4rem 0 0.4rem; font-family: var(--mono); }
-.status-strip a { display: flex; align-items: center; gap: 0.6rem; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.55rem 0.85rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; letter-spacing: 0.04em; }
-.status-strip a:hover { border-color: var(--gold); }
+/* Status notice — an ops bulletin: heavy gold rail, ruler ticks along
+   the top edge, panel ground. */
+.status { border: 1px solid var(--line); border-left: 6px solid var(--gold); padding: 1rem 1.15rem 0.9rem; background: var(--panel-2); background-image: var(--ruler); background-size: 100% 7px; background-position: top left; background-repeat: no-repeat; }
 
-/* Project bands on the homepage — editorial presentations, one per
-   project, each with its texture treatment. */
-.band { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; align-items: center; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 1.3rem; margin: 1.2rem 0; position: relative; overflow: hidden; }
-.band .shot img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px; }
+/* Homepage hero — the lantern over a blueprint field; the status strip
+   below it is a bay of three flight strips, one per project. */
+.hero { text-align: left; padding: 2.8rem 0 0.4rem; position: relative; }
+.hero::before { content: ""; position: absolute; inset: -1rem -2rem auto -2rem; height: 24rem; background: radial-gradient(ellipse 60% 55% at 18% 30%, rgba(201,162,39,0.10), transparent 70%); pointer-events: none; }
+.hero .emblem { width: 76px; height: 76px; }
+.hero h1 { font-size: clamp(2.7rem, 7.4vw, 3.9rem); margin: 0.8rem 0 0.2rem; }
+.hero .tag { font-size: 1.18rem; }
+.status-strip { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1.5rem 0 0.4rem; font-family: var(--mono); }
+.status-strip a { display: flex; align-items: center; gap: 0.65rem; border: 1px solid var(--line); border-left: 5px solid var(--line); background: var(--panel); padding: 0.6rem 0.9rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; letter-spacing: 0.05em; }
+.status-strip a:hover { border-color: var(--gold); border-left-color: var(--gold); }
+
+/* Project bands on the homepage — full strips, not cards: sharp
+   corners, a heavy annotation rail, per-project field textures. */
+.band { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 1.4rem; margin: 1.3rem 0; position: relative; overflow: hidden; }
+.band .shot img { width: 100%; display: block; border: 1px solid var(--line); }
 .band figure.shot { margin: 0; }
 .band figure.shot figcaption { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); margin-top: 0.45rem; line-height: 1.5; }
-.band h3 { font-size: 1.55rem; margin: 0 0 0.3rem; }
+.band h3 { font-size: 1.7rem; margin: 0 0 0.3rem; letter-spacing: -0.01em; }
 .band h3 a { text-decoration: none; }
 .band p { margin: 0.35rem 0; }
-.band .links { font-size: 0.95rem; margin-top: 0.6rem; }
-.band.bs { border-top: 3px solid var(--acc-bs); }
-.band.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(201,106,44,0.045) 12px 13px); pointer-events: none; }
+.band .links { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.88rem; }
+.band.bs { border-left-color: var(--acc-bs); }
+.band.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(217,126,64,0.028) 3px 4px), repeating-linear-gradient(45deg, transparent 0 12px, rgba(217,126,64,0.04) 12px 13px); pointer-events: none; }
 .band.bs h3 a { color: var(--acc-bs); }
-.band.as { border-top: 3px solid var(--acc-as); background-image: linear-gradient(rgba(127,168,201,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(127,168,201,0.05) 1px, transparent 1px); background-size: 28px 28px; }
+.band.as { border-left-color: var(--acc-as); background-image: var(--grid-as); background-size: 26px 26px; }
 .band.as h3 a { color: var(--acc-as); }
-.band.wf { border-top: 3px solid var(--acc-wf); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%239db36a' stroke-opacity='0.08'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); }
+.band.wf { border-left-color: var(--acc-wf); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23aec97e' stroke-opacity='0.07'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); }
 .band.wf h3 a { color: var(--acc-wf); }
 @media (max-width: 48rem) { .band { grid-template-columns: 1fr; } }
 
-/* Engineering ladder + archive doors (homepage) */
-.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 1rem 0; }
-.ladder div { border: 1px solid var(--line); border-top: 3px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1rem; }
+/* Engineering ladder + archive doors (homepage) — the ladder actually
+   steps: each rung sits lower than the last on wide screens. */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; margin: 1rem 0; }
+.ladder div { border: 1px solid var(--line); border-top: 3px solid var(--line); background: var(--panel); padding: 0.85rem 1rem; }
 .ladder div:nth-child(2) { border-top-color: var(--gold); }
 .ladder div:nth-child(3) { border-top-color: var(--ok); }
-.ladder h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+@media (min-width: 48rem) { .ladder div:nth-child(2) { margin-top: 0.7rem; } .ladder div:nth-child(3) { margin-top: 1.4rem; } }
+.ladder h3 { margin: 0 0 0.25rem; font-size: 1rem; font-family: var(--mono); font-weight: 600; letter-spacing: 0.02em; }
 .ladder p { margin: 0.2rem 0; font-size: 0.92rem; }
 @media (max-width: 48rem) { .ladder { grid-template-columns: 1fr; } }
-.doors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1rem 0; }
-.doors a { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.85rem 1rem; text-decoration: none; }
-.doors a b { display: block; color: var(--ink); font-size: 1.02rem; margin-bottom: 0.2rem; }
+.doors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; margin: 1rem 0; }
+.doors a { border: 1px solid var(--line); background: var(--panel); padding: 0.9rem 1rem; text-decoration: none; background-image: linear-gradient(var(--gold-dim), var(--gold-dim)), linear-gradient(var(--gold-dim), var(--gold-dim)); background-size: 10px 1px, 1px 10px; background-position: top left, top left; background-repeat: no-repeat; }
+.doors a b { display: block; color: var(--ink); font-size: 1.02rem; margin-bottom: 0.2rem; font-weight: 600; }
 .doors a span { color: var(--dim); font-size: 0.88rem; line-height: 1.45; display: block; }
 .doors a:hover { border-color: var(--gold); }
 @media (max-width: 48rem) { .doors { grid-template-columns: 1fr 1fr; } }
 
-/* Project hero — the exemplar page head (R2, Blacksite first): project
-   identity + record strip inside one textured panel. Section phases
-   adopt it per project. */
-.projhero { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 1.2rem 1.3rem 0.5rem; margin-bottom: 1.2rem; position: relative; overflow: hidden; }
-.projhero .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; color: var(--faint); margin: 0; }
-.projhero h1 { margin: 0.15rem 0 0.2rem; }
-.projhero.slim { padding-bottom: 1rem; }
+/* Project hero — a drawing title block: ruler ticks along the top,
+   callsign kicker in mono, the record strip as its instrument row.
+   Per-game fields: Blacksite terminal hatch, AirportSim the live sky,
+   WorldForge archival contours, gold for the workshop pages. */
+.projhero { border: 1px solid var(--line); background: var(--panel); background-image: var(--ruler); background-size: 100% 7px; background-position: top left; background-repeat: no-repeat; padding: 1.5rem 1.35rem 0.6rem; margin-bottom: 1.3rem; position: relative; overflow: hidden; }
+.projhero .kicker { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.76rem; color: var(--faint); margin: 0; }
+.projhero h1 { margin: 0.2rem 0 0.25rem; }
+.projhero.slim { padding-bottom: 1.05rem; }
 .projhero.bs { border-top: 3px solid var(--acc-bs); }
-.projhero.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(201,106,44,0.045) 12px 13px); pointer-events: none; }
-.projhero.as { border-top: 3px solid var(--acc-as); background-image: linear-gradient(rgba(127,168,201,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(127,168,201,0.05) 1px, transparent 1px); background-size: 28px 28px; }
-.projhero.wf { border-top: 3px solid var(--acc-wf); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%239db36a' stroke-opacity='0.08'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); }
+.projhero.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(217,126,64,0.028) 3px 4px), repeating-linear-gradient(45deg, transparent 0 12px, rgba(217,126,64,0.04) 12px 13px); pointer-events: none; }
+.projhero.as { border-top: 3px solid var(--acc-as); }
+.projhero.wf { border-top: 3px solid var(--acc-wf); background-image: var(--ruler), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23aec97e' stroke-opacity='0.07'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); background-size: 100% 7px, 260px 260px; background-position: top left, top left; background-repeat: no-repeat, repeat; }
 .projhero.gold { border-top: 3px solid var(--gold); }
 
-/* AirportSim hero sky - night routes behind the AirportSim heroes.
+/* AirportSim hero sky — night routes behind the AirportSim heroes.
    Inline SVG with CSS + SMIL animation; a static scene when animation
    is unavailable, stilled for reduced-motion readers (query + script). */
 .skybg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
@@ -143,92 +188,115 @@ nav.sub .sect { color: var(--faint); margin-right: 0.4rem; text-transform: upper
   .skyroute, .skyterm, .skycloud { animation: none !important; }
 }
 
-.status-chip .pill + .pill { margin-left: 0.35rem; }
-
-/* Record strip — designed data row for project heroes (system component) */
-.record-strip { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin: 1rem 0; font-family: var(--mono); }
-.record-strip div { padding: 0.55rem 0.9rem; border-right: 1px solid var(--line); background: var(--panel-2); }
+/* Record strip — an instrument readout panel: inset dark ground,
+   segmented cells, values in the mono instrument voice. */
+.record-strip { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); overflow: hidden; margin: 1rem 0; font-family: var(--mono); background: var(--bg-deep); box-shadow: inset 0 1px 0 rgba(233,237,245,0.04); }
+.record-strip div { padding: 0.6rem 0.95rem; border-right: 1px solid var(--line-soft); }
 .record-strip div:last-child { border-right: none; }
-.record-strip span { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
-.record-strip b { font-size: 0.95rem; color: var(--ink); font-weight: normal; }
+.record-strip span { display: block; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 0.15rem; }
+.record-strip b { font-size: 0.98rem; color: var(--ink); font-weight: 600; }
 
 /* Project cards (kept for compatibility) + project page heads */
-.proj { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.9rem 1.1rem; margin: 0.9rem 0; }
+.proj { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.9rem 1.1rem; margin: 0.9rem 0; }
 .proj h3 { margin: 0 0 0.25rem; font-size: 1.2rem; }
 .proj p { margin: 0.25rem 0; font-size: 0.97rem; }
 .proj.bs { border-left-color: var(--acc-bs); } .proj.bs h3 a { color: var(--acc-bs); }
 .proj.as { border-left-color: var(--acc-as); } .proj.as h3 a { color: var(--acc-as); }
 .proj.wf { border-left-color: var(--acc-wf); } .proj.wf h3 a { color: var(--acc-wf); }
 .projhead { border-bottom: 3px solid var(--line); padding-bottom: 0.6rem; margin-bottom: 1rem; }
-.projhead .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; color: var(--faint); margin: 0; }
+.projhead .kicker { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.76rem; color: var(--faint); margin: 0; }
 
-figure { margin: 1.4rem 0; }
-figure img { width: 100%; border: 1px solid var(--line); border-radius: 6px; display: block; }
-figcaption { color: var(--dim); font-size: 0.92rem; line-height: 1.5; margin-top: 0.5rem; }
+/* Evidence plates — screenshots and diagrams are exhibits: a matted
+   double frame, and a caption set as an evidence note in mono with a
+   gold tick. */
+figure { margin: 1.6rem 0; }
+figure img { width: 100%; border: 1px solid var(--line); display: block; box-shadow: 0 0 0 5px var(--panel-3), 0 0 0 6px var(--line); }
+figcaption { color: var(--dim); font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; margin-top: 0.85rem; padding-left: 0.8rem; border-left: 3px solid var(--gold-dim); }
 figcaption strong { color: var(--ink); }
-.nums { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
-.nums div { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.6rem 0.9rem; }
-.nums b { display: block; font-family: var(--mono); font-size: 1.25rem; color: var(--gold); }
-.nums span { font-size: 0.85rem; color: var(--dim); }
-.card { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel-2); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+
+/* Instrument readouts — big mono figures with hairline dividers. */
+.nums { display: flex; flex-wrap: wrap; gap: 0; margin: 1.1rem 0; border: 1px solid var(--line); background: var(--bg-deep); }
+.nums div { padding: 0.7rem 1rem; border-right: 1px solid var(--line-soft); }
+.nums div:last-child { border-right: none; }
+.nums b { display: block; font-family: var(--mono); font-weight: 700; font-size: 1.35rem; color: var(--gold); letter-spacing: -0.01em; }
+.nums span { font-size: 0.84rem; color: var(--dim); }
+
+/* Strips — the card family becomes flight strips: flat, sharp, a mono
+   annotation header (.st) ruled off from the body. */
+.card { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel-2); padding: 0.85rem 1.1rem; margin: 0.9rem 0; }
 .card h3 { margin: 0 0 0.25rem; }
 .card p { margin: 0.2rem 0; font-size: 0.96rem; }
-.st { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); }
+.st { font-family: var(--mono); font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; color: var(--dim); }
 .st.ok { color: var(--ok); } .st.mid { color: var(--gold); } .st.low { color: var(--faint); } .st.no { color: var(--bad); }
-.gap { border-color: #a03a30; border-left-color: #a03a30; background: #1d1618; }
+.gap { border-color: var(--red-line); border-left-color: var(--red-line); background: #180d12; }
 .gap .st { color: var(--bad); }
-.sys { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+.sys { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.85rem 1.1rem; margin: 0.9rem 0; }
 .sys h3 { margin: 0 0 0.25rem; }
 .sys p { margin: 0.2rem 0; font-size: 0.95rem; }
 .sys .st { color: var(--ok); } .sys .st.plan { color: var(--faint); }
-.chain { border: 1px solid var(--gold); border-radius: 6px; background: var(--panel); padding: 1rem 1.2rem; margin: 1.2rem 0; }
+.chain { border: 1px dashed var(--gold-dim); background: var(--panel); background-image: var(--grid-as); background-size: 26px 26px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
 .chain p { margin: 0.3rem 0; text-align: center; font-size: 1.02rem; }
-.chain .arr { color: var(--gold); text-align: center; margin: 0; }
+.chain .arr { color: var(--gold); text-align: center; margin: 0; font-family: var(--mono); }
 .chain .loop { font-size: 0.9rem; color: var(--dim); font-style: italic; }
-.rung { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0.9rem 0; }
+.rung { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.85rem 1.1rem; margin: 0.9rem 0; }
 .rung h3 { margin: 0 0 0.25rem; }
 .rung p { margin: 0.2rem 0; font-size: 0.95rem; }
-.callout { border: 1px solid var(--gold); border-radius: 6px; background: #14150e; padding: 0.9rem 1.1rem; margin: 1.1rem 0; }
+.callout { border: 1px solid var(--gold-dim); border-left: 6px solid var(--gold); background: #12100a; padding: 0.9rem 1.1rem; margin: 1.1rem 0; }
 .callout p { margin: 0.25rem 0; }
+
+/* Tables — title-block header row, hairline body rules, mono data. */
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
-th, td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.45; }
-tbody tr:nth-child(even) td { background: rgba(255,255,255,0.016); }
+th, td { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.45; }
+th:last-child, td:last-child { border-right: none; }
+tbody tr:nth-child(even) td { background: rgba(143,193,236,0.025); }
 td { overflow-wrap: anywhere; } /* long URLs and hashes wrap inside cells instead of forcing page-wide horizontal scroll */
-.timeline td:first-child { white-space: nowrap; font-family: var(--mono); font-size: 0.88rem; } /* dates keep one line on desktop, in the technical voice */
-@media (min-width: 34.01rem) { table.timeline { border-left: 3px solid var(--gold); } } /* the gold rule of the timeline on wider screens */
-th { color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8rem; }
+.timeline td:first-child { white-space: nowrap; font-family: var(--mono); font-size: 0.88rem; color: var(--gold); } /* dates as instrument readouts */
+@media (min-width: 34.01rem) { table.timeline { border-left: 3px solid var(--gold); } } /* the gold track of the timeline on wider screens */
+th { font-family: var(--mono); font-weight: 600; color: var(--gold); background: var(--panel-2); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; border-bottom: 2px solid var(--gold-dim); }
 .ok { color: var(--ok); } .bad { color: var(--bad); }
-.diagram { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 1rem; margin: 1.2rem 0; overflow-x: auto; }
-.diagram p.cap { color: var(--dim); font-size: 0.9rem; margin: 0.6rem 0 0; }
-svg text { font-family: Georgia, serif; }
-.stage { border: 1px solid var(--line); border-left: 6px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.8rem 1.1rem; margin: 0 0 0.2rem; }
+
+/* Diagrams — blueprint plates: deep blue field, drawing grid, double
+   frame; the drawing's own text speaks in the mono instrument voice. */
+.diagram { border: 1px solid var(--line); outline: 1px solid var(--line-soft); outline-offset: 4px; background: #081226; background-image: linear-gradient(rgba(143,193,236,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(143,193,236,0.07) 1px, transparent 1px); background-size: 24px 24px; padding: 1rem; margin: 1.4rem 0; overflow-x: auto; }
+.diagram svg { width: 100%; height: auto; display: block; }
+.diagram p.cap { color: var(--dim); font-family: var(--mono); font-size: 0.84rem; margin: 0.7rem 0 0; }
+svg text { font-family: var(--mono); }
+
+/* Roadmap stages — strips on a line: the state colour is the rail,
+   the state label (.st) is the strip header. */
+.stage { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.85rem 1.1rem; margin: 0 0 0.2rem; }
 .stage h3 { margin: 0 0 0.25rem; }
 .stage p { margin: 0.2rem 0; font-size: 0.95rem; }
 .done { border-left-color: #3f7d46; } .done .st { color: var(--ok); }
-.now { border-color: #4a7fb5; border-left-color: #4a7fb5; background: #101a29; } .now .st { color: #9cc0e8; }
+.now { border-color: #4a7fb5; border-left-color: #4a7fb5; background: #0c1626; } .now .st { color: var(--acc-as); }
 .gate { border-left-color: var(--gold); } .gate .st { color: var(--gold); }
-.arrow { text-align: center; color: var(--faint); font-size: 1.15rem; line-height: 1.5; }
-.arrow small { display: block; font-size: 0.8rem; letter-spacing: 0.04em; }
-.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.2rem 0 0.4rem; font-size: 0.92rem; }
-.legend span::before { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 3px; margin-right: 0.45rem; vertical-align: -0.08rem; }
+.arrow { text-align: center; color: var(--gold-dim); font-size: 1.15rem; line-height: 1.5; font-family: var(--mono); }
+.arrow small { display: block; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--faint); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.2rem 0 0.4rem; font-size: 0.92rem; font-family: var(--mono); font-size: 0.84rem; }
+.legend span::before { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.45rem; vertical-align: -0.08rem; border: 1px solid var(--line); }
 .lg-done::before { background: #3f7d46; } .lg-now::before { background: #4a7fb5; } .lg-gate::before { background: var(--gold); } .lg-next::before { background: var(--line); }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
 @media (max-width: 34rem) {
-  h1 { font-size: 1.8rem; }
-  .hero h1 { font-size: 2.2rem; }
+  h1 { font-size: 1.85rem; }
+  .hero h1 { font-size: 2.3rem; }
   .hero .emblem { width: 54px; height: 54px; }
   main { padding-top: 1.4rem; }
-  nav.top, nav.sub { gap: 0.35rem 0.9rem; }
+  nav.top, nav.sub { gap: 0.35rem 0.85rem; }
+  .band h3 { font-size: 1.45rem; }
+  .record-strip div, .nums div { flex: 1 1 8rem; border-bottom: 1px solid var(--line-soft); }
   /* Wide tables (status, registry) scroll within their own box
      on narrow screens instead of stretching the page. */
-  table { display: block; overflow-x: auto; }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   th, td { padding: 0.45rem 0.55rem; }
-  .nums div { flex: 1 1 7rem; }
   /* The timeline leaves the table grid entirely on narrow
      screens: each event becomes a stacked, readable entry with
      its date on one line. Desktop keeps the table above. */
   table.timeline { overflow-x: visible; }
-  .timeline tr { display: block; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); padding: 0.55rem 0.8rem; margin-bottom: 0.6rem; }
+  .timeline tr { display: block; border: 1px solid var(--line); background: var(--panel); padding: 0.55rem 0.8rem; margin-bottom: 0.6rem; }
   .timeline tr.hrow { display: none; }
   .timeline td { display: block; border: none; padding: 0.15rem 0; white-space: normal; }
   .timeline td:first-child { color: var(--gold); font-weight: bold; }
