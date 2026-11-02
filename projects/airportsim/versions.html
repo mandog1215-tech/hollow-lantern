@@ -132,7 +132,13 @@
   One earlier statement is corrected here (2026-11-02): a Windows build of the
   pre-adoption 0.5.4 line <em>was</em> run by the owner on 2026-11-02 — about an
   hour of gameplay at Detroit; it launched and played correctly, and saves were
-  not tested. No Windows build of the <em>current</em> code has ever been run (K3).</p>
+  not tested. No Windows build of the <em>current</em> code has ever been run (K3).
+  <em>Update, later the same day:</em> the current code — 0.6.0-alpha.1
+  “Threshold”, including the save/reload fix — has now been run natively: a
+  scripted harness on GitHub's Windows runners launched it, passed its
+  interface suite and scripted scenarios, wrote saves into the real Windows
+  save location and reloaded them in a second launch, and captured 23 frames
+  (PR #25, merged 2026-11-02; battery verdict PASS).</p>
 
   <div class="diagram" role="img" aria-label="Diagram: save format evolution on the default branch, v10 to v13">
     <svg viewBox="0 0 660 168" width="660" style="max-width:100%">

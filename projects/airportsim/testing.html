@@ -106,7 +106,7 @@
     <tr><td>Final full gate (integrated tree)</td><td class="ok"><strong>Exit 0</strong> · 162,701 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end menu/swap/fuzz/load-loop pass · all four CI jobs pass on the final code · test inventory: 72 test groups.</td></tr>
     <tr><td>Integration progress</td><td><strong>Complete.</strong> All eleven packages merged to the default branch, each with fresh checks after its merge, then the Development Mode branch last; zero pull requests remain open. PR #8's first fresh check reproduced the documented intermittent signature (an unseeded test world) and was rerun once under the recorded rule — passed; both runs preserved. Two branch conflicts were resolved as unions and verified by full local gates before merging.</td></tr>
     <tr><td>The intermittent failure</td><td>Root-caused to an unseeded test world and fixed for determinism: the game binary's test world is seeded in PR #13 (merged); the suite's half is PR #11 (merged as the recorded resolution — its seeding was already covered by PR #13). The related cosmetic defect — the Business window truncating long airline names — remains open as issue #14.</td></tr>
-    <tr><td>Closed by the integration</td><td>The flickering layout test, the overlapping top bar, the frozen long-world clock, the 27-failure mystery run (explained as the flicker and the overlap occurring together), and a southern-hemisphere seeding quirk. Still open and next, in order: the save/reload continuation mystery (issue #15), the Windows test harness on GitHub's machines, and the Development Mode build-out (WP-09, umbrella issue #20). The exit-2 gate in the addendum above remains in the record as failed; nothing here rewrites it.</td></tr>
+    <tr><td>Closed by the integration</td><td>The flickering layout test, the overlapping top bar, the frozen long-world clock, the 27-failure mystery run (explained as the flicker and the overlap occurring together), and a southern-hemisphere seeding quirk. Since then, all three of the day's follow-ups have landed (2026-11-02): the save/reload continuation mystery was solved — a minute's weather was being computed from the fractional clock, so a reload quietly changed the weather (fix merged, PR #24; issue #15 closed); the Windows test harness on GitHub's machines was built, passed its first full native session, and merged (PR #25); and the Development Mode build-out (WP-09, umbrella issue #20) has begun, with Increment 1 — the inspection foundation and aircraft inspector — merged (PR #27, gate 162,730/0). Next in order: WP-09 Increment 2, the Mathematics Lab. The exit-2 gate in the addendum above remains in the record as failed; nothing here rewrites it.</td></tr>
   </table>
 
   <div class="diagram" role="img" aria-label="Diagram: the verification pipeline — local strict gate, then four CI jobs, merge only on green">
@@ -227,19 +227,22 @@
     fresh clone of the merged default branch (exit 0, zero warnings, counts at
     baseline).</p></div>
 
-  <div class="card gap"><p class="st">K3 · Unverified behaviour — narrowed 2026-11-02</p>
-    <h3>Windows runtime: provisionally demonstrated on an older build; the current code is unverified</h3>
-    <p>The current code's Windows build has never been executed natively.
-    Cross-compiling is not verification. What changed on 2026-11-02: the owner
-    played a pre-adoption Windows build (0.5.4, built by the original author) for
-    about an hour at Detroit — it launched and played correctly, so gameplay is
-    provisionally demonstrated <em>for that older build only</em>; saves were not
-    tested. The route is decided: the GitHub-hosted Windows CI runners will be
-    extended into a scripted native harness (build, launch, scenarios, save/load
-    round-trip in the real save location, automated frame capture), and the
-    owner's own PC stays out until release. <em>Closes when:</em> the harness
-    records the full session — launch, data and layouts found, gameplay,
-    save/load — on the current code.</p></div>
+  <div class="card gap"><p class="st">K3 · Demonstrated 2026-11-02 — reliability record in progress</p>
+    <h3>Windows runtime: the current code now runs natively, by script, on every change</h3>
+    <p>Cross-compiling is not verification — so the project built the real
+    thing. On 2026-11-02 the scripted native harness merged (PR #25): on every
+    change, a Windows machine at GitHub runs the actual game — version
+    identity, the full interface suite, scripted scenarios, saves written to
+    the real Windows save location (%APPDATA%) and reloaded by a second
+    launch, and automated frame capture. Its first full session on the
+    current code (0.6.0-alpha.1) passed end to end, and it has passed on
+    every run since. Earlier the same day the owner had played a pre-adoption
+    build (0.5.4) for about an hour at Detroit — gameplay provisionally
+    demonstrated for that older build; saves were not tested there, and the
+    harness has since covered them on the current code. <em>Closes when:</em>
+    the harness has a reliability record long enough to graduate from
+    non-scoring to scoring, and its battery also covers a starter-layout
+    airport.</p></div>
 
   <div class="card gap"><p class="st">K4 · Documented, not reproduced serially</p>
     <h3>Pilot end-to-end test can flake under parallel load</h3>
