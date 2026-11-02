@@ -84,9 +84,9 @@
   <p>The M1 baseline is established: a fresh clone of the default branch passed the
   strict gate on 2026-11-01. Development Mode and the performance-baseline work
   completed on the development line. On 2026-11-02 the owner-authorized integration
-  sequence ran in dependency order: nine of its eleven packages are merged to the
-  default branch, each verified after merging; PR #9, PR #11 and the Development
-  Mode branch remain, followed by a final full gate on the integrated tree.
+  sequence ran in dependency order: all eleven packages and the Development
+  Mode branch are merged to the default branch, each verified after merging,
+  and the final full gate on the integrated tree has passed.
   Phase status below distinguishes completed work from integration and from work
   not yet started. Gates, not calendar dates, determine progression.</p>
 
@@ -142,7 +142,7 @@
   <div class="arrow">↓</div>
 
   <div class="stage done">
-    <p class="st">Completed on the development line — merges last in the integration sequence</p>
+    <p class="st">Completed — merged to the default branch last in the 2026-11-02 integration</p>
     <h3>WP-03 — Development Mode</h3>
     <p>Five stages integrated the F3 diagnostic overlay, state identity, invariant status,
     delay explanation, trace inspection, snapshot capture/compare, and measured step cost.
@@ -155,7 +155,8 @@
     into a pass. Both signatures were later addressed in the integration: the top-bar
     overlap is fixed (PR #13, merged) and the nondeterminism behind the intermittent
     business-window failures is fixed by seeding the test worlds (PR #13 merged;
-    PR #11 pending); the remaining cosmetic truncation of long airline names in the
+    PR #11 merged as the recorded resolution — its seeding was already covered by
+    PR #13); the remaining cosmetic truncation of long airline names in the
     Business window stays open as issue #14.</p>
   </div>
   <div class="arrow">↓</div>
@@ -170,10 +171,10 @@
     14.1 µs per call; at or below 1.7 s per simulated clock-day against a measured
     0.56 s); no unmeasured largest-hub performance claim is made.</p>
   </div>
-  <div class="stage now">
-    <p class="st">Current position — 2026-11-02</p>
-    <h3>Integration — nine of eleven packages merged</h3>
-    <p>The owner-authorized merge stack is being integrated in dependency order, with
+  <div class="stage done">
+    <p class="st">Completed 2026-11-02 — final gate passed</p>
+    <h3>Integration — complete: all eleven packages and the Development Mode branch merged</h3>
+    <p>The owner-authorized merge stack was integrated in dependency order, with
     checks rerun after each merge and the mandatory stop conditions honoured:
     PR #8's first fresh check reproduced the documented intermittent signature and
     was rerun once under the recorded rule (it passed; both runs are preserved);
@@ -183,26 +184,32 @@
     (FleetBook accumulator fix, save v12), PR #6 (cargo save/reload audit), PR #8
     (whole-world reproducibility tests), PR #10 (simulation-clock widening, save
     v13), PR #12 (save-loader fuzz harness), PR #4 (adoption framework documents),
-    PR #7 (test tooling — CI now runs four jobs) and PR #13 (three fixes:
+    PR #7 (test tooling — CI now runs four jobs), PR #13 (three fixes:
     deterministic test worlds for the game binary, top-bar overlap, latitude
-    conversion). <strong>Remaining:</strong> PR #9 (screenshot-capture reliability —
-    verification in progress), PR #11 (test-world seeding for the suite), the
-    Development Mode branch (stages 1–5 plus save-loader hardening — merges last),
-    and the final full gate on the integrated tree. Integration is not complete
-    until that gate passes. When it does, the integrated build becomes the
-    project's first <strong>Alpha</strong> — “Threshold” — under the
-    build-labelling ladder the owner adopted on 2026-11-02 (development builds
-    are named by date + commit; Beta waits on native Windows verification, the
-    save/reload fix, and a full end-to-end matrix rerun). Its version number
-    remains the owner's pending decision.</p>
+    conversion), PR #9 (screenshot-capture reliability — merged after its checks
+    caught a Windows build failure in its own capture code; a one-line fix, made
+    and re-verified the same day), PR #11 (test-world seeding for the suite —
+    merged as the recorded resolution; its seeding was already covered by PR #13),
+    and the Development Mode branch last (stages 1–5 plus save-loader hardening;
+    two small fixes on its first trip through the full checks — a Windows clock
+    call made portable, and a memory leak in a test caught by the memory-safety
+    run — both fixed and re-verified before merging). The <strong>final full gate
+    on the integrated tree passed</strong>: 162,701 simulation checks and 9,676
+    interface checks, zero failed, end-to-end flows green, and all four CI jobs
+    passing on the final code. No pull requests remain open. The integrated build
+    carries the codename <strong>“Threshold”</strong>; its version number is the
+    owner's pending decision, so no number and no stage label is stated for it yet
+    (under the build-labelling ladder the owner adopted on 2026-11-02, development
+    builds are named by date + commit; Beta waits on native Windows verification,
+    the save/reload fix, and a full end-to-end matrix rerun).</p>
   </div>
 
-  <div class="diagram" role="img" aria-label="Diagram: the 2026-11-02 integration sequence — nine packages merged, two packages and the Development Mode branch remaining, then the final gate">
+  <div class="diagram" role="img" aria-label="Diagram: the 2026-11-02 integration sequence — all eleven packages and the Development Mode branch merged, final gate passed">
     <svg viewBox="0 0 660 208" width="660" style="max-width:100%">
       <defs>
         <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c9a227"/></marker>
       </defs>
-      <text x="10" y="18" fill="#c9a227" font-size="12">THE INTEGRATION SEQUENCE — STATE AT 2026-11-02</text>
+      <text x="10" y="18" fill="#c9a227" font-size="12">THE INTEGRATION SEQUENCE — COMPLETED 2026-11-02</text>
       <text x="10" y="42" fill="#3f7d46" font-size="11.5">MERGED TO THE DEFAULT BRANCH — EACH VERIFIED AFTER ITS MERGE</text>
       <g font-size="12">
         <rect x="10" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="41" y="71" fill="#e8e4d8" text-anchor="middle">#3 ✓</text>
@@ -215,26 +222,26 @@
         <rect x="514" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="545" y="71" fill="#e8e4d8" text-anchor="middle">#7 ✓</text>
         <rect x="586" y="50" width="62" height="34" rx="6" fill="#171b26" stroke="#3f7d46"/><text x="617" y="71" fill="#e8e4d8" text-anchor="middle">#13 ✓</text>
       </g>
-      <text x="10" y="106" fill="#9cc0e8" font-size="11.5">REMAINING — IN ORDER</text>
-      <rect x="10" y="114" width="130" height="40" rx="6" fill="#101a29" stroke="#4a7fb5"/>
-      <text x="75" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">#9 · capture</text>
-      <text x="75" y="147" fill="#9cc0e8" font-size="10.5" text-anchor="middle">verification running</text>
-      <rect x="160" y="114" width="130" height="40" rx="6" fill="#171b26" stroke="#4c5261"/>
-      <text x="225" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">#11 · suite seed</text>
-      <text x="225" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">queued</text>
-      <rect x="310" y="114" width="180" height="40" rx="6" fill="#171b26" stroke="#4c5261"/>
-      <text x="400" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">Development Mode branch</text>
-      <text x="400" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">stages 1–5 · merges last</text>
+      <text x="10" y="106" fill="#3f7d46" font-size="11.5">THEN — IN ORDER</text>
+      <rect x="10" y="114" width="130" height="40" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="75" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">#9 · capture ✓</text>
+      <text x="75" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">one-line Windows fix</text>
+      <rect x="160" y="114" width="130" height="40" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="225" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">#11 · suite seed ✓</text>
+      <text x="225" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">recorded resolution</text>
+      <rect x="310" y="114" width="180" height="40" rx="6" fill="#171b26" stroke="#3f7d46"/>
+      <text x="400" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">Development Mode branch ✓</text>
+      <text x="400" y="147" fill="#bdb8a6" font-size="10.5" text-anchor="middle">stages 1–5 · merged last</text>
       <line x1="492" y1="134" x2="516" y2="134" stroke="#c9a227" marker-end="url(#ar3)"/>
       <rect x="520" y="114" width="130" height="40" rx="6" fill="#171b26" stroke="#c9a227" stroke-width="2"/>
-      <text x="585" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">Final full gate</text>
-      <text x="585" y="147" fill="#c9a227" font-size="10.5" text-anchor="middle">on the integrated tree</text>
-      <text x="10" y="182" fill="#bdb8a6" font-size="11">Green: merged and verified. Blue: in verification. Grey: not yet merged. Gold: the gate that completes integration.</text>
+      <text x="585" y="131" fill="#e8e4d8" font-size="12" text-anchor="middle">Final full gate ✓</text>
+      <text x="585" y="147" fill="#c9a227" font-size="10.5" text-anchor="middle">passed · 162,701 / 0</text>
+      <text x="10" y="182" fill="#bdb8a6" font-size="11">Green: merged and verified. Gold: the final gate that completed integration — passed.</text>
       <text x="10" y="198" fill="#bdb8a6" font-size="11">This diagram is a state snapshot, not a promise — it is redrawn at the next closeout.</text>
     </svg>
-    <p class="cap"><strong>The integration, drawn.</strong> Nine packages are in;
-    the sequence ends only when the final full gate passes on everything
-    together. Until then, nothing on this page calls the integration complete.</p>
+    <p class="cap"><strong>The integration, drawn.</strong> All eleven packages
+    and the Development Mode branch are in, and the final full gate passed on
+    everything together — the sequence is complete.</p>
   </div>
 
   <div class="stage">
@@ -246,9 +253,10 @@
     double-precision region. One suspect — a private random stream — has been
     eliminated experimentally as the sole cause; the cause is not yet attributed
     and no fix is claimed. The owner unparked this investigation on 2026-11-02,
-    rated it a crucial fix, and placed it first after integration completes.
-    After it: <strong>WP-09</strong> grows Development Mode into a full diagnostic
-    environment in six increments.</p>
+    rated it a crucial fix, and placed it first after the integration — which
+    completed the same day. After it: the Windows verification harness (next
+    stage below), then <strong>WP-09</strong> (umbrella issue #20) grows
+    Development Mode into a full diagnostic environment in six increments.</p>
   </div>
   <div class="arrow">↓</div>
 

@@ -83,9 +83,8 @@
 
   <h2>Current development-line addendum (2026-11-02)</h2>
   <p>The five-stage Development Mode workstream and the performance-baseline work package
-  are reported complete on the development line. They are not being presented as part of
-  the default-branch baseline until the authorized merge stack and its post-merge checks
-  are complete.</p>
+  are reported complete on the development line and, as of the completed 2026-11-02
+  integration, are merged to the default branch — see the integration addendum below.</p>
   <table>
     <tr><th>Work / check</th><th>Recorded result</th></tr>
     <tr><td>Development Mode — integrated F3 diagnostic overlay</td><td>State identity, invariant status, delay explanation, trace inspection, snapshot capture/compare, and step-cost display integrated on the development line.</td></tr>
@@ -94,18 +93,20 @@
     <tr><td>Integrated full gate</td><td><strong>Exit code 2 — failed.</strong> The result remains failed in the record. Matched base/current comparisons reproduced the business-window truncation and topbar-overlap signatures, supporting attribution as pre-existing rather than a regression introduced by the diagnostic work.</td></tr>
     <tr><td>Performance baseline</td><td>Model fitted for fixed overhead, active-aircraft count, and simulated time step. The aircraft-count coefficient remains weakly identified because world age and aircraft count are confounded in long-run windows; no optimization claim is made from the fit alone.</td></tr>
   </table>
-  <p>These results are development-line evidence, not a claim that the full gate passed or that
-  all changes have merged to the default branch. The merge sequence requires checks after
-  each merge, with a mandatory stop if the business-window failure persists or changes.</p>
+  <p>The Development Mode branch's own integrated gate result above remains in the record as
+  failed. When the branch took its first trip through the full checks during the integration,
+  two further small defects surfaced — a Windows clock call that was not portable, and a memory
+  leak in a test, caught by the memory-safety run; both were fixed and re-verified before the
+  branch merged (see the integration addendum below).</p>
 
   <h2>Integration addendum (2026-11-02)</h2>
   <p>The merge sequence described above ran on 2026-11-02, under those rules. Results:</p>
   <table>
     <tr><th>Work / check</th><th>Recorded result</th></tr>
-    <tr><td>Latest full gate (integration fixes tree)</td><td class="ok"><strong>Exit 0</strong> · 162,608 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end menu/swap/fuzz/load-loop pass. The same tree passed all four CI jobs on GitHub.</td></tr>
-    <tr><td>Integration progress</td><td>Nine of eleven packages merged to the default branch (head <em>676f0775</em>), each with fresh checks after its merge. PR #8's first fresh check reproduced the documented intermittent signature (an unseeded test world) and was rerun once under the recorded rule — passed; both runs preserved. Two branch conflicts were resolved as unions and verified by full local gates before merging.</td></tr>
-    <tr><td>The intermittent failure</td><td>Root-caused to an unseeded test world and fixed for determinism: the game binary's test world is seeded in PR #13 (merged); the suite's half is PR #11 (pending). The related cosmetic defect — the Business window truncating long airline names — remains open as issue #14.</td></tr>
-    <tr><td>Still remaining</td><td>PR #9 (screenshot-capture reliability — verification in progress), PR #11, the Development Mode branch (merges last), and the final full gate on the integrated tree. The exit-2 gate in the addendum above remains in the record as failed; nothing here rewrites it.</td></tr>
+    <tr><td>Final full gate (integrated tree)</td><td class="ok"><strong>Exit 0</strong> · 162,701 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end menu/swap/fuzz/load-loop pass · all four CI jobs pass on the final code · test inventory: 72 test groups.</td></tr>
+    <tr><td>Integration progress</td><td><strong>Complete.</strong> All eleven packages merged to the default branch, each with fresh checks after its merge, then the Development Mode branch last; zero pull requests remain open. PR #8's first fresh check reproduced the documented intermittent signature (an unseeded test world) and was rerun once under the recorded rule — passed; both runs preserved. Two branch conflicts were resolved as unions and verified by full local gates before merging.</td></tr>
+    <tr><td>The intermittent failure</td><td>Root-caused to an unseeded test world and fixed for determinism: the game binary's test world is seeded in PR #13 (merged); the suite's half is PR #11 (merged as the recorded resolution — its seeding was already covered by PR #13). The related cosmetic defect — the Business window truncating long airline names — remains open as issue #14.</td></tr>
+    <tr><td>Closed by the integration</td><td>The flickering layout test, the overlapping top bar, the frozen long-world clock, the 27-failure mystery run (explained as the flicker and the overlap occurring together), and a southern-hemisphere seeding quirk. Still open and next, in order: the save/reload continuation mystery (issue #15), the Windows test harness on GitHub's machines, and the Development Mode build-out (WP-09, umbrella issue #20). The exit-2 gate in the addendum above remains in the record as failed; nothing here rewrites it.</td></tr>
   </table>
 
   <div class="diagram" role="img" aria-label="Diagram: the verification pipeline — local strict gate, then four CI jobs, merge only on green">
@@ -153,8 +154,8 @@
     <img src="img/gate-cargo-2026-11-02.png" alt="Cargo window and airport view during the gate run of 2026-11-02">
     <figcaption><strong>Cargo window over Detroit (KDTW), same gate run.</strong>
     The feed at the bottom records the capture tooling saving its own screenshot
-    (“Screenshot saved: build/shots/…”) — the capture-reliability work of PR #9,
-    whose verification is in progress. A MAYDAY call sits in the radio log: the
+    (“Screenshot saved: build/shots/…”) — the capture-reliability work of PR #9
+    (merged 2026-11-02, after a one-line Windows build fix in its own code). A MAYDAY call sits in the radio log: the
     test world is a working simulation, not a static screen.</figcaption>
   </figure>
 

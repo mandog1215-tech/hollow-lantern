@@ -51,9 +51,10 @@
   </table>
 
   <h2>AirportSim</h2>
-  <p><strong>Current development-line addendum (2026-11-02):</strong> the five-stage Development Mode workstream and performance-baseline work package are reported complete. This is branch-level evidence pending the authorized merge stack; it does not supersede the verified M1 default-branch baseline below.</p>
+  <p><strong>Current development-line addendum (2026-11-02):</strong> the five-stage Development Mode workstream and performance-baseline work package are reported complete — and, as of the completed 2026-11-02 integration, merged to the default branch; the integration's final gate row below is now the current default-branch evidence.</p>
   <table>
     <tr><th>Run</th><th>Result</th></tr>
+    <tr><td>Integration final gate (2026-11-02) — full gate on the integrated tree after all eleven packages and the Development Mode branch merged · all four CI job kinds on the final code</td><td class="ok">Gate exit 0 · <strong>162,701 checks, 0 failed</strong> · <strong>9,676, 0 failed</strong> · end-to-end OK · all four CI jobs pass · 72 test groups</td></tr>
     <tr><td>Adoption baseline (2026-10-31) on v0.5.3 — build · simulation suite · interface suite · end-to-end (menu/swap/fuzz/load-loop) · sanitizer build + fuzz · launch</td><td class="ok"><strong>162,315 checks, 0 failed</strong> · <strong>9,676, 0 failed</strong> · all end-to-end passed · zero sanitizer reports · launches</td></tr>
     <tr><td>M1 verification (2026-11-01) — strict gate from a fresh clone of merged master <em>181794d</em> · CI on <em>9ab96c39</em></td><td class="ok">Gate exit 0, zero warnings · counts at baseline · CI run 41272742474: success</td></tr>
     <tr><td>Registry gate re-runs (2026-11-01) — the repository gate run twice more for the documentation-phase commits on their branch</td><td class="ok">Exit 0 both times · 162,315 / 0 · 9,676 / 0 · end-to-end OK</td></tr>

@@ -86,7 +86,7 @@
       <div><span>Version</span><b>0.5.3 · Development</b></div>
       <div><span>World</span><b>4,531 airports · 26 real layouts</b></div>
       <div><span>Save format</span><b>Version 13</b></div>
-      <div><span>Simulation suite</span><b>162,608 checks · 0 failed</b></div>
+      <div><span>Simulation suite</span><b>162,701 checks · 0 failed</b></div>
     </div>
   </div>
 
@@ -131,14 +131,14 @@
   </ul>
 
   <div class="nums">
-    <div><b>162,608</b><span>simulation checks, 0 failed</span></div>
+    <div><b>162,701</b><span>simulation checks, 0 failed</span></div>
     <div><b>9,676</b><span>interface checks, 0 failed</span></div>
     <div><b>4,531</b><span>airports in the world data</span></div>
     <div><b>26</b><span>real airport layouts</span></div>
     <div><b>~31,500</b><span>lines of C11 — no asset files</span></div>
   </div>
-  <p>Check totals are the latest full gate's measured results (2026-11-02, on the
-  current integration tree; the adoption baseline was 162,315 simulation checks).
+  <p>Check totals are the final integrated gate's measured results (2026-11-02, on
+  the merged code — 72 test groups; the adoption baseline was 162,315 simulation checks).
   They show the tested behaviour holds; they are not, by themselves, proof that
   every feature works — the per-system grades live on the
   <a href="systems.html">systems page</a>.</p>
@@ -186,20 +186,28 @@
   repository trap was closed, and the adoption documentation was reconciled. Since
   then, the development line has completed the five-stage Development Mode workstream
   and the performance-baseline work package.</p>
-  <p><strong>The integration (2026-11-02).</strong> The owner authorized a
-  dependency-ordered sequence of eleven packages. Nine are merged to the default
-  branch, each verified after its merge: the save-persistence fixes (OwnerBook
-  attribution, save format v11; FleetBook accumulators, v12; the simulation-clock
-  widening, v13), the cargo save/reload audit, the whole-world reproducibility
-  tests, the save-loader fuzz harness, the adoption framework documents, the test
-  tooling (CI now runs four jobs), and a three-fix package (deterministic test
-  worlds for the game binary, a top-bar overlap fix, and a latitude-conversion
-  undefined-behaviour fix). Remaining: PR #9 (screenshot-capture reliability —
-  verification in progress), PR #11 (the same test-world seeding for the test
-  suite), then the Development Mode branch merges last, and a final full gate on
-  the integrated tree. <strong>Integration is not complete until that gate
-  passes</strong>, and the default-branch baseline claims on this site will be
-  updated when it does.</p>
+  <p><strong>The integration (2026-11-02) — complete.</strong> The owner authorized a
+  dependency-ordered sequence of eleven packages. All eleven are merged to the
+  default branch, each verified after its merge: the save-persistence fixes
+  (OwnerBook attribution, save format v11; FleetBook accumulators, v12; the
+  simulation-clock widening, v13), the cargo save/reload audit, the whole-world
+  reproducibility tests, the save-loader fuzz harness, the adoption framework
+  documents, the test tooling (CI now runs four jobs), and a three-fix package
+  (deterministic test worlds for the game binary, a top-bar overlap fix, and a
+  latitude-conversion undefined-behaviour fix). The screenshot-capture reliability
+  package (PR #9) merged after its checks found a Windows build failure in its own
+  capture code — a one-line fix, made and re-verified the same day. The
+  test-seeding package (PR #11) merged as the recorded resolution: its seeding
+  turned out to be already covered by the three-fix package. The Development Mode
+  branch merged last, after two small fixes on its first trip through the full
+  checks (a Windows clock call made portable; a memory leak in a test, caught by
+  the memory-safety run), both fixed and re-verified before merging. The final
+  full gate on the integrated tree passed — 162,701 simulation checks and 9,676
+  interface checks, zero failed, end-to-end flows green, and all four CI jobs
+  passing on the final code. <strong>No pull requests remain open.</strong> The
+  integrated build carries the codename <strong>“Threshold”</strong>; its version
+  number is the owner's pending decision, so no number is stated for it — the
+  code's version string still reads 0.5.3 in the meantime.</p>
   <p>The intermittent failure that shadowed the sequence — an unseeded test world
   making the interface test nondeterministic — is fixed for determinism. A related
   cosmetic defect remains open and tracked (issue #14): the Business window
@@ -207,11 +215,11 @@
   <p><strong>Next, in order:</strong> the save/reload continuation investigation
   (issue #15 — a reloaded game continues slightly differently from an uninterrupted
   one; the owner unparked the investigation on 2026-11-02 and rated it a crucial
-  fix, so it runs first after integration); then WP-09, which grows Development
-  Mode into a full diagnostic environment; and the Windows verification harness —
+  fix, so it runs first after integration); then the Windows verification harness —
   the environment question is decided: the GitHub-hosted Windows CI runners will
   be extended into a scripted native test harness, and the owner's own PC stays
-  out until release. Player entry/onboarding (WP-05) follows on the
+  out until release; then WP-09 (umbrella issue #20), which grows Development
+  Mode into a full diagnostic environment. Player entry/onboarding (WP-05) follows on the
   <a href="roadmap.html">roadmap</a>. M1's original criteria remain:</p>
   <ul>
     <li>A clean clone of the default branch passes the strict release gate</li>
