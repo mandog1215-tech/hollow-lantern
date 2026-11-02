@@ -34,10 +34,12 @@
     
   </div>
 
-  <p>M1 comes first for an unglamorous reason that outranks every feature: while the
-  strict build gate is red, no later change can prove it didn't break the 162,315-check
-  baseline. No dates are shown anywhere on this page — phases move when their gates
-  pass, not when a calendar says so. Blockers are shown where they bite.</p>
+  <p>The M1 baseline is now established: a fresh clone of the default branch passed the
+  strict gate on 2026-11-01. Subsequent Development Mode and performance-baseline work
+  has completed on the development line, but the integrated gate recorded an exit-code-2
+  failure and the merge stack is still subject to ordered verification. Phase status below
+  distinguishes completed work from integration and from work not yet started. Gates, not
+  calendar dates, determine progression.</p>
 
   <div class="legend">
     <span class="lg-done">Completed &amp; verified</span>
@@ -90,22 +92,39 @@
   </div>
   <div class="arrow">↓</div>
 
-  <div class="stage now">
-    <p class="st">Current position — updated 2026-11-01 (dated correction)</p>
-    <h3>Next: the AirportSim engine</h3>
-    <p>The owner revised the order of work after M1 was accepted. The studio's
-    unified website comes first; the next development phase after it is the
-    <strong>AirportSim engine itself</strong> — beginning with an evidence-backed
-    engine review package and a proposed first milestone, presented for review
-    before any engine change is made. <strong>Development Mode</strong> follows
-    only after the engine work reaches its explicitly accepted completion
-    milestone. (This stage previously pointed to Development Mode as the next
-    step; that earlier ordering is preserved in the project's records and in
-    this page's own history — it is corrected here, not erased.) M2 below
-    remains the next roadmap milestone in Phase 0 and is not displaced by
-    this ordering.</p>
+  <div class="stage done">
+    <p class="st">Completed on the development line — evidence recorded through 2026-11-02</p>
+    <h3>WP-03 — Development Mode</h3>
+    <p>Five stages integrated the F3 diagnostic overlay, state identity, invariant status,
+    delay explanation, trace inspection, snapshot capture/compare, and measured step cost.
+    Non-interference was tested with trace enabled and disabled, including a planted-draw
+    negative control. Snapshot hashing was measured at about 1.95 ms, so full identity
+    refresh is on demand rather than placed in the normal frame path.</p>
+    <p><strong>Qualification:</strong> the integrated full gate exited 2. Matched base/current
+    comparisons reproduced the business-window and topbar-overlap failure signatures,
+    supporting attribution as pre-existing defects; this does not turn the original gate
+    into a pass. The integration/merge stack remains subject to ordered verification.</p>
   </div>
-  <div class="arrow">↓<small>Phase 0 continues</small></div>
+  <div class="arrow">↓</div>
+  <div class="stage done">
+    <p class="st">Completed on the development line — evidence recorded through 2026-11-02</p>
+    <h3>WP-04 — Performance baselines</h3>
+    <p>A measured step-cost model was recorded: fixed overhead, active-aircraft count,
+    and simulated time step. The fit is useful as a baseline, not yet a license to optimize:
+    the aircraft-count coefficient is weakly identified because long-run windows confound
+    world age with aircraft count. Performance budgets are accepted for future comparisons;
+    no unmeasured largest-hub performance claim is made.</p>
+  </div>
+  <div class="stage now">
+    <p class="st">Current position — 2026-11-02</p>
+    <h3>Integration verification, then WP-02 / WP-05 sequencing</h3>
+    <p>The authorized merge stack is to be integrated in dependency order, with checks
+    rerun after each merge and mandatory stop conditions preserved around the known
+    business-window failure. Once the merge stack is verified, the next roadmap candidates
+    are <strong>WP-02 — Windows verification</strong> and <strong>WP-05 — new-player entry</strong>.
+    Native Windows runtime verification remains unresolved; cross-compilation is not a
+    substitute for a real Windows session.</p>
+  </div>
 
   <div class="stage">
     <p class="st">Phase 0 · Planned</p>
