@@ -28,7 +28,7 @@
   <a href="evidence.html">Evidence</a>
   <a href="versions.html">Versions</a>
   <a class="here" href="releases.html">Releases</a>
-  <span class="status-chip"><span class="pill held">BS 1.5.0 · Held</span><span class="pill dev">AS 0.6.0-alpha.1 · Alpha</span><span class="pill shelved">WF · Shelved</span></span>
+  <span class="status-chip"><span class="pill held">BS 1.5.0 · Held</span><span class="pill dev">AS 0.6.0-alpha.2 · Alpha</span><span class="pill shelved">WF · Shelved</span></span>
 </nav>
 <main id="main">
   <div class="projhero gold slim">
@@ -76,6 +76,25 @@
     </tr>
   </table>
 
+  <h2>Public-build policy (owner, 2026-11-03)</h2>
+  <p>When public builds come — the release-path plan has open betas on this
+  website around AirportSim 0.8.0, conditional on the game genuinely being
+  ready — they will ship under two standing rules the owner set on
+  2026-11-03:</p>
+  <ul>
+    <li><strong>Copy protection in place.</strong> The method will be light
+      and offline: a license key checked on the machine itself, with no
+      always-online requirement. Heavy protection that punishes honest
+      players would fail the owner's standard — the protection must make the
+      game materially better, or at least never worse to play.</li>
+    <li><strong>No source code in public builds.</strong> Packages will
+      contain compiled binaries and game data only — never source files —
+      and the package contents will be verified against that rule before
+      anything goes out.</li>
+  </ul>
+  <p>Nothing public ships until both rules are met. The held builds above are
+  unaffected: they were never public, and they stay held.</p>
+
   <h2>The rules that keep this page honest</h2>
   <ul>
     <li>A build is a release only when recorded in a registry with its exact
@@ -84,6 +103,10 @@
       never omitted to make a project look further along.</li>
     <li>No status changes without evidence on the exact commit; no release
       happens without the owner's explicit approval.</li>
+    <li>Public packages ship compiled binaries and game data only — no
+      source code — with copy protection in place and the contents verified
+      before anything goes out (the owner's public-build policy,
+      2026-11-03).</li>
   </ul>
 
   <footer>

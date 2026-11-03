@@ -87,7 +87,7 @@
       <div><span>Version</span><b>0.6.0-alpha.2 “Threshold” · Alpha</b></div>
       <div><span>World</span><b>4,531 airports · 26 real layouts</b></div>
       <div><span>Save format</span><b>Version 13</b></div>
-      <div><span>Simulation suite</span><b>162,701 checks · 0 failed</b></div>
+      <div><span>Simulation suite</span><b>163,000+ checks · 0 failed</b></div>
     </div>
   </div>
 
@@ -102,6 +102,71 @@
   <p>This section keeps three things separate, on purpose:
   <a href="#today">the game today</a> (verified), <a href="#building">what is being built</a>
   (active work), and <a href="#vision">the long-term vision</a> (intent, not inventory).</p>
+
+  <h2 id="dream">The dream — in the owner's words</h2>
+  <div class="callout">
+    <p>“Basically, an airport sandbox. With heavy tycoon and god game elements.
+    Wanna divert a flight just for the hell of it? You can. Wanna play as
+    realistically as possible as a pilot or ATC? You can do that. Want to
+    manage the airport financially while everything is run automatically. You
+    can do that.”</p>
+    <p>— Andrew, the owner, 2026-11-03. One world, many stances — sandbox,
+    tycoon, god game — switchable at will; full realism available but never
+    forced; automation is a legitimate way to play. This is the standard the
+    current programme is judged against.</p>
+  </div>
+
+  <h2>The programme today (2026-11-03)</h2>
+  <p><strong>Development Mode is complete.</strong> The WP-09 programme grew
+  the F3 overlay into a full diagnostic environment in eight increments — all
+  merged, each verified by a full post-merge battery: visual inspection; the
+  Mathematics Lab; the Test Lab (experiments in separate processes); the
+  Performance Lab; the Replay Lab; investigation history (every control
+  decision recorded with its reason); an integrity trio (save check,
+  determinism lamp, evidence gaps); and the economy rollup, which records
+  each day's money line by line and re-adds it against the day's profit.
+  Development Mode is strictly read-only: it shows what tests establish, what
+  remains untested, where behaviour first deviates, and possible mechanisms —
+  it never invents a cause beyond recorded evidence. On its completion the
+  build advanced to <strong>0.6.0-alpha.2 “Threshold”</strong> (PR #39;
+  master at <span class="mono">7c7c20d</span>).</p>
+  <p><strong>The issues pass is done.</strong> Every open item was closed or
+  classified with its evidence on 2026-11-03: test processes that shared one
+  save folder (fixed, PR #41); long airline names cut off in the Business
+  window (fixed with a self-sizing column, PR #42); three memory-recovery
+  paths that could crash (fixed, PR #43); three sibling sites judged guarded,
+  no change; departures starving behind arrival streams, traced to runway
+  assignment with no load term (classified — its remedy is the departure
+  queue in the rework below); aircraft drawn over terminal roofs (a real
+  draw-order defect; the fix is designed and scheduled with the visuals
+  pass); jet bridges that do engage at all 135 Detroit gate stands but are
+  nearly invisible (visuals pass); and display scaling, whose high-DPI half
+  turned out to be fixed in the code long ago — the remaining question, the
+  game's own presentation at interface scales above 100%, will be judged at
+  the owner's hands-on test version. The day also enforced the owner's brand
+  rule: no real commercial brand names in the game — the terminal
+  inspector's flavour names were replaced with invented ones, and the test
+  suite now fails permanently if a real brand appears in terminal text
+  (PR #40). Airline names were not covered by that rule — they are the
+  simulated carriers — and that stays an open question for the owner.</p>
+  <p><strong>The reckoning is written.</strong> Every major system was
+  audited — the creator's design notes checked against the code and its
+  mathematics — and ranked, healthiest first: simulation core, weather,
+  economy &amp; finance, ground operations, construction &amp; layout,
+  airlines/routes/network, staff &amp; roles, events &amp; emergencies,
+  passengers/demand/pricing, and last, air traffic control. The full audit,
+  its five weakest points, and the ranking chart are on the
+  <a href="systems.html">systems page</a>.</p>
+  <p><strong>The ATC rework is landing.</strong> On the owner's direction —
+  “We need to completely rework the ATC system, it's very crude” — the
+  weakest system is being rebuilt in five steps. Four are merged and
+  battery-verified: controller-assigned speeds on final (PR #44), one
+  separation law everywhere (PR #45), a real departure queue (PR #46), and
+  arrival sequencing (PR #47). The fifth step — ground separation by
+  aircraft size, with separation measured live in Development Mode — is
+  built and proven locally and merges next. Detail on the
+  <a href="systems.html">systems page</a>; the queue from here is on the
+  <a href="roadmap.html">roadmap</a>.</p>
 
   <h2>About — two scales, one simulation</h2>
   <p><strong>Global scale:</strong> a living aviation network runs across a real-Earth
@@ -132,14 +197,15 @@
   </ul>
 
   <div class="nums">
-    <div><b>162,701</b><span>simulation checks, 0 failed</span></div>
+    <div><b>163,000+</b><span>simulation checks, 0 failed</span></div>
     <div><b>9,676</b><span>interface checks, 0 failed</span></div>
     <div><b>4,531</b><span>airports in the world data</span></div>
     <div><b>26</b><span>real airport layouts</span></div>
     <div><b>~31,500</b><span>lines of C11 — no asset files</span></div>
   </div>
-  <p>Check totals are the final integrated gate's measured results (2026-11-02, on
-  the merged code — 72 test groups; the adoption baseline was 162,315 simulation checks).
+  <p>The suite now runs over 163,000 checks (2026-11-03); the figure before it was
+  the final integrated gate's measured result (2026-11-02, on the merged code —
+  72 test groups; the adoption baseline was 162,315 simulation checks).
   They show the tested behaviour holds; they are not, by themselves, proof that
   every feature works — the per-system grades live on the
   <a href="systems.html">systems page</a>.</p>
@@ -208,21 +274,26 @@
   passing on the final code. <strong>No pull requests remain open.</strong> The
   integrated build is named <strong>0.6.0-alpha.1 “Threshold”</strong> — the
   project's first Alpha and its first codename, approved by the owner on
-  2026-11-02; the code's version string now reads 0.6.0-alpha.1. The name is
+  2026-11-02; the code's version string then read 0.6.0-alpha.1. The name is
   an internal development identity, not a release: no tag or public package
-  exists for it, and the last public build remains 0.5.3.</p>
+  exists for it, and the last public build remains 0.5.3. <em>Update,
+  2026-11-03:</em> with Development Mode complete, the build advanced to
+  <strong>0.6.0-alpha.2 “Threshold”</strong>, codename kept — see
+  “The programme today” above.</p>
   <p>The intermittent failure that shadowed the sequence — an unseeded test world
   making the interface test nondeterministic — is fixed for determinism. A related
-  cosmetic defect remains open and tracked (issue #14): the Business window
-  truncates long airline names.</p>
-  <p><strong>Next, in order:</strong> the save/reload continuation investigation
-  (issue #15 — a reloaded game continues slightly differently from an uninterrupted
-  one; the owner unparked the investigation on 2026-11-02 and rated it a crucial
-  fix, so it runs first after integration); then the Windows verification harness —
-  the environment question is decided: the GitHub-hosted Windows CI runners will
-  be extended into a scripted native test harness, and the owner's own PC stays
-  out until release; then WP-09, which grows Development
-  Mode into a full diagnostic environment. Player entry/onboarding (WP-05) follows on the
+  cosmetic defect was tracked as issue #14 (the Business window truncating long
+  airline names); it was fixed on 2026-11-03 with a self-sizing column (PR #42).</p>
+  <p><strong>What came next, in order — all of it now done:</strong> the
+  save/reload continuation investigation (issue #15) ran first, as the owner
+  directed, and was solved — a minute's weather was computed from the fraction
+  of the minute, so a reload quietly changed the weather; the fix made a
+  reloaded game byte-identical to one that never stopped (PR #24). The Windows
+  verification harness followed, and then moved — with every other check — to a
+  self-hosted rig on the owner's PC, where a native Windows battery now runs on
+  every merge. WP-09 then grew Development Mode into the full diagnostic
+  environment described above. Where the programme stands now is summarized in
+  <a href="#dream">the programme today</a>; the forward queue is on the
   <a href="roadmap.html">roadmap</a>. M1's original criteria remain:</p>
   <ul>
     <li>A clean clone of the default branch passes the strict release gate</li>
@@ -233,20 +304,24 @@
     <li>The default-branch problem is closed by the owner's approved route</li>
   </ul>
   <p>All eight were satisfied with evidence — the details live on the
-  <a href="testing.html">engineering &amp; testing page</a>. Still openly unresolved, and
-  staying on the register: native Windows verification of the current code (K3) —
-  on 2026-11-02 the owner played a pre-adoption Windows build (0.5.4, by the
-  original author) for about an hour at Detroit; it launched and played correctly,
-  so gameplay on that older build is provisionally demonstrated, but saves were
-  not tested and the current code's Windows build has never run natively — and
-  the full end-to-end matrix has not yet been rerun on the current version (K6).</p>
+  <a href="testing.html">engineering &amp; testing page</a>. The register has
+  moved since: of the three Beta gates, two are now satisfied — native Windows
+  verification (the owner's PC is the test rig, and a native Windows battery
+  runs on every merge; K3) and the save/reload fix (FND-002, PR #24). The
+  owner's 2026-11-02 hands-on with a pre-adoption Windows build (0.5.4, by the
+  original author) — about an hour at Detroit, launched and played correctly,
+  saves not tested — stands as the provisional gameplay record for that older
+  build. The third gate, the full 14-scenario × 3-seed end-to-end matrix
+  rerun (K6), remains open deliberately: it is sequenced last, immediately
+  before the Beta decision, which is the owner's.</p>
 
   <h2 id="vision">The long-term vision</h2>
   <p>Intent, not inventory: a sophisticated, polished airport simulation where depth
   serves decisions — a new player can get in and enjoy it, the living world keeps
   surprising its owner, and the business game underneath rewards long-term thinking.
-  The phases that lead there are on the roadmap page, each with the gate that must
-  pass before the next begins.</p>
+  The owner's own statement of that vision is quoted in full
+  <a href="#dream">above</a>. The phases that lead there are on the roadmap page,
+  each with the gate that must pass before the next begins.</p>
 
   <footer>
     <p>AirportSim is a Hollow Lantern project. The game's source repository is private

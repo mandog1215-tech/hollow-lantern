@@ -82,7 +82,7 @@
     </svg>
   </div>
 
-  <h2>Status summary (updated 2026-11-02 — integration complete; build named 0.6.0-alpha.1 “Threshold”)</h2>
+  <h2>Status summary (updated 2026-11-03 — Development Mode complete; build advanced to 0.6.0-alpha.2 “Threshold”; master at <span class="mono">7c7c20d</span>)</h2>
   <table>
     <tr><th>Item</th><th>State</th></tr>
     <tr><td>Verified baseline</td><td>Version 0.5.3 — commit <em>ba389b8</em>, 192 commits of project history preserved; M1 merged on top (merge commit <em>181794d</em>). The default branch has since advanced through the completed 2026-11-02 integration and now carries the project's first Alpha, 0.6.0-alpha.1 “Threshold”; 0.5.3 remains the last public build.</td></tr>
@@ -91,11 +91,58 @@
     <tr><td>Current milestone</td><td>Integration of the owner-authorized package sequence: <strong>complete</strong> — all eleven packages and the Development Mode branch merged on 2026-11-02, each verified after merging, and the final full gate passed on the integrated tree. No pull requests remain open. The integrated build is named <strong>0.6.0-alpha.1 “Threshold”</strong> — the project's first Alpha (see Build labelling). M1 — Green gate &amp; safe repository — remains <strong>COMPLETE and accepted</strong> (all eight criteria; evidence on the <a href="testing.html">engineering &amp; testing page</a>).</td></tr>
     <tr><td>Save format v13 (PR #10)</td><td><strong>MERGED</strong> to the default branch on 2026-11-02: <em>sim_time</em> is widened to double precision and pre-v13 save layouts receive migration handling. The default branch is now at save format <strong>v13</strong>; this step did not change the game version (0.5.3 at the time; the integrated build has since been named 0.6.0-alpha.1 “Threshold”).</td></tr>
     <tr><td>Earlier persistence work</td><td>PR #3 (save format v11, OwnerBook attribution) and PR #5 (save format v12, FleetBook accumulators) were <strong>merged</strong> to the default branch on 2026-11-02, as the first steps of the integration sequence. Neither is a release.</td></tr>
-    <tr><td>Outstanding blockers</td><td>None for M1. Open items carried forward honestly: K3 narrowed — gameplay is provisionally demonstrated on a pre-adoption Windows build (0.5.4, played by the owner on 2026-11-02; saves not tested), while the current code's Windows build has never run natively; the decided route is a scripted harness on GitHub-hosted Windows runners. K4 (documented pilot-test flake), K6 (full end-to-end matrix not yet rerun on the current version), K7 (ATC final speed control). Plus the save/reload continuation finding (issue #15): a reloaded game continues slightly differently from an uninterrupted one — cause not yet attributed; the owner unparked the investigation on 2026-11-02 and it runs first after integration.</td></tr>
-    <tr><td>Next step</td><td><em>(Updated 2026-11-02.)</em> The integration is finished. Next, in order: the save/reload continuation investigation (issue #15), the Windows test harness on GitHub's machines, then WP-09 — Development Mode grown into a full diagnostic environment. See the <a href="roadmap.html">roadmap</a>.</td></tr>
-    <tr><td>Build labelling</td><td>Policy adopted by the owner on 2026-11-02: development builds are named by date + commit and carry no stage label. The integrated build is the project's first <strong>Alpha</strong>: <strong>0.6.0-alpha.1 “Threshold”</strong> — the codename is the developer's choice, delegated by the owner, and the number was approved by the owner on 2026-11-02; the development line's version string now reads 0.6.0-alpha.1. Alpha means: complete core simulation, playable end to end, under heavy construction, known faults tracked openly. The name is an internal development identity — no release, tag, or public package exists for it; the last public build remains 0.5.3. <strong>Beta</strong> is gated on three things: proven native Windows verification, the save/reload fix (issue #15), and a full end-to-end matrix rerun. <em>Status at 2026-11-03:</em> the first two gates are satisfied (native verification demonstrated on the owner's self-hosted rig; the save/reload fix merged as PR #24); the full matrix rerun remains, sequenced last before a Beta decision. The owner's release-path plan (2026-11-02): a private test version around 0.7.5, and open betas published on this site around 0.8.0,  <em>Update, 2026-11-03:</em> Development Mode is complete — all eight increments (visual inspection, Mathematics Lab, Test Lab, Performance Lab, Replay Lab, investigation history, the integrity trio, and the economy breakdown) merged and verified — and the build advanced to <strong>0.6.0-alpha.2 “Threshold”</strong>, codename kept, internal identity only.</td></tr>
+    <tr><td>Outstanding blockers</td><td>None for M1. Open items carried forward honestly: K3 narrowed — gameplay is provisionally demonstrated on a pre-adoption Windows build (0.5.4, played by the owner on 2026-11-02; saves not tested), while the current code's Windows build has never run natively; the decided route is a scripted harness on GitHub-hosted Windows runners. K4 (documented pilot-test flake), K6 (full end-to-end matrix not yet rerun on the current version), K7 (ATC final speed control). Plus the save/reload continuation finding (issue #15): a reloaded game continues slightly differently from an uninterrupted one — cause not yet attributed; the owner unparked the investigation on 2026-11-02 and it runs first after integration. <em>Update, 2026-11-03:</em> issue #15 is closed (FND-002 solved, PR #24); K3 is satisfied — a native Windows battery runs on the owner's self-hosted rig on every merge; K7 is closed by DEF-007 (PR #44). K6 remains open by design: the full end-to-end matrix rerun is sequenced last, immediately before the Beta decision.</td></tr>
+    <tr><td>Next step</td><td><em>(Updated 2026-11-02.)</em> The integration is finished. Next, in order: the save/reload continuation investigation (issue #15), the Windows test harness on GitHub's machines, then WP-09 — Development Mode grown into a full diagnostic environment. See the <a href="roadmap.html">roadmap</a>. <em>Update, 2026-11-03:</em> that sequence has run — the save/reload fix landed, the checks moved to the owner's rig, and WP-09 is complete. The current queue: the ATC rework's final step, then the visuals pass, then the big updates chosen by the reckoning, then the full matrix and the Beta decision.</td></tr>
+    <tr><td>Build labelling</td><td>Policy adopted by the owner on 2026-11-02: development builds are named by date + commit and carry no stage label. The integrated build is the project's first <strong>Alpha</strong>: <strong>0.6.0-alpha.1 “Threshold”</strong> — the codename is the developer's choice, delegated by the owner, and the number was approved by the owner on 2026-11-02; the development line's version string then read 0.6.0-alpha.1. Alpha means: complete core simulation, playable end to end, under heavy construction, known faults tracked openly. The name is an internal development identity — no release, tag, or public package exists for it; the last public build remains 0.5.3. <strong>Beta</strong> is gated on three things: proven native Windows verification, the save/reload fix (issue #15), and a full end-to-end matrix rerun. <em>Status at 2026-11-03:</em> the first two gates are satisfied (native verification demonstrated on the owner's self-hosted rig; the save/reload fix merged as PR #24); the full matrix rerun remains, sequenced last before a Beta decision. The owner's release-path plan (2026-11-02): a private test version around 0.7.5, and open betas published on this site around 0.8.0,  <em>Update, 2026-11-03:</em> Development Mode is complete — all eight increments (visual inspection, Mathematics Lab, Test Lab, Performance Lab, Replay Lab, investigation history, the integrity trio, and the economy breakdown) merged and verified — and the build advanced to <strong>0.6.0-alpha.2 “Threshold”</strong>, codename kept, internal identity only.</td></tr>
     <tr><td>Releases</td><td>No public release is recorded in the available repository release records. The held standard: a release requires the completion standard met and the owner's explicit approval.</td></tr>
   </table>
+
+  <h2>2026-11-03 — the day's record</h2>
+  <p>One day, four programmes, every merge gated on a green rig lane with the
+  commit-identity check and verified by the full battery after landing. The
+  build's identity at the day's end: <strong>0.6.0-alpha.2 “Threshold”</strong> —
+  an internal development identity; no release, no tag, no download; 0.5.3
+  remains the last public build. Master stands at
+  <span class="mono">7c7c20d</span>; the suite runs over 163,000 checks.</p>
+  <div class="tl">
+    <div class="ev done"><span class="when">WP-09 complete · PR #38 + #39</span>
+      <p>The economy rollup (PR #38) closed Development Mode's eighth and final
+      increment — all eight merged and battery-verified — and the build
+      advanced to <strong>0.6.0-alpha.2 “Threshold”</strong>, codename kept
+      (PR #39).</p></div>
+    <div class="ev done"><span class="when">The owner's brand rule · PR #40</span>
+      <p>No real commercial brand names in the game: the terminal inspector's
+      flavour names were replaced with invented ones at the same list
+      lengths, and the test suite now fails permanently if a real brand
+      appears in terminal text. Airline names were not covered — they are the
+      simulated carriers — and stay an open question for the owner.</p></div>
+    <div class="ev done"><span class="when">The issues pass · PRs #41–#43</span>
+      <p>Test processes sharing one save folder isolated (FND-015, PR #41);
+      long airline names given a self-sizing column (issue #14, PR #42);
+      three memory-recovery paths fixed (FND-005, PR #43). The remaining
+      findings were classified with their evidence: FND-006 guarded, no
+      change; FND-008 departure starvation traced to runway assignment
+      (GitHub issue #18 closed; remedy in the rework); FND-012 draw order
+      (fix designed, visuals pass); FND-013 jet bridges (visuals pass);
+      FND-010 display scaling (remaining question held for the owner's
+      hands-on).</p></div>
+    <div class="ev done"><span class="when">The reckoning · record</span>
+      <p>Every major system audited against the creator's design notes, the
+      code, and its mathematics, and ranked — simulation core strongest, ATC
+      weakest. The audit chooses the big updates that follow the rework.</p></div>
+    <div class="ev done"><span class="when">The ATC rework, steps 0–3 · PRs #44–#47</span>
+      <p>Controller-assigned speeds on final (DEF-007, PR #44 — its first lane
+      failed on two faults in the new code, both fixed and proven in a rig
+      replica before the rerun); one separation law everywhere (R1, PR #45);
+      a real departure queue (R2, PR #46 — its first design broke saved-game
+      continuation and was redesigned around saved state before merging);
+      arrival sequencing (R3, PR #47).</p></div>
+    <div class="ev now"><span class="when">The ATC rework, steps 4–5 · in progress</span>
+      <p>Ground separation by aircraft size, with the deadlock breakers on the
+      record (R4), and separation measured live in Development Mode (R5) —
+      built and proven locally, merging next. Neither is claimed here until
+      its battery verifies.</p></div>
+  </div>
 
   <h2>Version record</h2>
   <p>From the project's releases registry (established 2026-11-01), seeded only
@@ -108,7 +155,11 @@
   project's first Alpha — “Threshold” is the developer's choice, delegated by
   the owner, and the owner approved the number on 2026-11-02. It appears in
   no row of the table below, because the table is seeded from tags and no
-  tag or public package exists for it; the last public build remains 0.5.3.</p>
+  tag or public package exists for it; the last public build remains 0.5.3.
+  <em>Update, 2026-11-03:</em> on Development Mode's completion the build
+  advanced to <strong>0.6.0-alpha.2 “Threshold”</strong>, codename kept — the
+  same internal identity one step on; still no tag, no package, and 0.5.3
+  still the last public build.</p>
   <table>
     <tr><th>Version</th><th>Date</th><th>Tag → commit</th><th>Save format</th><th>Status</th></tr>
     <tr><td>0.1.0</td><td>2026-10-29</td><td><em>v0.1.0</em> → <em>76a6921</em></td><td>1</td><td>Development</td></tr>

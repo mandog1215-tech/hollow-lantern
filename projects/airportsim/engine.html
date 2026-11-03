@@ -88,7 +88,10 @@
   2.5D"</em> and <em>HALCYON_VERSION "2.5.0"</em> — and <em>boot.c</em>, which runs
   the boot sequence: the Hollow Lantern studio card, the "powered by" card and
   title, the F3 developer overlay, and the F2 credits. That is the whole of the
-  "engine" as a directory: a branding and boot layer.</p>
+  "engine" as a directory: a branding and boot layer. The F3 overlay it opens,
+  though, grew well past a boot layer's ambitions: WP-09 developed it into the
+  game's full Development Mode — a complete diagnostic environment of eight
+  increments, finished on 2026-11-03 — built on the retained engine below.</p>
 
   <h2>What actually renders</h2>
   <p>The renderer the name sits on lives in the flat <em>src/</em> tree: an
@@ -120,13 +123,21 @@
     practice — is adopted at the game's next documentation pass. Until then it
     is recorded here as an open item, not a practice.</p></div>
 
-  <h2>What is not claimed</h2>
-  <p>An engine development phase for AirportSim is scheduled in the studio's
-  locked order — after this website, before Development Mode — beginning with an
-  evidence-backed review and a proposed first milestone. <strong>It has not
-  begun.</strong> Nothing on this page describes an engine improvement as
-  implemented, because none has been: this page describes the engine exactly as
-  it stands in version 0.5.3.</p>
+  <h2>The verdict — and what is not claimed</h2>
+  <p>The engine review this page once anticipated has happened: on 2026-11-01
+  a full engine assessment and mathematics audit examined the engine and the
+  simulation's mathematics end to end, and its verdict was <strong>RETAIN the
+  engine</strong> — no replacement was undertaken, and none is planned.
+  Development Mode — the phase the old order placed after that review — is
+  likewise complete (WP-09, eight increments, 2026-11-03). Engine claims here
+  are graded by evidence class, as everywhere in the studio: Linux tests; the
+  MinGW cross-compile (producibility only); Wine (preliminary, never called
+  Windows verification); and native Windows runtime — a release gate, today
+  exercised by the native battery on the owner's rig at every merge (the four
+  classes are set out in the <a href="../../engine-lab/index.html">Engine
+  Laboratory</a>). Nothing beyond that record is claimed: this page describes
+  the engine exactly as it stands in the current development build,
+  0.6.0-alpha.2.</p>
 
   <footer>
     <p>Sources: <em>src/engine/halcyon.h</em> and its git history, the studio

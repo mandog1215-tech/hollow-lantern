@@ -82,6 +82,28 @@
     </svg>
   </div>
 
+  <h2>How checking works today (2026-11-03)</h2>
+  <p>Every check runs on the owner's own PC — a self-hosted test rig, one run
+  at a time — in two tiers:</p>
+  <table>
+    <tr><th>Tier</th><th>When</th><th>What runs</th></tr>
+    <tr><td><strong>The fast lane</strong></td><td>On every pull request</td><td>The full test suite (over 163,000 checks), one sanitizer lane, static analysis, the Windows cross-build, and the native Windows battery.</td></tr>
+    <tr><td><strong>The full battery</strong></td><td>On every merge to the default branch</td><td>Everything in the fast lane, with both sanitizer lanes — including the long soak, which alone takes about 25 minutes under sanitizers. The battery's length is that test's purpose: it exists to catch what shorter runs cannot.</td></tr>
+  </table>
+  <p><strong>The merge rule:</strong> a pull request merges only when its lane
+  is green <em>and</em> the passing run's commit matches the pull request
+  exactly — the head commit, the base, and the reviewed diff verified as one
+  identity. Any red, any unexplained failure, any unexpected diff stops the
+  line. After merging, the full battery verifies the result on the default
+  branch itself.</p>
+  <div class="card"><p class="st mid">Lesson — FND-015, fixed 2026-11-03 (PR #41)</p>
+    <h3>Test processes must not share a save folder</h3>
+    <p>The suite's test processes were sharing one save folder, so tests could
+    see — and be confused by — each other's saved games. It is the kind of
+    fault that manufactures intermittent failures and hides real ones. The
+    fix isolates each process's saves; it is recorded here because the lesson
+    generalizes: a test's environment is part of the test.</p></div>
+
   <h2>Current development-line addendum (2026-11-02)</h2>
   <p>The five-stage Development Mode workstream and the performance-baseline work package
   are reported complete on the development line and, as of the completed 2026-11-02
@@ -106,7 +128,7 @@
     <tr><th>Work / check</th><th>Recorded result</th></tr>
     <tr><td>Final full gate (integrated tree)</td><td class="ok"><strong>Exit 0</strong> · 162,701 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end menu/swap/fuzz/load-loop pass · all four CI jobs pass on the final code · test inventory: 72 test groups.</td></tr>
     <tr><td>Integration progress</td><td><strong>Complete.</strong> All eleven packages merged to the default branch, each with fresh checks after its merge, then the Development Mode branch last; zero pull requests remain open. PR #8's first fresh check reproduced the documented intermittent signature (an unseeded test world) and was rerun once under the recorded rule — passed; both runs preserved. Two branch conflicts were resolved as unions and verified by full local gates before merging.</td></tr>
-    <tr><td>The intermittent failure</td><td>Root-caused to an unseeded test world and fixed for determinism: the game binary's test world is seeded in PR #13 (merged); the suite's half is PR #11 (merged as the recorded resolution — its seeding was already covered by PR #13). The related cosmetic defect — the Business window truncating long airline names — remains open as issue #14.</td></tr>
+    <tr><td>The intermittent failure</td><td>Root-caused to an unseeded test world and fixed for determinism: the game binary's test world is seeded in PR #13 (merged); the suite's half is PR #11 (merged as the recorded resolution — its seeding was already covered by PR #13). The related cosmetic defect — the Business window truncating long airline names — was tracked as issue #14 and fixed on 2026-11-03 with a self-sizing column (PR #42; issue closed).</td></tr>
     <tr><td>Closed by the integration</td><td>The flickering layout test, the overlapping top bar, the frozen long-world clock, the 27-failure mystery run (explained as the flicker and the overlap occurring together), and a southern-hemisphere seeding quirk. Since then, all three of the day's follow-ups have landed (2026-11-02): the save/reload continuation mystery was solved — a minute's weather was being computed from the fractional clock, so a reload quietly changed the weather (fix merged, PR #24; issue #15 closed); the Windows test harness on GitHub's machines was built, passed its first full native session, and merged (PR #25); and the Development Mode build-out (WP-09) has begun, with Increment 1 — the inspection foundation and aircraft inspector — merged (PR #27, gate 162,730/0). WP-09 Increment 2 — the Mathematics Lab, a registry of the simulation's principal calculations with honest verification statuses, the step-cost reference model shown against measurement, and the per-minute weather mirror — has since merged (PR #28, gate 162,763/0, all six cloud checks green including the native Windows battery). Next in order: WP-09 Increment 3, the Test Lab (experiments in isolated processes). Since then (2026-11-02/03): all checks moved to the owner's self-hosted rig and the cloud runners were removed (PR #29, merged on the owner's instruction); a deterministic failure of the long soak on newer systems was traced to the platform math library — three functions became correctly rounded in glibc 2.43, and the simulation, tuned on the older answers, diverged — and fixed by the simulation owning those three functions bit-for-bit (FND-011, PR #30, merged; the failure is closed); the CI helper actions were bumped to the Node 24 generation, clearing the deprecation annotations (PR #31, merged; all six rig checks green with zero annotations); and Dependabot version updates for those helpers were enabled, monthly and grouped (its first proposal, a checkout bump, awaits its turn in the queue). Increment 3 is built: its full local gate passed (162,870 checks, 0 failed) and its pull request follows in the one-run-at-a-time rig queue. The exit-2 gate in the addendum above remains in the record as failed; nothing here rewrites it.</td></tr>
   </table>
 
@@ -146,8 +168,9 @@
     2026-11-02).</strong> The test world deliberately signs airlines with
     over-long names and feed lines “with a long tail to clip”, so the interface's
     behaviour under stress is exercised every run. The known cosmetic defect —
-    long airline names truncating in this window — is exactly what issue #14
-    tracks; the nondeterminism that once made this test intermittent is fixed.
+    long airline names truncating in this window — was what issue #14 tracked;
+    it was fixed on 2026-11-03 with a self-sizing column (PR #42). The
+    nondeterminism that once made this test intermittent is also fixed.
     Captured headless on the dummy video driver from a development build.</figcaption>
   </figure>
 
@@ -266,11 +289,14 @@
     <em>Closes when:</em> the full matrix runs green on the current version and is
     recorded.</p></div>
 
-  <div class="card gap"><p class="st">K7 · Known design limitation</p>
-    <h3>ATC lacks final speed control</h3>
-    <p>Approach speeds in the final segment are not yet managed by air traffic
-    control — documented by the original project itself. Not a defect; a missing
-    capability, scheduled in the roadmap's living-world phase.</p></div>
+  <div class="card"><p class="st ok">K7 · Missing capability · CLOSED 2026-11-03</p>
+    <h3>ATC lacked final speed control — now assigned by the controller</h3>
+    <p>Approach speeds in the final segment were not managed by air traffic
+    control — documented by the original project itself; not a defect, a
+    missing capability. It was built on 2026-11-03 as DEF-007, the foundation
+    of the ATC rework (PR #44, battery green): the controller now assigns
+    speeds on final. The rework's remaining steps are recorded on the
+    <a href="systems.html">systems page</a>.</p></div>
 
   <h2>Open design questions — visible, undecided</h2>
   <ul>

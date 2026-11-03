@@ -79,6 +79,105 @@
   does and does not establish, is recorded in the
   <a href="engine-lab/index.html">Engine Laboratory</a>.</p>
 
+  <h2>The studio philosophy</h2>
+  <p>The studio's philosophy is a written document, established by the owner on
+  2026-11-01 — foundational for AirportSim and WorldForge alike, and the frame
+  every project decision answers to. Its principles are shared across the
+  studio; the systems that embody them are tailored to each game. In its own
+  five parts:</p>
+
+  <div class="card"><p class="st ok">Pillar 1</p><h3>Mathematical depth</h3>
+    <p>Model the underlying mechanisms, not superficial scripted outcomes. Build
+    interconnected systems whose interactions produce emergent behaviour; make
+    assumptions explicit and validate them; keep every outcome explainable
+    through evidence of the mechanisms beneath it; and balance fidelity,
+    correctness, and performance. Complexity that adds no real depth is
+    avoided — depth is mechanisms, not decoration.</p></div>
+  <div class="card"><p class="st ok">Pillar 2</p><h3>Simple design, complex systems underneath</h3>
+    <p>The player gets an approachable experience; the sophistication lives
+    underneath it. Depth must never require mandatory micromanagement, and
+    interface complexity is never confused with sophistication — a cluttered
+    screen is not a deep game.</p></div>
+  <div class="card"><p class="st ok">Pillar 3</p><h3>A fully fledged Development Mode in every game</h3>
+    <p>Every game eventually carries a serious development environment of its
+    own: simulation inspection, time controls, scenario testing, model
+    visualization, causal tracing, reproducible experiments, and performance
+    diagnostics — the tools appropriate to that game's simulation.
+    Architectural preparation for it begins during engine development; the
+    full implementation comes when the game is ready for it, never
+    prematurely. AirportSim's is already built (WP-09, completed 2026-11-03);
+    WorldForge's waits with everything else about that game.</p></div>
+  <div class="card"><p class="st ok">Pillar 4</p><h3>Codenamed versions, intelligently bumped</h3>
+    <p>Significant releases and major milestones carry codenames — formally
+    designated, recorded in the project's registry, and then stable and
+    unique: never invented, never back-assigned. Version numbers move by the
+    change's actual scope and impact — semantic versioning as a starting
+    point, not a law: a save-format or architecture change does not
+    automatically make a release major. Three identifiers are kept separate,
+    always: the development build's identity, the release version, and the
+    release codename. Publishing or tagging anything requires authorization
+    first.</p></div>
+  <div class="card"><p class="st ok">Pillar 5</p><h3>Simulation at the center</h3>
+    <p>Behaviour derives from coherent models interacting causally; scripted
+    outcomes are minimised, because emergent behaviour is the goal.
+    Everything else — interface, tooling, process — serves that simulation.
+    Complexity must serve the game: complexity that does not is not depth, it
+    is weight.</p></div>
+
+  <p>Two structural decisions complete the picture. The studio's games are
+  <strong>native Windows products, developed on Linux</strong>. And the
+  unified game UI — one shared interface across the games — is a
+  <strong>post-release initiative</strong>: deferred until after both
+  AirportSim and WorldForge are released, with no shared interface work
+  before then. Development Mode, by contrast, is a separate, per-game
+  initiative, already under way.</p>
+
+  <h2>How the studio builds — five engineering principles</h2>
+  <p>The companion document — the engineering philosophy, established the same
+  day — governs <em>how</em> the work is done. Exactly five principles:</p>
+
+  <div class="rung"><h3>1 · Simulation-first engineering</h3>
+    <p>Priorities are established from what the simulation needs; process
+    exists to serve the simulation and expands only where the simulation
+    demonstrably benefits.</p></div>
+  <div class="rung"><h3>2 · Evidence over appearances</h3>
+    <p>A feature is complete when its acceptance criteria are met by
+    verifiable evidence, with the grade named — implemented, demonstrated,
+    or established. Its corollary doctrine: <strong>a finding is not a
+    defect</strong> — suspicion, characterization, and demonstrated failure
+    are different states of knowledge, and collapsing them corrupts both the
+    record and the fixes.</p></div>
+  <div class="rung"><h3>3 · Causality over superficial functionality</h3>
+    <p>Systems must answer <em>why</em> something happened, traceable to
+    mechanisms and state. A system that produces the right-looking result for
+    the wrong reasons is not working, and is not credited as working.</p></div>
+  <div class="rung"><h3>4 · Autonomous execution with explicit authority</h3>
+    <p>Work proceeds autonomously inside an explicit authorization — and
+    completing work never enlarges that authorization. The boundary moves
+    only when the owner moves it.</p></div>
+  <div class="rung"><h3>5 · One studio methodology, game-specific engineering</h3>
+    <p>Standardize the control plane — evidence standards, records,
+    governance, gates, communication — and specialize the simulation plane:
+    each game's models, architecture, and tools are fitted to its own
+    subject, never forced into another game's shape.</p></div>
+
+  <h2>The portfolio, in one place</h2>
+  <p>Statuses on this site update at milestone closeouts, from verified
+  evidence only — never in anticipation of it. The whole portfolio, as it
+  stands:</p>
+  <table>
+    <tr><th>Game</th><th>State</th><th>Version identity</th></tr>
+    <tr><td><a href="projects/airportsim/index.html"><strong>AirportSim</strong></a></td>
+      <td><span class="pill dev">Active development</span> Development Mode complete; the ATC rework landing (four of five steps merged); master at <span class="mono">7c7c20d</span>.</td>
+      <td><strong>0.6.0-alpha.2 “Threshold”</strong> — internal development identity; 0.5.3 remains the last public build.</td></tr>
+    <tr><td><a href="projects/blacksite/index.html"><strong>Blacksite</strong></a></td>
+      <td><span class="pill cancelled">Cancelled</span> Development cancelled 2026-11-02 (owner's decision — the studio concentrates on AirportSim); tree and records retained as a design reference.</td>
+      <td><strong>1.5.0</strong> <span class="pill held">Held</span> — built, never published; no release, no download.</td></tr>
+    <tr><td><a href="projects/worldforge/index.html"><strong>WorldForge</strong></a></td>
+      <td><span class="pill shelved">Shelved</span> Shelved 2026-10-31; no development in any form until AirportSim and its post-release mod-support work are complete and the owner authorizes revival.</td>
+      <td><strong>1.0.0 candidate</strong> <span class="pill held">Held</span> — tag and package local only, never published.</td></tr>
+  </table>
+
   <footer>
     <p>The studio standard itself is a project record (STUDIO.md, kept with the
     studio's internal records). This page summarizes it; the record governs.</p>

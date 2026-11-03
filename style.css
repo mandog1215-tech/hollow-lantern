@@ -276,6 +276,46 @@ svg text { font-family: var(--mono); }
 .legend span::before { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.45rem; vertical-align: -0.08rem; border: 1px solid var(--line); }
 .lg-done::before { background: #3f7d46; } .lg-now::before { background: #4a7fb5; } .lg-gate::before { background: var(--gold); } .lg-next::before { background: var(--line); }
 
+/* Status stamps — the full outcome family (2026-11-03). One colour
+   language everywhere: green = finished (done / closed / verified),
+   blue = active (in progress / development), grey dashed = waiting
+   or archived (queued / shelved), red = stopped or withheld (held
+   carries the double-rule stamp; cancelled a single red rule),
+   gold = an owner decision or intent. */
+.pill.done { border-color: #3f7d46; color: var(--ok); }
+.pill.closed { border-color: #3f7d46; color: var(--ok); background: rgba(63,125,70,0.14); }
+.pill.prog { border-color: #4a7fb5; color: var(--acc-as); }
+.pill.queue { border-style: dashed; border-color: #55617c; color: var(--faint); }
+.pill.cancelled { border-color: var(--red-line); color: var(--bad); }
+
+/* Health ranking — a colour-field chart in pure CSS (2026-11-03).
+   Each row: rank, system, and a bar whose length and hue encode the
+   audit position (rank 1 = healthiest: full bar, green; rank 10 =
+   weakest: short bar, red). The field itself fades green → gold →
+   red down its height. Bars are decoration; rank and name carry the
+   data as text. Row values arrive as --v (width %) and --h (hue). */
+.rankchart { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(99,176,110,0.08), rgba(201,162,39,0.05) 52%, rgba(176,64,47,0.09)), var(--panel); padding: 1rem 1.1rem 0.7rem; margin: 1.2rem 0; }
+.rankchart .rc-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin-bottom: 0.55rem; }
+.rc-row { display: grid; grid-template-columns: 2.1rem minmax(9rem, 13.5rem) 1fr; align-items: center; gap: 0.7rem; padding: 0.36rem 0; border-bottom: 1px dashed var(--line-soft); }
+.rc-row:last-child { border-bottom: none; }
+.rc-rank { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; color: var(--gold); }
+.rc-name { font-weight: 600; font-size: 0.97rem; line-height: 1.3; }
+.rc-name small { display: block; font-weight: 400; color: var(--faint); font-size: 0.82rem; }
+.rc-bar { height: 0.85rem; background: rgba(233,237,245,0.06); border: 1px solid var(--line-soft); position: relative; }
+.rc-bar i { position: absolute; top: 0; bottom: 0; left: 0; width: var(--v); background: hsl(var(--h) 42% 44%); display: block; }
+
+/* Vertical timeline — a gold track with punched event nodes
+   (2026-11-03), for sequences told in prose: a day's merges, a
+   version's steps. Node colour follows the same status language. */
+.tl { border-left: 3px solid var(--gold); margin: 1.1rem 0 1.1rem 0.35rem; padding-left: 1.15rem; }
+.tl .ev { position: relative; padding: 0.3rem 0 0.6rem; }
+.tl .ev::before { content: ""; position: absolute; left: calc(-1.15rem - 7px); top: 0.68em; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2.5px solid var(--gold); }
+.tl .ev.done::before { border-color: #3f7d46; background: #3f7d46; }
+.tl .ev.now::before { border-color: #4a7fb5; background: #4a7fb5; }
+.tl .ev.held::before { border-color: var(--red-line); background: var(--red-line); }
+.tl .when { display: block; font-family: var(--mono); font-size: 0.76rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.1rem; }
+.tl .ev p { margin: 0.15rem 0; font-size: 0.96rem; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
@@ -300,4 +340,12 @@ svg text { font-family: var(--mono); }
   .timeline tr.hrow { display: none; }
   .timeline td { display: block; border: none; padding: 0.15rem 0; white-space: normal; }
   .timeline td:first-child { color: var(--gold); font-weight: bold; }
+}
+
+@media (max-width: 34rem) {
+  /* The ranking chart stacks: rank + name on one line, the bar
+     full-width beneath — nothing is squeezed sideways. */
+  .rc-row { grid-template-columns: 2rem 1fr; }
+  .rc-bar { grid-column: 1 / -1; }
+  .tl { margin-left: 0.15rem; }
 }

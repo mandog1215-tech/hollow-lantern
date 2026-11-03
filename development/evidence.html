@@ -28,7 +28,7 @@
   <a class="here" href="evidence.html">Evidence</a>
   <a href="versions.html">Versions</a>
   <a href="releases.html">Releases</a>
-  <span class="status-chip"><span class="pill held">BS 1.5.0 · Held</span><span class="pill dev">AS 0.6.0-alpha.1 · Alpha</span><span class="pill shelved">WF · Shelved</span></span>
+  <span class="status-chip"><span class="pill held">BS 1.5.0 · Held</span><span class="pill dev">AS 0.6.0-alpha.2 · Alpha</span><span class="pill shelved">WF · Shelved</span></span>
 </nav>
 <main id="main">
   <div class="projhero gold slim">
@@ -61,6 +61,31 @@
     <tr><td>Development Mode integrated gate (2026-11-01/02) — F3 overlay, trace/invariant/delay panels, snapshot capture/compare</td><td><strong>Exit 2; not green.</strong> Focused non-interference and diagnostic-cost evidence is recorded. Matched base/current comparisons reproduced the two UI failure signatures, supporting pre-existing attribution; the original failure result is preserved.</td></tr>
     <tr><td>Performance model work package</td><td>Measured step-cost model recorded. The aircraft-count coefficient is weakly identified because long-run windows confound world age with aircraft count; no optimization is claimed from that fit alone.</td></tr>
     <tr><td>Windows build &amp; runtime · full 14-flow × 3-seed end-to-end matrix on v0.5.3 · performance at the largest hubs</td><td><strong>Not verified / not yet rerun / not measured</strong> — these remain open; no unsupported numbers are published.</td></tr>
+  </table>
+  <p><strong>Update (2026-11-03):</strong> the first of those three has since
+  closed — native Windows runtime is verified on every merge by the rig's
+  native Windows battery, and the save/reload divergence below (FND-002) is
+  fixed. The full end-to-end matrix rerun remains outstanding by design —
+  the last step before the Beta decision — and performance at the largest
+  hubs remains unmeasured. No unsupported numbers are published.</p>
+
+  <h2>AirportSim — the findings register (2026-11-03)</h2>
+  <p>Every finding the project carries, with its verdict and the evidence in
+  brief. The register is the record: a finding is closed only by a fix with
+  evidence, or classified — with the reason stated — never by silence.</p>
+  <table>
+    <tr><th>Finding</th><th>Verdict</th><th>Evidence in brief</th></tr>
+    <tr><td><strong>FND-002</strong> — a saved and reloaded game continued differently from one that never stopped</td><td><span class="pill closed">Closed</span></td><td>Cause attributed: per-minute weather was computed from the fraction of the minute, so a reload shifted the weather. The fix evaluates each minute's weather at its start; a reloaded game is byte-identical to an uninterrupted one. PR #24; GitHub issue #15 closed. Worked case on the <a href="../projects/airportsim/mathematics.html">mathematics page</a>.</td></tr>
+    <tr><td><strong>FND-011</strong> — the long simulation diverged on newer systems</td><td><span class="pill closed">Closed</span></td><td>The newer system library's more-accurate maths functions (correctly rounded where the older were off by one unit) split a 440-day simulation on day 20. The game now carries its own versions of the three functions, matching the old answers across billions of test values. PR #30.</td></tr>
+    <tr><td><strong>FND-015</strong> — test processes shared one save folder</td><td><span class="pill closed">Closed</span></td><td>Suite processes could see each other's saved games — a factory for intermittent failures. Each process's saves are now isolated. PR #41.</td></tr>
+    <tr><td><strong>Issue #14</strong> — long airline names cut off in the Business window</td><td><span class="pill closed">Closed</span></td><td>Fixed with a self-sizing column that grows to the longest name the data holds. PR #42.</td></tr>
+    <tr><td><strong>FND-005</strong> — three memory-recovery paths that could crash</td><td><span class="pill closed">Closed</span></td><td>All three paths fixed. PR #43.</td></tr>
+    <tr><td><strong>FND-006</strong> — three sibling memory sites, same pattern suspected</td><td><span class="pill closed">Closed — no change</span></td><td>Each site examined and judged guarded as it stands. Recorded as a judgment, not a fix.</td></tr>
+    <tr><td><strong>FND-008</strong> — departures starved behind arrival streams</td><td><span class="pill closed">Classified</span></td><td>Traced to runway assignment, which carried no load term: four runways sat idle while one jammed. Not a defect in the assignment's own terms — a missing capability. Its remedy is the departure queue (R2 of the ATC rework, PR #46). GitHub issue #18 closed.</td></tr>
+    <tr><td><strong>FND-012</strong> — aircraft drawn over terminal roofs</td><td><span class="pill prog">Fix designed</span></td><td>A real draw-order defect: aircraft paint after buildings regardless of position. The fix — one unified back-to-front drawing stream — is designed and scheduled with the visuals pass.</td></tr>
+    <tr><td><strong>FND-013</strong> — jet bridges appear not to engage</td><td><span class="pill prog">Classified — visuals pass</span></td><td>Measured, not guessed: the bridges do engage at all 135 Detroit gate stands. They are nearly invisible doing it — a readability problem, scheduled with the visuals pass.</td></tr>
+    <tr><td><strong>FND-010</strong> — display scaling looked wrong on Windows</td><td><span class="pill prog">Half closed</span></td><td>The high-DPI half was already fixed in the code long ago (per-monitor DPI awareness, the SDL hint, the high-DPI window flag), and captured frames are pixel-identical across platforms. What remains: at interface scales above 100% the world view is drawn on a logical canvas and stretched — judged at the owner's hands-on test version.</td></tr>
+    <tr><td><strong>Brand names</strong> — real commercial names in the terminal inspector's flavour text</td><td><span class="pill closed">Closed</span></td><td>The owner's rule: no real commercial brand names in the game. Flavour names replaced with invented ones at the same list lengths; the test suite now fails permanently if a real brand appears in terminal text. PR #40. Airline names were not covered — they are the simulated carriers — and stay an open question for the owner.</td></tr>
   </table>
 
   <h2>WorldForge (record frozen at shelving, 2026-10-31)</h2>

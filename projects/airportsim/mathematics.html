@@ -102,19 +102,22 @@
   <h2>The principal calculations, with their statuses</h2>
   <p>The game’s Development Mode carries a Mathematics Lab: a registry of the
   simulation’s principal calculations, each carrying the verification status it has
-  actually earned. The registry as it stands (WP-09 Increment 2, merged 2026-11-02):</p>
+  actually earned. The registry as it stands at WP-09's completion (2026-11-03 —
+  the economy rollup earned its check in Increment 8, PR #38):</p>
   <table>
-    <tr><th>Calculation</th><th>Status in the registry</th></tr>
-    <tr><td>Delay accrual identity</td><td><strong>Instrumented.</strong> A trace decomposes any aircraft’s delay into per-state accruals plus fixed additions, and the parts are checked against the live counter.</td></tr>
-    <tr><td>Simulation step cost</td><td><strong>Reference model.</strong> The fitted model below is shown against live measurement in the overlay.</td></tr>
-    <tr><td>Weather, per-minute definition</td><td><strong>Consistency-checked.</strong> The canonical weather for a minute is compared with the smoothed value the world displays.</td></tr>
-    <tr><td>Economy daily rollup</td><td><strong>Not yet independently recomputed.</strong> Income and fines are accounted in one place; no second calculation checks it.</td></tr>
-    <tr><td>Separation minima</td><td><strong>Not yet independently recomputed.</strong></td></tr>
-    <tr><td>Demand and pricing</td><td><strong>Not yet independently recomputed.</strong></td></tr>
+    <tr><th>Calculation</th><th>What it governs</th><th>Status in the registry</th></tr>
+    <tr><td>Delay accrual</td><td>How an aircraft's delay grows while it waits — the single growth rule behind every minute of delay in the game, decomposed per waiting state.</td><td><strong>Instrumented</strong> — independently checked. A trace decomposes any aircraft’s delay into per-state accruals plus fixed additions, and the parts are checked against the live counter.</td></tr>
+    <tr><td>Simulation step cost</td><td>What one step of the simulation costs, as a function of the aircraft count and the step size — the model the performance budgets are enforced against.</td><td><strong>Reference model</strong> — checked against measurement. The fitted model below is shown against live measurement in the overlay.</td></tr>
+    <tr><td>Weather, per-minute definition</td><td>Which weather a given minute has — the definition a saved game reloads into, and the one determinism depends on (worked case FND-002, below).</td><td><strong>Consistency-checked.</strong> The canonical weather for a minute is compared with the smoothed value the world displays.</td></tr>
+    <tr><td>Economy daily rollup</td><td>The day's money: every income and charge line, re-added and compared against the day's recorded profit.</td><td><strong>Instrumented</strong> — independently checked (WP-09 Increment 8, PR #38). Each day's money is recorded line by line and re-added against the day's profit.</td></tr>
+    <tr><td>Separation minima</td><td>How close aircraft may be — the one separation law (wake table, single arrival-close rule) that admission, metering, and the player's clearances all obey since the ATC rework's first step.</td><td><strong>Not yet instrumented.</strong> The law is unified; the live measurement of achieved separation against it is the rework's final step (R5), which closes this entry.</td></tr>
+    <tr><td>Demand and pricing</td><td>How full flights are and what tickets cost — today, the reckoning found, load factor is a random number plus one adjustment, not a response to price, time, or reputation.</td><td><strong>Not yet instrumented.</strong></td></tr>
   </table>
-  <p>Three of the six carry an independent check today; three honestly do not. A
-  status changes only when the evidence does — and the registry lives in the game
-  itself, not in a document that can drift away from the code.</p>
+  <p>Four of the six carry an independent check today; two honestly do not —
+  separation minima, whose instrument lands with the ATC rework's final step,
+  and demand and pricing. A status changes only when the evidence does — and
+  the registry lives in the game itself, not in a document that can drift
+  away from the code.</p>
 
   <h2>The cost of a step</h2>
   <p>Every step of the simulation is measured, and the measurements are fitted, not
@@ -140,7 +143,7 @@
   causes. When the parts and the counter disagree, that is a finding, not a
   rounding error.</p>
 
-  <h2>Weather belongs to the minute</h2>
+  <h2>Worked case FND-002 — weather belongs to the minute</h2>
   <p>Until 2026-11-02, a game saved and reloaded mid-minute could continue under
   different weather than the same game left running — the one property determinism
   forbids. The cause: the per-minute weather was computed from the fractional
@@ -150,7 +153,7 @@
   guards the property permanently (issue #15, closed; PR #24). The full hunt is
   recorded as notebook entry 2026-11-02-A.</p>
 
-  <h2>When the platform’s mathematics changed</h2>
+  <h2>Worked case FND-011 — when the platform’s mathematics changed</h2>
   <p>In late October 2026 the project’s long soak began failing deterministically on
   newer systems — and only there. The cause, proven by experiment rather than
   argued: the platform C library’s newest generation returns <em>correctly

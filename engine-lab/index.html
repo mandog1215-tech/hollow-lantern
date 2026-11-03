@@ -96,6 +96,33 @@
     codebase from outside would invent history. If development ever resumes,
     naming its layer is a decision for that time.</p></div>
 
+  <h2>The engine verdict — AirportSim, 2026-11-01</h2>
+  <p>Alongside the registry, the studio ran a full engine assessment and
+  mathematics audit of AirportSim on 2026-11-01 — the engine's structure, the
+  simulation's mathematics, and the evidence beneath both examined end to
+  end. The verdict was <strong>RETAIN the engine</strong>: keep the existing
+  engine and simulation architecture, and build on it. That verdict stands
+  behind everything the current programme has done since — Development Mode
+  was grown onto the retained engine, not written around a replacement.</p>
+
+  <h2>Evidence classes — a native-Windows product, developed on Linux</h2>
+  <p>The studio's games are native Windows products developed on Linux, so
+  engine and game claims are graded by the evidence class that supports
+  them. Four classes, in ascending order of weight:</p>
+  <table>
+    <tr><th>Evidence class</th><th>What it establishes</th></tr>
+    <tr><td><strong>Linux tests</strong></td><td>The code's behaviour under the full test suites on the development platform — the everyday gate every change passes.</td></tr>
+    <tr><td><strong>MinGW cross-compile</strong></td><td>Producibility only: the Windows binary can be built from the source. It says nothing about how the game runs.</td></tr>
+    <tr><td><strong>Wine</strong></td><td>Preliminary runtime evidence under a compatibility layer. It is never called Windows verification, on this site or anywhere else.</td></tr>
+    <tr><td><strong>Native Windows runtime</strong></td><td>The product running on its actual platform. This is a <strong>release gate</strong> — for AirportSim it is exercised today by the native Windows battery on the owner's test rig, on every merge.</td></tr>
+  </table>
+  <p>The grading discipline is the point: a claim is only ever stated at the
+  class its evidence earned. The studio's five engineering principles —
+  simulation-first engineering, evidence over appearances, causality over
+  superficial functionality, autonomous execution with explicit authority,
+  and one methodology with game-specific engineering — are recorded on the
+  <a href="../studio.html">studio page</a>.</p>
+
   <h2>How the registry is kept</h2>
   <ul>
     <li><strong>Constants are authoritative; the registry mirrors.</strong> Each

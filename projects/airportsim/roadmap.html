@@ -158,7 +158,7 @@
     business-window failures is fixed by seeding the test worlds (PR #13 merged;
     PR #11 merged as the recorded resolution — its seeding was already covered by
     PR #13); the remaining cosmetic truncation of long airline names in the
-    Business window stays open as issue #14.</p>
+    Business window was fixed on 2026-11-03 (PR #42; issue #14 closed).</p>
   </div>
   <div class="arrow">↓</div>
   <div class="stage done">
@@ -263,19 +263,118 @@
     everything together — the sequence is complete.</p>
   </div>
 
+  <h2>The current programme — the chained queue (2026-11-03)</h2>
+  <p>The work now runs as one chained queue: each item lands before the next
+  begins, and each merge waits for its green battery. What has landed, what is
+  landing, and what stands behind it:</p>
+
+  <div class="stage done">
+    <p class="st">Completed 2026-11-03</p>
+    <h3>The reckoning — every system audited</h3>
+    <p>All ten major systems checked against the creator's design notes, the
+    code, and their own mathematics, and ranked healthiest to weakest:
+    simulation core, weather, economy &amp; finance, ground operations,
+    construction &amp; layout, airlines/routes/network, staff &amp; roles,
+    events &amp; emergencies, passengers/demand/pricing, ATC &amp; aircraft
+    movement. Its five weakest points — ATC with no brain, load factor as a
+    dice roll, money that does not reconcile, depth that changes nothing, and
+    the same thing modelled twice, disagreeing — choose the big updates
+    below. Full record on the <a href="systems.html">systems page</a>.</p>
+    <p><span class="pill done">Done</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage done">
+    <p class="st">Completed 2026-11-03</p>
+    <h3>The issues pass — every open item, one by one</h3>
+    <p>Fixed: test processes sharing one save folder (FND-015, PR #41); long
+    airline names cut off in the Business window (issue #14, PR #42); three
+    memory-recovery paths that could crash (FND-005, PR #43); and the owner's
+    brand rule enforced in code and tests — no real commercial brand names in
+    the game (PR #40; airline names were not covered and stay an open
+    question for the owner). Classified with their evidence: three sibling
+    memory sites judged guarded (FND-006, no change); departure starvation
+    traced to runway assignment (FND-008 — its remedy is the departure queue
+    in the rework below); aircraft drawn over terminal roofs, fix designed
+    (FND-012, visuals pass); jet bridges present at all 135 Detroit stands
+    but nearly invisible (FND-013, visuals pass); display scaling's remaining
+    question held for the owner's hands-on (FND-010).</p>
+    <p><span class="pill done">Done</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage now">
+    <p class="st">Current position — four of five steps merged</p>
+    <h3>The ATC rework</h3>
+    <p>On the owner's direction, the weakest system is rebuilt in five steps:
+    controller-assigned speeds on final (DEF-007, PR #44); one separation law
+    everywhere (R1, PR #45); a real departure queue (R2, PR #46); arrival
+    sequencing (R3, PR #47). The final step — ground separation by aircraft
+    size, with separation measured live in Development Mode (R4 + R5) — is
+    built and proven locally and merges next. Full record on the
+    <a href="systems.html">systems page</a>.</p>
+    <p><span class="pill done">DEF-007</span> <span class="pill done">R1</span> <span class="pill done">R2</span> <span class="pill done">R3</span> <span class="pill prog">R4 · R5 — in progress</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
   <div class="stage">
-    <p class="st">Next — first after integration · Owner-authorized 2026-11-02</p>
+    <p class="st">Next — after the rework</p>
+    <h3>The visuals pass</h3>
+    <p>The draw-order fix FND-012 designed — one unified back-to-front drawing
+    stream, so buildings occlude aircraft correctly instead of aircraft
+    painting over terminal roofs — and jet-bridge readability (FND-013: the
+    bridges engage at all 135 Detroit gate stands; they need to be seen to
+    engage).</p>
+    <p><span class="pill queue">Queued</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage">
+    <p class="st">Planned — chosen by the reckoning</p>
+    <h3>The main big updates</h3>
+    <p>The reckoning's weakest points become the work: passenger demand that
+    answers to price, time, and reputation instead of a dice roll; money that
+    reconciles — one movement of money, one record of it; and staff whose
+    departments change outcomes, not just rosters. Each update is designed
+    against the audit's record before it is built.</p>
+    <p><span class="pill queue">Queued</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage gate">
+    <p class="st">Decision gate — the owner's</p>
+    <h3>The Beta gates, then the release path</h3>
+    <p>Two of the three Beta gates are satisfied: native Windows verification
+    (a native Windows battery runs on the owner's rig on every merge) and the
+    save/reload fix (FND-002). The third — the full 14-scenario × 3-seed
+    end-to-end matrix rerun — is deliberately the last step, run immediately
+    before the Beta decision, which is the owner's. Beyond it, the
+    release-path plan (conditional on the game genuinely being ready): a
+    private test version for the owner's hands-on around 0.7.5, and open
+    betas published on this website around 0.8.0. Public builds will ship
+    with copy protection, in packages containing compiled binaries and game
+    data only — no source code — with the contents verified before anything
+    goes out (the owner's policy, 2026-11-03).</p>
+    <p><span class="pill done">Gate 1 · Windows</span> <span class="pill done">Gate 2 · Save/reload</span> <span class="pill queue">Gate 3 · Full matrix</span> <span class="pill intent">Beta decision · owner</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage done">
+    <p class="st">Completed 2026-11-02 — FND-002 solved (PR #24; issue #15 closed)</p>
     <h3>The save/reload continuation investigation (issue #15)</h3>
-    <p>A reloaded game continues <em>slightly differently</em> from one that was
-    never interrupted. The divergence is measured, not anecdotal: it begins at the
-    first step after reload, and the first differing byte sits in the economy's
-    double-precision region. One suspect — a private random stream — has been
-    eliminated experimentally as the sole cause; the cause is not yet attributed
-    and no fix is claimed. The owner unparked this investigation on 2026-11-02,
-    rated it a crucial fix, and placed it first after the integration — which
-    completed the same day. After it: the Windows verification harness (next
-    stage below), then <strong>WP-09</strong> grows
-    Development Mode into a full diagnostic environment in six increments (as built: eight increments, completed 2026-11-03 2014 see the WP-09 stage above).</p>
+    <p>A reloaded game continued <em>slightly differently</em> from one that was
+    never interrupted. The divergence was measured, not anecdotal: it began at the
+    first step after reload, and the first differing byte sat in the economy's
+    double-precision region. One suspect — a private random stream — was
+    eliminated experimentally as the sole cause; the cause was then attributed:
+    a minute's weather was being computed from the fractional clock, so the
+    moment of a reload shifted the weather the game continued under. The fix
+    evaluates each minute's weather at the minute's start, and a reloaded game
+    now continues byte-identically to one that never stopped. The owner
+    unparked this investigation on 2026-11-02, rated it a crucial fix, and
+    placed it first after the integration — which completed the same day.
+    After it came the Windows verification work (stage below) and then WP-09
+    (see the WP-09 stage above).</p>
   </div>
   <div class="arrow">↓</div>
 

@@ -165,10 +165,13 @@
     <p>A full aircraft state machine — approach, landing, taxi (with pathfinding),
     stand assignment, turnaround services, departure — at 26 real layouts, with
     automated or player-operated ATC and ATIS procedures.</p></div>
-  <div class="card"><p class="st mid">Known limitation</p><h3>ATC final speed control</h3>
-    <p>Documented by the original project itself: approach speed control in the final
-    segment is not implemented. Registered as K7; scheduled in the roadmap's
-    living-world phase.</p></div>
+  <div class="card"><p class="st ok">Implemented 2026-11-03 — DEF-007 (PR #44)</p><h3>ATC final speed control</h3>
+    <p>Documented by the original project itself as missing: approach speed control
+    in the final segment. Registered as K7, it was built on 2026-11-03 as the
+    foundation of the ATC rework — the controller now assigns speeds on final
+    (section H, below). Its first rig lane failed on two faults in the new code;
+    both were fixed and proven in a replica of the rig's environment before the
+    rerun passed.</p></div>
 
   <h2>D · Airport ownership</h2>
   <div class="card"><p class="st ok">Demonstrated</p><h3>The business game</h3>
@@ -216,21 +219,139 @@
     still load in the suite. Integrity is checked on load; a save that fails its
     checks is rejected rather than half-applied.</p></div>
 
-  <div class="card gap"><p class="st">Documented finding — cause not yet attributed</p><h3>Continuation after reload</h3>
-    <p>A reloaded game continues <em>slightly differently</em> from one that was
-    never interrupted. This is measured, not anecdotal: the divergence begins at
-    the first step after reload, and the first differing byte sits in the
-    economy's double-precision region. One suspect — a private random stream —
-    has been eliminated experimentally as the sole cause. The owner unparked the
-    investigation on 2026-11-02, rated it a crucial fix, and placed it first
-    after the integration — which completed the same day (issue #15). No fix is
-    claimed until the cause is attributed.</p></div>
+  <div class="card"><p class="st ok">Solved — FND-002, fixed 2026-11-02 (PR #24; issue #15 closed)</p><h3>Continuation after reload</h3>
+    <p>A reloaded game continued <em>slightly differently</em> from one that was
+    never interrupted — measured, not anecdotal: the divergence began at the
+    first step after reload, and the first differing byte sat in the economy's
+    double-precision region. A private random stream was eliminated
+    experimentally as the sole cause; the cause was then attributed: the
+    per-minute weather was computed from the fraction of the minute, so the
+    moment of a reload shifted the weather the game continued under. The fix
+    evaluates each minute's weather at the minute's start, and a reloaded game
+    is now byte-identical to one that never stopped. The hunt is worked case
+    FND-002 on the <a href="mathematics.html">mathematics page</a>.</p></div>
 
   <div class="card"><p class="st no">Not implemented</p><h3>Tutorial · mod support · live map-data fetching</h3>
     <p>Named plainly so nobody mistakes them for features. The tutorial's underlying
     problem is addressed by the roadmap's onboarding phase; mod support and runtime
     map fetching are open design questions (see the evidence page), not silent
     decisions.</p></div>
+
+  <h2>G · The reckoning — every system audited (2026-11-03)</h2>
+  <p>On 2026-11-03 every major system was audited end to end: the creator's own
+  design notes checked against the code as it stands and against its
+  mathematics, intended against implemented against observed. The ranking
+  below is that audit's verdict, healthiest first. Bar length and colour
+  encode the rank — the audit's point is that the spread is wide: the
+  foundation is strong and the top of the traffic system was, until the
+  rework, the weakest code in the game.</p>
+
+  <div class="rankchart">
+    <div class="rc-cap"><span>System health — the reckoning, 2026-11-03</span><span>1 · healthiest → 10 · weakest</span></div>
+    <div class="rc-row"><span class="rc-rank">1</span><span class="rc-name">Simulation core</span><span class="rc-bar" aria-hidden="true"><i style="--v:100%;--h:130"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">2</span><span class="rc-name">Weather</span><span class="rc-bar" aria-hidden="true"><i style="--v:90%;--h:117"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">3</span><span class="rc-name">Economy &amp; finance</span><span class="rc-bar" aria-hidden="true"><i style="--v:80%;--h:103"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">4</span><span class="rc-name">Ground operations</span><span class="rc-bar" aria-hidden="true"><i style="--v:70%;--h:90"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">5</span><span class="rc-name">Construction &amp; layout</span><span class="rc-bar" aria-hidden="true"><i style="--v:60%;--h:77"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">6</span><span class="rc-name">Airlines, routes &amp; network</span><span class="rc-bar" aria-hidden="true"><i style="--v:50%;--h:63"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">7</span><span class="rc-name">Staff &amp; roles</span><span class="rc-bar" aria-hidden="true"><i style="--v:40%;--h:50"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">8</span><span class="rc-name">Events &amp; emergencies</span><span class="rc-bar" aria-hidden="true"><i style="--v:30%;--h:37"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">9</span><span class="rc-name">Passengers, demand &amp; pricing</span><span class="rc-bar" aria-hidden="true"><i style="--v:20%;--h:23"></i></span></div>
+    <div class="rc-row"><span class="rc-rank">10</span><span class="rc-name">ATC &amp; aircraft movement<small>the rework's subject — section H</small></span><span class="rc-bar" aria-hidden="true"><i style="--v:10%;--h:10"></i></span></div>
+  </div>
+
+  <p><strong>The five weakest points</strong>, in the audit's own order:</p>
+  <div class="card gap"><p class="st">Weakest point 1</p><h3>ATC had no brain</h3>
+    <p>The controller was memoryless — it scanned aircraft by aircraft and
+    reacted, with no plan and no sequence — and its separation rules disagreed
+    with each other in three places. Departures could starve behind arrival
+    streams. This is the rework's whole subject (section H).</p></div>
+  <div class="card gap"><p class="st">Weakest point 2</p><h3>Passenger load factor is a dice roll</h3>
+    <p>How full a flight is comes from a random number plus one adjustment —
+    not from the ticket price, the time of day, or the airport's reputation.
+    Demand and pricing are also the Mathematics Lab's last uninstrumented
+    calculation.</p></div>
+  <div class="card gap"><p class="st">Weakest point 3</p><h3>The money does not reconcile</h3>
+    <p>A landing fee was credited to the airport's cash <em>and</em> booked as
+    debt the carrier still owed — then clawed back if the carrier went
+    bankrupt. One movement of money, two records of it.</p></div>
+  <div class="card gap"><p class="st">Weakest point 4</p><h3>Simulated depth that changes nothing</h3>
+    <p>Six of the eight staff departments are modelled in detail and barely
+    affect the game. The detail is real; the consequences are not.</p></div>
+  <div class="card gap"><p class="st">Weakest point 5</p><h3>The same thing modelled twice, disagreeing</h3>
+    <p>The audit's recurring disease: three separation rules, four turnaround
+    clocks, three demand systems, three fare formulas — parallel models of
+    one thing, free to drift apart. Each unification is a fix with a single
+    owner; the separation rules were the first to be unified (R1, below).</p></div>
+  <p>One smaller dishonesty, recorded because the audit records everything it
+  finds: a fuel event in the game announces that upkeep rises 35% while the
+  code applies 20%.</p>
+
+  <h2>H · The ATC rework (owner direction, 2026-11-03)</h2>
+  <p>The owner's verdict on the old controller — “We need to completely
+  rework the ATC system, it's very crude” — became a five-step rebuild, each
+  step merged only on a green rig lane and verified by the full battery
+  after merging. Four steps are in; the fifth is built, proven locally, and
+  lands next.</p>
+
+  <div class="stage done">
+    <p class="st">Step 0 · Merged — PR #44, battery green</p>
+    <h3>DEF-007 — speeds on final, assigned by the controller</h3>
+    <p>The foundation: aircraft on final approach now fly controller-assigned
+    speeds, so spacing is managed instead of hoped for. The step's first rig
+    lane failed on two faults in the new code — both were diagnosed, fixed,
+    and proven in a replica of the rig's environment before the rerun
+    passed.</p>
+    <p><span class="pill done">Done</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage done">
+    <p class="st">Step 1 · Merged — PR #45</p>
+    <h3>R1 — one separation law, everywhere</h3>
+    <p>The three disagreeing separation rules became one: the wake-turbulence
+    table now governs admission to a runway, speed metering, and the player's
+    own clearances, with a single 4,500 m arrival-close rule throughout. The
+    player's old shortcut — pay a $3,000 fine and land anyway — was replaced
+    by refusal: the law is the law for the player too.</p>
+    <p><span class="pill done">Done</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage done">
+    <p class="st">Step 2 · Merged — PR #46</p>
+    <h3>R2 — a real departure queue</h3>
+    <p>Departures now queue per runway, longest-waiting first — the direct
+    remedy for the starvation classified in the issues pass (FND-008) — and
+    an idle runway gets used when a queue outgrows its own. Recorded
+    honestly: the queue's first design broke saved-game continuation, and it
+    was redesigned around saved state before it merged.</p>
+    <p><span class="pill done">Done</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage done">
+    <p class="st">Step 3 · Merged — PR #47</p>
+    <h3>R3 — arrivals fly to a sequence</h3>
+    <p>Each arrival now owns a planned threshold time, spaced behind the
+    aircraft ahead of it; the speeds that hold the sequence are assigned the
+    DEF-007 way. The plan proposes — and the distance law vetoes: an assigned
+    speed that would break the separation law is never issued.</p>
+    <p><span class="pill done">Done</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
+  <div class="stage now">
+    <p class="st">Steps 4–5 · Built and proven locally — merging next</p>
+    <h3>R4 — ground separation · R5 — separation, measured</h3>
+    <p>R4 scales ground separation by aircraft size and puts the deadlock
+    breakers on the record — when the ground system has to break a jam by
+    hand, Development Mode now says so. R5 measures achieved separation live
+    in Development Mode and closes the Mathematics Lab's separation-minima
+    entry. Both are built and proven locally; neither is claimed merged
+    until its battery verifies.</p>
+    <p><span class="pill prog">In progress</span></p>
+  </div>
 
   <footer>
     <p>Grades change only when new evidence is recorded at a milestone gate. If this
