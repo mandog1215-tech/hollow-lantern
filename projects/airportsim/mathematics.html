@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AirportSim — mathematics · Hollow Lantern Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="hl-emblem" viewBox="0 0 48 48"><circle cx="24" cy="4.2" r="2.1" fill="none" stroke="#c9a227" stroke-width="2.2"/><path d="M24 6.3 V9" stroke="#c9a227" stroke-width="2.2"/><path d="M24 9 L36.5 16.2 V29.8 L24 37 L11.5 29.8 V16.2 Z" fill="none" stroke="#c9a227" stroke-width="2.4" stroke-linejoin="round"/><path d="M24 17.2 L28.6 23 L24 28.8 L19.4 23 Z" fill="#c9a227"/><path d="M15 42.5 H33" stroke="#c9a227" stroke-width="2.4" stroke-linecap="round"/></symbol></defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="top" aria-label="Studio">
+  <span class="brandset"><svg class="emblem" aria-hidden="true"><use href="#hl-emblem"></use></svg><span class="brand">Hollow Lantern Interactive</span></span>
+  <a href="../../index.html">Home</a>
+  <a href="../../studio.html">Studio</a>
+  <a href="../blacksite/index.html">Blacksite</a>
+  <a class="here" href="index.html">AirportSim</a>
+  <a href="../worldforge/index.html">WorldForge</a>
+  <a href="../../engine-lab/index.html">Engine Lab</a>
+  <a href="../../development/index.html">Development</a>
+</nav>
+<nav class="sub" aria-label="AirportSim">
+  <span class="sect">AirportSim</span>
+  <a href="index.html">Overview</a>
+  <a href="systems.html">Systems</a>
+  <a href="engine.html">Engine</a>
+  <a class="here" href="mathematics.html">Mathematics</a>
+  <a href="testing.html">Engineering &amp; testing</a>
+  <a href="versions.html">Versions</a>
+  <a href="roadmap.html">Roadmap</a>
+  <span class="pill dev status-chip">0.6.0-alpha.1 · Alpha</span>
+</nav>
+<main id="main">
+  <div class="projhero as slim">
+    <svg class="skybg" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyfade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#96b9dc" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#96b9dc" stop-opacity="0.10"/>
+          <stop offset="1" stop-color="#96b9dc" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="skyblur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+      <rect class="skyterm" x="-480" y="-40" width="440" height="420" fill="url(#skyfade)"/>
+      <g fill="#cfe3f5">
+        <circle cx="80" cy="42" r="1.3" opacity="0.5"/><circle cx="210" cy="96" r="1" opacity="0.35"/>
+        <circle cx="330" cy="30" r="1.5" opacity="0.55"/><circle cx="470" cy="70" r="1" opacity="0.3"/>
+        <circle cx="590" cy="38" r="1.2" opacity="0.45"/><circle cx="720" cy="92" r="1" opacity="0.3"/>
+        <circle cx="845" cy="34" r="1.4" opacity="0.5"/><circle cx="965" cy="78" r="1" opacity="0.35"/>
+        <circle cx="1080" cy="44" r="1.2" opacity="0.45"/><circle cx="1145" cy="110" r="1" opacity="0.3"/>
+        <circle cx="150" cy="150" r="1" opacity="0.25"/><circle cx="660" cy="150" r="1" opacity="0.22"/>
+        <circle cx="1035" cy="170" r="1" opacity="0.25"/><circle cx="415" cy="120" r="1" opacity="0.2"/>
+      </g>
+      <path id="sky-r2" d="M-20,110 C320,30 760,190 1220,70" fill="none" stroke="#7fa8c9" stroke-opacity="0.34" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r3" d="M-20,322 C420,244 820,118 1220,238" fill="none" stroke="#7fa8c9" stroke-opacity="0.22" stroke-width="1.1" stroke-dasharray="3 7" class="skyroute"/>
+      <path id="sky-r1" d="M-20,262 C280,140 640,300 1220,150" fill="none" stroke="#c9a227" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="3 7" class="skyroute"/>
+      <g>
+        <circle cx="250" cy="232" r="2" fill="#c9a227" opacity="0.55"/><circle cx="700" cy="118" r="2" fill="#c9a227" opacity="0.5"/>
+        <circle cx="982" cy="252" r="2" fill="#c9a227" opacity="0.5"/><circle cx="520" cy="84" r="1.8" fill="#9cc0e8" opacity="0.5"/>
+      </g>
+      <g class="skycloud" opacity="0.055" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="210" cy="66" rx="95" ry="17"/><ellipse cx="265" cy="82" rx="60" ry="13"/>
+      </g>
+      <g class="skycloud c2" opacity="0.05" fill="#dfeaf5" filter="url(#skyblur)">
+        <ellipse cx="950" cy="288" rx="110" ry="19"/><ellipse cx="890" cy="272" rx="58" ry="12"/>
+      </g>
+      <g opacity="0.85">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#e6c65c"/>
+        <animateMotion dur="30s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r1"/></animateMotion>
+      </g>
+      <g opacity="0.7">
+        <path d="M11,0 L2,-2.2 L-6,-9.5 L-8.6,-9 L-5.4,-2 L-10.5,-1.6 L-12.5,-5.2 L-14.6,-5 L-13.9,0 L-14.6,5 L-12.5,5.2 L-10.5,1.6 L-5.4,2 L-8.6,9 L-6,9.5 L2,2.2 Z" fill="#bcd6ee" transform="scale(0.8)"/>
+        <animateMotion dur="38s" begin="-14s" repeatCount="indefinite" rotate="auto"><mpath href="#sky-r2"/></animateMotion>
+      </g>
+      <g>
+        <circle r="6.5" fill="#9cc0e8" opacity="0.18"/><circle r="2.6" fill="#cfe3f5" opacity="0.9"/>
+        <animateMotion dur="46s" begin="-31s" repeatCount="indefinite"><mpath href="#sky-r3"/></animateMotion>
+      </g>
+    </svg>
+  </div>
+  <h1>Mathematics</h1>
+  <p class="lede">AirportSim is a mathematics-driven simulation wearing an accessible
+  game’s clothes. The studio’s rule: the mathematics inside is as sophisticated as the
+  subject demands, and the player meets outcomes — a queue that melts away, a storm
+  that snarls the evening bank — never equations. This page shows the mathematics
+  anyway, with the same honesty labels the project’s own records use: what is
+  measured, what is modelled, and what is not yet independently checked.</p>
+
+  <h2>Determinism comes first</h2>
+  <p>The simulation advances in fixed steps of at most a tenth of a second, and all
+  of its randomness flows from one seeded source whose state lives inside the save
+  file. Same seed, same decisions, same history — bit for bit. That property is not
+  a nicety; it is what makes every other claim on this page testable. A saved game,
+  reloaded, must continue on exactly the trajectory it would have flown anyway, and
+  the test suite holds it to that.</p>
+  <p>Twice, that property has been broken and hunted down — once by a clock, once by
+  a math library. Both hunts belong on this page, because both were mathematics.</p>
+
+  <h2>The principal calculations, with their statuses</h2>
+  <p>The game’s Development Mode carries a Mathematics Lab: a registry of the
+  simulation’s principal calculations, each carrying the verification status it has
+  actually earned. The registry as it stands (WP-09 Increment 2, merged 2026-11-02):</p>
+  <table>
+    <tr><th>Calculation</th><th>Status in the registry</th></tr>
+    <tr><td>Delay accrual identity</td><td><strong>Instrumented.</strong> A trace decomposes any aircraft’s delay into per-state accruals plus fixed additions, and the parts are checked against the live counter.</td></tr>
+    <tr><td>Simulation step cost</td><td><strong>Reference model.</strong> The fitted model below is shown against live measurement in the overlay.</td></tr>
+    <tr><td>Weather, per-minute definition</td><td><strong>Consistency-checked.</strong> The canonical weather for a minute is compared with the smoothed value the world displays.</td></tr>
+    <tr><td>Economy daily rollup</td><td><strong>Not yet independently recomputed.</strong> Income and fines are accounted in one place; no second calculation checks it.</td></tr>
+    <tr><td>Separation minima</td><td><strong>Not yet independently recomputed.</strong></td></tr>
+    <tr><td>Demand and pricing</td><td><strong>Not yet independently recomputed.</strong></td></tr>
+  </table>
+  <p>Three of the six carry an independent check today; three honestly do not. A
+  status changes only when the evidence does — and the registry lives in the game
+  itself, not in a document that can drift away from the code.</p>
+
+  <h2>The cost of a step</h2>
+  <p>Every step of the simulation is measured, and the measurements are fitted, not
+  admired. The step-cost model (mathematical notebook entry 2026-11-01-A) is
+  <strong>T = 10.08 + 0.090·N + 5.36·dt microseconds</strong>, where N is the number
+  of active aircraft and dt the step size; its root-mean-square residual against
+  measurement is 0.50 µs. Attribution of the step’s cost: air traffic control
+  ≈ 37.7%, aircraft update 17.0%, roles 14.9%, operations 13.6%, traffic ≈ 8.7%.</p>
+  <p>Against that model stand two enforced budgets (the GATE-PERF gate): a single
+  step at most <strong>45 µs</strong> (measured median 14.1 µs), and a full simulated
+  day at most <strong>1.7 seconds</strong> (measured 0.56 s). The budgets were set at
+  three times the measured medians, so a breach means the simulation changed, not
+  that the weather did.</p>
+
+  <h2>Delay, decomposed</h2>
+  <p>An aircraft’s delay is born at zero when it spawns. It grows only while the
+  aircraft waits — in exactly six defined waiting states — at the simulation’s
+  standard clock rate, from a single site in the code; fixed additions are reserved
+  for defined disruptions, such as an aircraft grounded for repair or a crew
+  problem. Because delay has one birthplace and one growth rule, the instrumented
+  decomposition can account for every minute of it: select the most-delayed
+  aircraft in a running game and Development Mode shows its delay as the sum of its
+  causes. When the parts and the counter disagree, that is a finding, not a
+  rounding error.</p>
+
+  <h2>Weather belongs to the minute</h2>
+  <p>Until 2026-11-02, a game saved and reloaded mid-minute could continue under
+  different weather than the same game left running — the one property determinism
+  forbids. The cause: the per-minute weather was computed from the fractional
+  clock, so a minute’s weather depended on the sub-minute moment of its first
+  evaluation, which a reload shifts. The fix evaluates each minute’s weather at the
+  minute’s start. A regression test that fails before the fix and passes after it
+  guards the property permanently (issue #15, closed; PR #24). The full hunt is
+  recorded as notebook entry 2026-11-02-A.</p>
+
+  <h2>When the platform’s mathematics changed</h2>
+  <p>In late October 2026 the project’s long soak began failing deterministically on
+  newer systems — and only there. The cause, proven by experiment rather than
+  argued: the platform C library’s newest generation returns <em>correctly
+  rounded</em> results for three trigonometric functions, where the older
+  generation was off by one unit in the last place at some inputs. The simulation,
+  tuned for years on the older answers, diverged on day 20 of its reference history
+  and seized entirely on day 368.</p>
+  <p>The fix states a principle the studio now holds outright: <strong>a simulation
+  owns its numerical behaviour wherever that behaviour affects deterministic
+  outcomes.</strong> The three functions are implemented in the game itself,
+  bit-for-bit equal to the reference library’s answers — verified exhaustively, not
+  sampled: all 2,131,231,108 float inputs for each of the first two functions and
+  234,674,762 input pairs for the third, with zero mismatches. With the owned
+  functions in place, the 440-day reference history reproduces digit-for-digit on
+  the new platform. Closed 2026-11-02 (PR #30).</p>
+
+  <h2>The notebook</h2>
+  <p>Consequential mathematics gets a written record: a mathematical engineering
+  notebook kept with the code, one entry per substantial investigation — the
+  problem, the definitions and assumptions, the derivation, the calculations
+  actually executed (with their outputs), an independent verification, and the
+  conclusions together with what remains uncertain. Two entries stand so far: the
+  step-cost model (2026-11-01-A) and the weather-minute investigation
+  (2026-11-02-A). The notebook supplements the tests and the run records; it never
+  replaces them.</p>
+  <p>What this page does not claim: that the mathematics is finished, or that every
+  model in the game has earned the trust the checked ones have. The statuses above
+  are the whole point — they are printed so they can improve in public.</p>
+
+  <footer>
+    <p>Grades and statuses change only on recorded evidence. If this page and the
+    development record disagree, the record is right and this page gets corrected.</p>
+  </footer>
+  <script>
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('svg.skybg').forEach(function (s) { if (s.pauseAnimations) { s.pauseAnimations(); } });
+  }
+  </script>
+</main>
+</body>
+</html>
