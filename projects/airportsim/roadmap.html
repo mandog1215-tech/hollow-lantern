@@ -272,7 +272,12 @@
     <p><strong>Interim evidence (2026-11-02):</strong> the owner played a
     pre-adoption Windows build (0.5.4, built by the original author) for about an
     hour at Detroit — it launched and played correctly; its graphics looked
-    somewhat low-resolution (presentation only; cause uninvestigated). Saves were
+    somewhat low-resolution (presentation only). A first comparison since
+    (2026-11-03) checked the current build's captured frames pixel-by-pixel across
+    platforms: static screens are byte-identical on Windows and Linux, and all
+    other differences sit inside live content — so the renderer is exonerated and
+    the standing suspect is the live window's presentation under Windows display
+    scaling, to be tested at the owner's hands-on. Saves were
     not tested, and the current code's Windows build has never run natively — so
     this is provisional demonstration for an older build, not verification of the
     current one.</p>
