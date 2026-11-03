@@ -36,7 +36,7 @@
   <p class="tag">One dashboard for the studio — every status below traces to a project record, dated.</p>
   </div>
 
-  <h2>Status dashboard (as of 2026-11-02)</h2>
+  <h2>Status dashboard (as of 2026-11-03)</h2>
   <table>
     <tr><th>Project</th><th>Version</th><th>Status</th><th>Latest verified evidence</th></tr>
     <tr>
@@ -48,8 +48,8 @@
     <tr>
       <td><a href="../projects/airportsim/index.html"><strong>AirportSim</strong></a></td>
       <td>0.5.3</td>
-      <td><span class="pill dev">Development</span> Active. M1 is complete. On 2026-11-02, the owner-authorized integration sequence completed: all eleven packages and the Development Mode branch merged to the default branch, each verified after merging, and the final full gate passed on the integrated tree. No pull requests remain open. The integrated build is named 0.6.0-alpha.1 “Threshold” — the project's first Alpha, approved by the owner on 2026-11-02; an internal development identity, not a release. No release is authorized.</td>
-      <td>2026-11-02 — final full gate on the integrated tree: 162,701 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end pass · all four CI jobs pass on the final code. The intermittent failure that shadowed the sequence (an unseeded test world) is fixed for determinism. The Development Mode branch's earlier exit-2 gate remains in the record as failed, its two UI failure signatures attributed as pre-existing.</td>
+      <td><span class="pill dev">Development</span> Active. M1 is complete. On 2026-11-02, the owner-authorized integration sequence completed: all eleven packages and the Development Mode branch merged to the default branch, each verified after merging, and the final full gate passed on the integrated tree. Since then: the save/reload fix (PR #24), the native Windows harness (PR #25), WP-09 Increments 1–2 (PRs #27, #28), the move of all checks to the owner's self-hosted rig (PR #29), the math-library fix that closed FND-011 (PR #30), and the CI helper update (PR #31) have all merged. One pull request is open: Dependabot's first proposal (PR #32), queued behind WP-09 Increment 3, which is built and awaiting its rig battery. The integrated build is named 0.6.0-alpha.1 “Threshold” — the project's first Alpha, approved by the owner on 2026-11-02; an internal development identity, not a release. No release is authorized.</td>
+      <td>2026-11-03 — PR #31's full battery on the owner's self-hosted rig: all six jobs green, zero deprecation annotations (runs 41574337758 for PR #30 and 41580697717 for PR #31 both fully green on the rig, the native Windows battery included). WP-09 Increment 3's local gate on the same night: 162,870 simulation checks, 0 failed · 9,676 interface checks, 0 failed · end-to-end pass. The Development Mode branch's earlier exit-2 gate remains in the record as failed, its two UI failure signatures attributed as pre-existing.</td>
     </tr>
     <tr>
       <td><a href="../projects/worldforge/index.html"><strong>WorldForge</strong></a></td>
