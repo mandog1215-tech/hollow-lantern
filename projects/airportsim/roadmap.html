@@ -293,9 +293,14 @@
     somewhat low-resolution (presentation only). A first comparison since
     (2026-11-03) checked the current build's captured frames pixel-by-pixel across
     platforms: static screens are byte-identical on Windows and Linux, and all
-    other differences sit inside live content — so the renderer is exonerated and
-    the standing suspect is the live window's presentation under Windows display
-    scaling, to be tested at the owner's hands-on. Saves were
+    other differences sit inside live content — so the renderer is exonerated.
+    A follow-up code check (2026-11-03) then closed the display-scaling half of
+    the question: the current build already carries the full high-DPI setup
+    (per-monitor DPI awareness, the SDL hint, and the high-DPI window flag), so
+    Windows display scaling is exonerated too. What remains open is the game's
+    own presentation — at interface scales above 100% the world view is drawn
+    on a logical canvas and stretched, while the interface stays crisp — to be
+    judged at the owner's hands-on with the private test build. Saves were
     not tested, and the current code's Windows build has never run natively — so
     this is provisional demonstration for an older build, not verification of the
     current one.</p>
