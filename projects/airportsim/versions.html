@@ -82,7 +82,7 @@
     </svg>
   </div>
 
-  <h2>Status summary (updated 2026-11-03 — Development Mode complete; build advanced to 0.6.0-alpha.2 “Threshold”; master at <span class="mono">7c7c20d</span>)</h2>
+  <h2>Status summary (updated 2026-11-03 — Development Mode complete; build advanced to 0.6.0-alpha.2 “Threshold”; master at <span class="mono">d8bb3c8</span>)</h2>
   <table>
     <tr><th>Item</th><th>State</th></tr>
     <tr><td>Verified baseline</td><td>Version 0.5.3 — commit <em>ba389b8</em>, 192 commits of project history preserved; M1 merged on top (merge commit <em>181794d</em>). The default branch has since advanced through the completed 2026-11-02 integration and now carries the project's first Alpha, 0.6.0-alpha.1 “Threshold”; 0.5.3 remains the last public build.</td></tr>
@@ -103,7 +103,7 @@
   build's identity at the day's end: <strong>0.6.0-alpha.2 “Threshold”</strong> —
   an internal development identity; no release, no tag, no download; 0.5.3
   remains the last public build. Master stands at
-  <span class="mono">7c7c20d</span>; the suite runs over 163,000 checks.</p>
+  <span class="mono">d8bb3c8</span>; the suite runs over 163,000 checks.</p>
   <div class="tl">
     <div class="ev done"><span class="when">WP-09 complete · PR #38 + #39</span>
       <p>The economy rollup (PR #38) closed Development Mode's eighth and final
@@ -137,11 +137,13 @@
       a real departure queue (R2, PR #46 — its first design broke saved-game
       continuation and was redesigned around saved state before merging);
       arrival sequencing (R3, PR #47).</p></div>
-    <div class="ev now"><span class="when">The ATC rework, steps 4–5 · in progress</span>
-      <p>Ground separation by aircraft size, with the deadlock breakers on the
-      record (R4), and separation measured live in Development Mode (R5) —
-      built and proven locally, merging next. Neither is claimed here until
-      its battery verifies.</p></div>
+    <div class="ev"><span class="when">The ATC rework, steps 4–5 · merged — rework complete</span>
+      <p>Ground separation by aircraft size, with the deadlock breakers on
+      the record (R4, PR #48 — its first lane's failure exposed and fixed a
+      queue that could block its own runway), and separation measured live
+      in Development Mode (R5, PR #49). Both post-merge batteries all six
+      green; master at <span class="mono">d8bb3c8</span>. The five-step
+      rework the owner directed that morning stands complete.</p></div>
   </div>
 
   <h2>Version record</h2>
