@@ -174,8 +174,9 @@
   never his original scope — becomes one continuous world you can scroll
   or fly across, airport to airport, with one fully simulated airport at
   a time and the rest living statistical lives until you arrive. The
-  first two steps are merged (PRs #51 and #52; master at <span
-  class="mono">344f285</span>): a double-precision world frame (worst
+  first two steps are merged and the third is underway (PRs #51, #52
+  and #61; master at <span
+  class="mono">997413f</span>): a double-precision world frame (worst
   measured round-trip error 0.00001&nbsp;m), a geography pack format with
   real terrain data (Detroit and Denver areas built from ETOPO 2022 and
   Natural Earth), and a Development Mode world inspector — landed with
@@ -185,12 +186,19 @@
   the camera leaves the 9&nbsp;km fence for a 150&nbsp;km envelope, and
   the real geography — the Detroit River, Lake Erie, neighbouring
   airfields — renders to the horizon, with the full post-merge test
-  battery green. The geography was measured before it
+  battery green. The third step has begun: its first part (PR #61) gives
+  every arriving flight an identity worked out when it is scheduled —
+  airline, aircraft, callsign, origin — and hands departing flights off
+  into onward tracks instead of letting them vanish at the fence. It
+  runs in shadow for now, proven to change nothing yet by a
+  bit-for-bit comparison run against the old code; the switch that
+  makes arrivals use those identities is building, with the full suite
+  at 166,742 checks, 0 failed. The geography was measured before it
   was promised: at the finer terrain resolution the whole planet prices
   out at about 1.1&nbsp;GB against a 2.5–3.0&nbsp;GB working budget.
-  Five steps follow — the fence becomes a
-  hand-off; a second airport spins up; the background law for far
-  airports; continuous pilot flight; the owner in the world — with the
+  Four steps follow — a second airport spins up; the background law
+  for far airports; continuous pilot flight; the owner in the world —
+  with the
   Pilot, Passenger and ATC roles growing inside them. The queue from
   here is on the <a href="roadmap.html">roadmap</a>.</p>
 
