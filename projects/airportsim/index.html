@@ -116,7 +116,7 @@
     current programme is judged against.</p>
   </div>
 
-  <h2>The programme today (2026-11-03)</h2>
+  <h2>The programme today (2026-11-04)</h2>
   <p><strong>Development Mode is complete.</strong> The WP-09 programme grew
   the F3 overlay into a full diagnostic environment in eight increments — all
   merged, each verified by a full post-merge battery: visual inspection; the
@@ -147,8 +147,12 @@
   rule: no real commercial brand names in the game — the terminal
   inspector's flavour names were replaced with invented ones, and the test
   suite now fails permanently if a real brand appears in terminal text
-  (PR #40). Airline names were not covered by that rule — they are the
-  simulated carriers — and that stays an open question for the owner.</p>
+  (PR #40). The owner has since extended the same rule to airline names:
+  the generator can no longer produce a real carrier — six roots were
+  replaced with invented names chosen to keep the roster's random stream
+  bit-identical — and a blocklist test now guards the whole roster
+  permanently. It landed as the opening change of the world update below
+  (PR #51).</p>
   <p><strong>The reckoning is written.</strong> Every major system was
   audited — the creator's design notes checked against the code and its
   mathematics — and ranked, healthiest first: simulation core, weather,
@@ -157,16 +161,34 @@
   passengers/demand/pricing, and last, air traffic control. The full audit,
   its five weakest points, and the ranking chart are on the
   <a href="systems.html">systems page</a>.</p>
-  <p><strong>The ATC rework is landing.</strong> On the owner's direction —
+  <p><strong>The ATC rework is complete.</strong> On the owner's direction —
   “We need to completely rework the ATC system, it's very crude” — the
-  weakest system is being rebuilt in five steps. Four are merged and
-  battery-verified: controller-assigned speeds on final (PR #44), one
-  separation law everywhere (PR #45), a real departure queue (PR #46), and
-  arrival sequencing (PR #47). The fifth step — ground separation by
-  aircraft size, with separation measured live in Development Mode — is
-  built and proven locally and merges next. Detail on the
-  <a href="systems.html">systems page</a>; the queue from here is on the
-  <a href="roadmap.html">roadmap</a>.</p>
+  weakest system was rebuilt in five steps, all merged and verified by a
+  full post-merge battery: controller-assigned speeds on final (PR #44),
+  one separation law everywhere (PR #45), a real departure queue (PR #46),
+  arrival sequencing (PR #47), and ground separation by aircraft size with
+  separation measured live in Development Mode (PRs #48, #49). Detail on
+  the <a href="systems.html">systems page</a>.</p>
+  <p><strong>The continuous world is underway.</strong> The owner's
+  direction, 2026-11-03: the airport's 9&nbsp;km tile with its hard edge —
+  never his original scope — becomes one continuous world you can scroll
+  or fly across, airport to airport, with one fully simulated airport at
+  a time and the rest living statistical lives until you arrive. The
+  first step is merged (PR #51; master at <span
+  class="mono">31c6b9a</span>): a double-precision world frame (worst
+  measured round-trip error 0.00001&nbsp;m), a geography pack format with
+  real terrain data (Detroit and Denver areas built from ETOPO 2022 and
+  Natural Earth), and a Development Mode world inspector — landed with
+  the full test suite green (163,643 checks, 0 failed) and every soak
+  hash byte-identical to the pre-world game, so the world stands on the
+  simulation exactly as verified. The geography was measured before it
+  was promised: at the finer terrain resolution the whole planet prices
+  out at about 1.1&nbsp;GB against a 2.5–3.0&nbsp;GB working budget.
+  Six steps follow — the camera leaves the fence; the fence becomes a
+  hand-off; a second airport spins up; the background law for far
+  airports; continuous pilot flight; the owner in the world — with the
+  Pilot, Passenger and ATC roles growing inside them. The queue from
+  here is on the <a href="roadmap.html">roadmap</a>.</p>
 
   <h2>About — two scales, one simulation</h2>
   <p><strong>Global scale:</strong> a living aviation network runs across a real-Earth

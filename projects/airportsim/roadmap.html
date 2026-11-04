@@ -303,22 +303,45 @@
   </div>
   <div class="arrow">↓</div>
 
-  <div class="stage now">
-    <p class="st">Current position — all five steps merged; the rework is complete</p>
+  <div class="stage done">
+    <p class="st">Completed 2026-11-03 — all five steps merged, each verified by a full post-merge battery</p>
     <h3>The ATC rework</h3>
-    <p>On the owner's direction, the weakest system is rebuilt in five steps:
+    <p>On the owner's direction, the weakest system was rebuilt in five steps:
     controller-assigned speeds on final (DEF-007, PR #44); one separation law
     everywhere (R1, PR #45); a real departure queue (R2, PR #46); arrival
-    sequencing (R3, PR #47). The final step — ground separation by aircraft
-    size, with separation measured live in Development Mode (R4 + R5) — is
-    built and proven locally and merges next. Full record on the
+    sequencing (R3, PR #47); and ground separation by aircraft size, with
+    separation measured live in Development Mode (R4 + R5, PRs #48, #49).
+    Full record on the
     <a href="systems.html">systems page</a>.</p>
     <p><span class="pill done">DEF-007</span> <span class="pill done">R1</span> <span class="pill done">R2</span> <span class="pill done">R3</span> <span class="pill done">R4</span> <span class="pill done">R5</span></p>
   </div>
   <div class="arrow">↓</div>
 
+  <div class="stage now">
+    <p class="st">Current — the owner's direction, 2026-11-03: “Not someday. Now.”</p>
+    <h3>The continuous world</h3>
+    <p>The 9 km tile becomes one continuous world: scroll or fly anywhere,
+    airport to airport; one fully simulated airport at a time, the rest
+    living statistical lives until the player arrives. Seven steps:
+    <strong>W1, the world frame and geography packs — merged</strong>
+    (PR #51: double-precision frame, APGEO packs, a real-data validation
+    pack, full suite 163,643/0 with soak hashes byte-identical, full
+    battery green); W2, the camera leaves the fence (building); W3, the
+    fence becomes a hand-off; W4, the second airport spins up; W5, the
+    background law for far airports (airport buying is transformed here —
+    owned airports live their own days); W6, continuous pilot flight, with
+    the Pilot and Passenger roles deepening inside it; W7, the owner in
+    the world, with ATC growing sectors and two-ended traffic. The
+    geography was measured first: the whole planet at the finer terrain
+    resolution is about 1.1 GB against a 2.5–3.0 GB working budget, from
+    licence-clean sources (ETOPO 2022, Natural Earth, WorldCover,
+    Copernicus — attribution carried in the game's credits).</p>
+    <p><span class="pill done">W1</span> <span class="pill queue">W2</span> <span class="pill queue">W3</span> <span class="pill queue">W4</span> <span class="pill queue">W5</span> <span class="pill queue">W6</span> <span class="pill queue">W7</span></p>
+  </div>
+  <div class="arrow">↓</div>
+
   <div class="stage">
-    <p class="st">Next — after the rework</p>
+    <p class="st">Queued — behind the world update</p>
     <h3>The visuals pass</h3>
     <p>The draw-order fix FND-012 designed — one unified back-to-front drawing
     stream, so buildings occlude aircraft correctly instead of aircraft
@@ -330,7 +353,7 @@
   <div class="arrow">↓</div>
 
   <div class="stage">
-    <p class="st">Planned — chosen by the reckoning</p>
+    <p class="st">Planned — chosen by the reckoning, queued behind the world update</p>
     <h3>The main big updates</h3>
     <p>The reckoning's weakest points become the work: passenger demand that
     answers to price, time, and reputation instead of a dice roll; money that
