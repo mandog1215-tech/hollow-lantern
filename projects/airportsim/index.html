@@ -174,17 +174,21 @@
   never his original scope — becomes one continuous world you can scroll
   or fly across, airport to airport, with one fully simulated airport at
   a time and the rest living statistical lives until you arrive. The
-  first step is merged (PR #51; master at <span
-  class="mono">31c6b9a</span>): a double-precision world frame (worst
+  first two steps are merged (PRs #51 and #52; master at <span
+  class="mono">344f285</span>): a double-precision world frame (worst
   measured round-trip error 0.00001&nbsp;m), a geography pack format with
   real terrain data (Detroit and Denver areas built from ETOPO 2022 and
   Natural Earth), and a Development Mode world inspector — landed with
   the full test suite green (163,643 checks, 0 failed) and every soak
   hash byte-identical to the pre-world game, so the world stands on the
-  simulation exactly as verified. The geography was measured before it
+  simulation exactly as verified. The second step opens the view itself:
+  the camera leaves the 9&nbsp;km fence for a 150&nbsp;km envelope, and
+  the real geography — the Detroit River, Lake Erie, neighbouring
+  airfields — renders to the horizon, with the full post-merge test
+  battery green. The geography was measured before it
   was promised: at the finer terrain resolution the whole planet prices
   out at about 1.1&nbsp;GB against a 2.5–3.0&nbsp;GB working budget.
-  Six steps follow — the camera leaves the fence; the fence becomes a
+  Five steps follow — the fence becomes a
   hand-off; a second airport spins up; the background law for far
   airports; continuous pilot flight; the owner in the world — with the
   Pilot, Passenger and ATC roles growing inside them. The queue from
