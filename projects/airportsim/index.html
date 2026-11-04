@@ -174,9 +174,9 @@
   never his original scope — becomes one continuous world you can scroll
   or fly across, airport to airport, with one fully simulated airport at
   a time and the rest living statistical lives until you arrive. The
-  first two steps are merged and the third is underway (PRs #51, #52
-  and #61; master at <span
-  class="mono">997413f</span>): a double-precision world frame (worst
+  first two steps are merged and the third is well underway (PRs #51, #52,
+  #61 and #62; master at <span
+  class="mono">c365bc1</span>): a double-precision world frame (worst
   measured round-trip error 0.00001&nbsp;m), a geography pack format with
   real terrain data (Detroit and Denver areas built from ETOPO 2022 and
   Natural Earth), and a Development Mode world inspector — landed with
@@ -186,16 +186,21 @@
   the camera leaves the 9&nbsp;km fence for a 150&nbsp;km envelope, and
   the real geography — the Detroit River, Lake Erie, neighbouring
   airfields — renders to the horizon, with the full post-merge test
-  battery green. The third step has begun: its first part (PR #61) gives
+  battery green. The third step: its first part (PR #61) gives
   every arriving flight an identity worked out when it is scheduled —
   airline, aircraft, callsign, origin — and hands departing flights off
-  into onward tracks instead of letting them vanish at the fence. It
-  runs in shadow for now, proven to change nothing yet by a
-  bit-for-bit comparison run against the old code; the switch that
-  makes arrivals use those identities is building, with the full suite
-  at 166,742 checks, 0 failed. The geography was measured before it
-  was promised: at the finer terrain resolution the whole planet prices
-  out at about 1.1&nbsp;GB against a 2.5–3.0&nbsp;GB working budget.
+  into onward tracks instead of letting them vanish at the fence; it ran
+  in shadow first, proven to change nothing by a bit-for-bit comparison
+  run against the old code. The switch has now landed (PR #62):
+  arrivals are born from those identities, entering on the real bearing
+  from their real origin — and the step's own test gate caught an older
+  bug (the tower forgot its speed assignments across a save and reload)
+  and it was fixed inside the step, with the full suite at 166,812
+  checks, 0 failed and the post-merge battery fully green. The
+  geography was measured before it was promised, and the full planet
+  pack is now built and verified: 1.46&nbsp;GB of terrain, land cover
+  and shorelines against a 2.5–3.0&nbsp;GB working budget, with wiring
+  it into the game as its own step, judged by screenshots.
   Four steps follow — a second airport spins up; the background law
   for far airports; continuous pilot flight; the owner in the world —
   with the
@@ -248,20 +253,29 @@
     <img src="img/worldmap.png" alt="AirportSim world map with live flights and weather">
     <figcaption><strong>The world map, live in testing.</strong> Flights, routes and
     weather systems across the real Earth, with the day/night terminator sweeping
-    through. This is the world your one airport lives in.</figcaption>
+    through. This is the world your one airport lives in. (Refreshed 2026-11-04
+    from the current build: 1,439 flights airborne at capture time.)</figcaption>
   </figure>
 
   <figure>
     <img src="img/cylw.png" alt="Kelowna airport in the owner view">
-    <figcaption><strong>Home airport: Kelowna (CYLW).</strong> The owner's seat — the
-    standard campaign starts here with a crumbling terminal and a balance sheet.</figcaption>
+    <figcaption><strong>Medium airport: Kelowna (CYLW).</strong> The owner's seat — the
+    standard campaign starts here with a crumbling terminal and a balance sheet.
+    (Refreshed 2026-11-04 from the current build.)</figcaption>
   </figure>
 
   <figure>
     <img src="img/egll.png" alt="Heathrow airport during a session">
-    <figcaption><strong>Heathrow (EGLL) in session.</strong> During baseline testing an
-    unscripted bird strike closed a runway here. That is one observed event, reported
-    as such — not proof that every possible incident behaves correctly.</figcaption>
+    <figcaption><strong>Large airport: Heathrow (EGLL) in session.</strong> Live
+    traffic, flight strips and the ground radio log at one of the world's biggest
+    airports. (Refreshed 2026-11-04 from the current build.)</figcaption>
+  </figure>
+
+  <figure>
+    <img src="img/keyw.png" alt="Key West airport, a small single-runway airfield, during a session">
+    <figcaption><strong>Small airport: Key West (KEYW).</strong> One runway, a
+    departure and an arrival — the same simulation at the smallest scale.
+    (Captured 2026-11-04 from the current build.)</figcaption>
   </figure>
 
   <figure>

@@ -330,19 +330,24 @@
     (PR #52: the view opens to a 150 km envelope and real geography
     renders to the horizon — rivers, lakes, neighbouring airfields —
     with the post-merge battery fully green); W3, the
-    fence becomes a hand-off — first part merged (PR #61: every arriving
-    flight's identity is worked out when it is scheduled, and departures
-    hand off into onward tracks; it runs in shadow, proven bit-for-bit
-    identical to the old behaviour, and the switch that uses the
-    identities is building); W4, the second airport spins up; W5, the
+    fence becomes a hand-off — first two parts merged (PR #61: every
+    arriving flight's identity is worked out when it is scheduled, and
+    departures hand off into onward tracks, running in shadow and proven
+    bit-for-bit identical to the old behaviour; PR #62: the switch —
+    arrivals now materialise from those identities, and the step's own
+    gate caught and fixed an older save/reload tower bug; post-merge
+    battery fully green, suite 166,812/0); the third part, re-baselining
+    the traffic numbers against the pre-world baseline at the firm
+    standard, is building; W4, the second airport spins up; W5, the
     background law for far airports (airport buying is transformed here —
     owned airports live their own days); W6, continuous pilot flight, with
     the Pilot and Passenger roles deepening inside it; W7, the owner in
     the world, with ATC growing sectors and two-ended traffic. The
-    geography was measured first: the whole planet at the finer terrain
-    resolution is about 1.1 GB against a 2.5–3.0 GB working budget, from
+    geography was measured first, and the full planet pack is now built
+    and verified at 1.46 GB against a 2.5–3.0 GB working budget, from
     licence-clean sources (ETOPO 2022, Natural Earth, WorldCover,
-    Copernicus — attribution carried in the game's credits).</p>
+    Copernicus — attribution carried in the game's credits); wiring it
+    into the game is its own step, judged by screenshots.</p>
     <p><span class="pill done">W1</span> <span class="pill done">W2</span> <span class="pill dev">W3</span> <span class="pill queue">W4</span> <span class="pill queue">W5</span> <span class="pill queue">W6</span> <span class="pill queue">W7</span></p>
   </div>
   <div class="arrow">↓</div>
