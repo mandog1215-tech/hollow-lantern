@@ -175,8 +175,8 @@
   or fly across, airport to airport, with one fully simulated airport at
   a time and the rest living statistical lives until you arrive. The
   first three steps are merged (PRs #51, #52,
-  #61–#64 and #66; master at <span
-  class="mono">076e214</span>): a double-precision world frame (worst
+  #61–#64, #66 and #67; master at <span
+  class="mono">1687670</span>): a double-precision world frame (worst
   measured round-trip error 0.00001&nbsp;m), a geography pack format with
   real terrain data (Detroit and Denver areas built from ETOPO 2022 and
   Natural Earth), and a Development Mode world inspector — landed with
@@ -218,8 +218,14 @@
   0 failed; post-merge battery fully green. Airfield markings —
   painted stand numbers at every stand and runway numbers at every
   threshold, drawn to read correctly on approach — have since merged
-  as PR #66. Next, the full geography pack is wired into the game,
-  opening with a style study picked from real renders.
+  as PR #66. The testing underneath it all was then rebuilt as
+  PR #67: every run is now one bundled battery — the full suite,
+  both memory-safety lanes covering all 97 test groups between
+  them, and a summary posted on every run — with the second
+  safety lane joining the required checks. Next, the full
+  geography pack is wired into the game: its first style study
+  was judged too blocky, so the far view is de-blocked before
+  the look is picked from real renders.
   Four steps follow — a second airport spins up; the background law
   for far airports; continuous pilot flight; the owner in the world —
   with the
