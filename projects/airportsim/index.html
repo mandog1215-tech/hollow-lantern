@@ -175,8 +175,8 @@
   or fly across, airport to airport, with one fully simulated airport at
   a time and the rest living statistical lives until you arrive. The
   first three steps are merged (PRs #51, #52,
-  #61, #62 and #63; master at <span
-  class="mono">cc4a4ce</span>): a double-precision world frame (worst
+  #61, #62, #63 and #64; master at <span
+  class="mono">122c6a2</span>): a double-precision world frame (worst
   measured round-trip error 0.00001&nbsp;m), a geography pack format with
   real terrain data (Detroit and Denver areas built from ETOPO 2022 and
   Natural Earth), and a Development Mode world inspector — landed with
@@ -209,6 +209,15 @@
   pack is now built and verified: 1.46&nbsp;GB of terrain, land cover
   and shorelines against a 2.5–3.0&nbsp;GB working budget, with wiring
   it into the game as its own step, judged by screenshots.
+  The phase has also gained its X-ray: a Development Mode skeleton view
+  that strips the running simulation to its structure — airfield
+  geometry, stands, the movement grid, separation bubbles drawn from
+  the separation law itself, the world's fences and onward tracks —
+  merged as PR #64 after its own test lane caught, and the build fixed,
+  a Windows defect in the new code. Full suite 166,860 checks,
+  0 failed; post-merge battery fully green. Airfield markings —
+  painted stand numbers and runway designators at every airport — are
+  building next.
   Four steps follow — a second airport spins up; the background law
   for far airports; continuous pilot flight; the owner in the world —
   with the
