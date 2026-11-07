@@ -1,4 +1,4 @@
-# Hollow Lantern Interactive — unified studio website
+# Section Zero Interactive — unified studio website
 
 The studio's single public website: Blacksite, AirportSim, and WorldForge under one identity, plus the Engine Laboratory and Development Center.
 

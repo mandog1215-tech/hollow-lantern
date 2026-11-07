@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AirportSim — Hollow Lantern Interactive</title>
+<title>AirportSim — Section Zero Interactive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="hl-emblem" viewBox="0 0 48 48"><circle cx="24" cy="4.2" r="2.1" fill="none" stroke="#c9a227" stroke-width="2.2"/><path d="M24 6.3 V9" stroke="#c9a227" stroke-width="2.2"/><path d="M24 9 L36.5 16.2 V29.8 L24 37 L11.5 29.8 V16.2 Z" fill="none" stroke="#c9a227" stroke-width="2.4" stroke-linejoin="round"/><path d="M24 17.2 L28.6 23 L24 28.8 L19.4 23 Z" fill="#c9a227"/><path d="M15 42.5 H33" stroke="#c9a227" stroke-width="2.4" stroke-linecap="round"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="hl-emblem" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="none" stroke="#c9a227" stroke-width="2.2"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#c9a227" stroke-width="1.3" opacity="0.55"/><path d="M24 4.5 V11 M24 37 V43.5 M4.5 24 H11 M37 24 H43.5" stroke="#c9a227" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="4.6" fill="#c9a227"/></symbol></defs></svg>
 <a class="skip" href="#main">Skip to content</a>
 <nav class="top" aria-label="Studio">
-  <span class="brandset"><svg class="emblem" aria-hidden="true"><use href="#hl-emblem"></use></svg><span class="brand">Hollow Lantern Interactive</span></span>
+  <span class="brandset"><span class="brandmark"><svg class="emblem" aria-hidden="true"><use href="#hl-emblem"></use></svg></span><span class="brand">Section Zero Interactive</span></span>
   <a href="../../index.html">Home</a>
   <a href="../../studio.html">Studio</a>
   <a href="../blacksite/index.html">Blacksite</a>
@@ -87,7 +87,7 @@
       <div><span>Version</span><b>0.6.0-alpha.2 “Threshold” · Alpha</b></div>
       <div><span>World</span><b>4,531 airports · 26 real layouts</b></div>
       <div><span>Save format</span><b>Version 13</b></div>
-      <div><span>Simulation suite</span><b>163,000+ checks · 0 failed</b></div>
+      <div><span>Simulation suite</span><b>168,613 checks · 0 failed</b></div>
     </div>
   </div>
 
@@ -116,7 +116,7 @@
     current programme is judged against.</p>
   </div>
 
-  <h2>The programme today (2026-11-04)</h2>
+  <h2>The programme today (updated 2026-11-07)</h2>
   <p><strong>Development Mode is complete.</strong> The WP-09 programme grew
   the F3 overlay into a full diagnostic environment in eight increments — all
   merged, each verified by a full post-merge battery: visual inspection; the
@@ -226,6 +226,17 @@
   geography pack is wired into the game: its first style study
   was judged too blocky, so the far view is de-blocked before
   the look is picked from real renders.
+  <strong>That step has now landed:</strong> the full pack is wired into
+  the game, and on 2026-11-06 the owner approved the far view and closed
+  the geography set — the approved look is real geography, smooth and
+  clean at distance. The interface overhaul followed: its full status
+  board is merged, and the in-game frame is in progress. The suite
+  stands at <strong>168,613 checks, 0 failed</strong>. Next in the queue:
+  a clean-sheet save system, now in design (see the
+  <a href="roadmap.html">roadmap</a>); then real airport layouts and
+  collision physics. The programme's next major milestone is a closed
+  dev beta, <strong>7.0 “Latitude”</strong> — internal testing only,
+  in development.
   Four steps follow — a second airport spins up; the background law
   for far airports; continuous pilot flight; the owner in the world —
   with the
@@ -261,13 +272,14 @@
   </ul>
 
   <div class="nums">
-    <div><b>163,000+</b><span>simulation checks, 0 failed</span></div>
+    <div><b>168,613</b><span>simulation checks, 0 failed</span></div>
     <div><b>9,676</b><span>interface checks, 0 failed</span></div>
     <div><b>4,531</b><span>airports in the world data</span></div>
     <div><b>26</b><span>real airport layouts</span></div>
     <div><b>~31,500</b><span>lines of C11 — no asset files</span></div>
   </div>
-  <p>The suite now runs over 163,000 checks (2026-11-03); the figure before it was
+  <p>The suite now runs 168,613 checks (2026-11-07); the figure before it was
+  over 163,000 (2026-11-03), and before that
   the final integrated gate's measured result (2026-11-02, on the merged code —
   72 test groups; the adoption baseline was 162,315 simulation checks).
   They show the tested behaviour holds; they are not, by themselves, proof that
@@ -397,7 +409,7 @@
   each with the gate that must pass before the next begins.</p>
 
   <footer>
-    <p>AirportSim is a Hollow Lantern project. The game's source repository is private
+    <p>AirportSim is a Section Zero project. The game's source repository is private
     during development, so this site carries the public record. Statuses here derive
     from the project's development record; if the two ever disagree, the record is
     right and this site gets corrected.</p>

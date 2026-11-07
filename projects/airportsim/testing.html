@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AirportSim — engineering &amp; testing · Hollow Lantern Interactive</title>
+<title>AirportSim — engineering &amp; testing · Section Zero Interactive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="hl-emblem" viewBox="0 0 48 48"><circle cx="24" cy="4.2" r="2.1" fill="none" stroke="#c9a227" stroke-width="2.2"/><path d="M24 6.3 V9" stroke="#c9a227" stroke-width="2.2"/><path d="M24 9 L36.5 16.2 V29.8 L24 37 L11.5 29.8 V16.2 Z" fill="none" stroke="#c9a227" stroke-width="2.4" stroke-linejoin="round"/><path d="M24 17.2 L28.6 23 L24 28.8 L19.4 23 Z" fill="#c9a227"/><path d="M15 42.5 H33" stroke="#c9a227" stroke-width="2.4" stroke-linecap="round"/></symbol></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="hl-emblem" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="none" stroke="#c9a227" stroke-width="2.2"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#c9a227" stroke-width="1.3" opacity="0.55"/><path d="M24 4.5 V11 M24 37 V43.5 M4.5 24 H11 M37 24 H43.5" stroke="#c9a227" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="4.6" fill="#c9a227"/></symbol></defs></svg>
 <a class="skip" href="#main">Skip to content</a>
 <nav class="top" aria-label="Studio">
-  <span class="brandset"><svg class="emblem" aria-hidden="true"><use href="#hl-emblem"></use></svg><span class="brand">Hollow Lantern Interactive</span></span>
+  <span class="brandset"><span class="brandmark"><svg class="emblem" aria-hidden="true"><use href="#hl-emblem"></use></svg></span><span class="brand">Section Zero Interactive</span></span>
   <a href="../../index.html">Home</a>
   <a href="../../studio.html">Studio</a>
   <a href="../blacksite/index.html">Blacksite</a>
@@ -233,7 +233,7 @@
   <p><strong>Not yet measured at all:</strong> performance at the largest hubs. No
   number exists, so none is published.</p>
 
-  <h2>Known issues register (K1–K7)</h2>
+  <h2>Known issues register (K1–K8)</h2>
   <p>Status as at the adoption assessment; each entry names its kind honestly —
   a known limitation is not a defect, and an unverified behaviour is not either.</p>
 
@@ -289,6 +289,29 @@
     <em>Closes when:</em> the full matrix runs green on the current version and is
     recorded.</p></div>
 
+  <div class="card gap"><p class="st">K8 · Open — replacement in design (2026-11-07)</p>
+    <h3>The save format itself is fragile — a clean-sheet replacement is in design</h3>
+    <p>The survey behind this entry (2026-11-07) measured the format as it is:
+    a save file is the game's live state written to disk as one raw memory
+    dump, and compatibility across its thirteen versions rests on frozen
+    size numbers and byte-shifting patches — there are no per-version
+    migrations at all. Three of the last four version bumps exist only
+    because state hiding outside the saved block was found lost, or a field
+    changed width mid-structure. Worst, a save from the 0.4 era passes the
+    file's own integrity check and then crashes the loader — and because
+    the load screen previews every save to draw its list, a player with
+    such a file crashes by merely opening that screen. The owner's ruling:
+    no patch on the old design. A replacement is in design — named,
+    individually versioned sections written field by field; a loader that
+    cannot crash, on load or on preview; damage contained to the damaged
+    section, with a warning, while the rest loads; and one one-way importer
+    for every old version, after which the old format retires. The current
+    format keeps working, guarded by the existing tests, until the
+    replacement lands. <em>Closes when:</em> the new system ships with the
+    full fixture corpus — every old version, plus the hostile-file set —
+    importing or refusing cleanly, and the crash class is closed by
+    construction, not by another guard.</p></div>
+
   <div class="card"><p class="st ok">K7 · Missing capability · CLOSED 2026-11-03</p>
     <h3>ATC lacked final speed control — now assigned by the controller</h3>
     <p>Approach speeds in the final segment were not managed by air traffic
@@ -311,7 +334,14 @@
       hosted allowance proved too small for one day of real work, so all checks —
       the native battery included — moved to a self-hosted rig on the owner's PC
       (PR #29), and the cloud runners were removed. The owner's PC runs
-      unattended test batteries only; hands-on use stays out until release.</li>
+      unattended test batteries only; hands-on use stays out until release.
+      <em>Settled in its current form on 2026-11-07:</em> the rig is retired
+      from routine testing. The long Linux lanes run on GitHub-hosted
+      machines from the plan's included allowance — dispatched only when a
+      gate calls for them, never automatically — and Windows verification
+      lives in the local gates (a cross-build plus a Wine smoke run), with
+      native Windows itself remaining the gate of the owner's hands-on
+      test build.</li>
     <li><strong>Tutorial design:</strong> how a new player is taught a deep simulation
       — Phase 1 work, not yet designed.</li>
     <li><strong>The ambient world:</strong> should the player be able to influence the

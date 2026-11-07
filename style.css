@@ -1,181 +1,192 @@
-/* Hollow Lantern Interactive — design system "STRIP & BLUEPRINT" (2026-11-02).
-   Owner-directed redesign: the gold-on-dark card grid is replaced by a
-   bespoke language drawn from the studio's own world — flight-progress
-   strips, blueprint title blocks, ruler edges, instrument readouts and
-   evidence plates. Type: Space Grotesk (display + text) and JetBrains
-   Mono (data), loaded per page with system fallbacks. One file, no
-   build step, JavaScript only for the reduced-motion sky pause. */
+/* Section Zero Interactive — design system "SECTION ZERO" (2026-11-07).
+   Professional studio presentation: one charcoal ground, warm paper
+   text, a single aged-gold accent, disciplined type (Space Grotesk
+   for display and text, JetBrains Mono for data and labels), generous
+   spacing, and quiet hairline structure. The per-project voices survive
+   as restrained accent colours — radar blue, phosphor rust, archival
+   moss — used for rules, kickers and links, never as fields.
+   One file, no build step, no framework. The header keeps a square
+   emblem slot (.brandmark, 34px) sized for the studio mark: gold on
+   charcoal; the wordmark in type carries the header until a mark is
+   adopted. */
 
 :root {
-  --bg: #06080f;
-  --bg-deep: #04060b;
-  --panel: #0b101d;
-  --panel-2: #101828;
-  --panel-3: #0a0f1c;
-  --ink: #e9edf5;
+  --bg: #0a0c11;
+  --bg-deep: #07090d;
+  --panel: #10141d;
+  --panel-2: #151a26;
+  --panel-3: #0c0f16;
+  --ink: #ece7db;
+  --dim: #b9b4a6;
+  --faint: #8f8b7f;
+  --line: #262b38;
+  --line-soft: #1a1f2b;
   --gold: #c9a227;
   --gold-hi: #ecc95c;
-  --gold-dim: rgba(201,162,39,0.55);
-  --line: #26314a;
-  --line-soft: #1a2338;
-  --dim: #bcc6da;
-  --faint: #8d99b4; /* >= 4.5:1 on panel — secondary text */
-  --ok: #8fd49a;
-  --bad: #f09a8a;
+  --gold-dim: rgba(201,162,39,0.5);
+  --ok: #93cf9c;
+  --bad: #eda294;
   --red-line: #b0402f;
   --disp: "Space Grotesk", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
-  --acc-bs: #d97e40;   /* Blacksite — phosphor rust, terminal */
-  --acc-as: #8fc1ec;   /* AirportSim — radar blue, operational */
-  --acc-wf: #aec97e;   /* WorldForge — archival moss */
-  --ruler: repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 12px);
-  --grid-as: linear-gradient(rgba(143,193,236,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(143,193,236,0.055) 1px, transparent 1px);
+  --acc-bs: #d98d54;
+  --acc-as: #93bde8;
+  --acc-wf: #b3cc8d;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 10px 32px rgba(0,0,0,0.28);
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   font-family: var(--disp);
-  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.075rem);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
   margin: 0; color: var(--ink);
   background:
-    linear-gradient(rgba(143,193,236,0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(143,193,236,0.028) 1px, transparent 1px),
-    radial-gradient(ellipse 90% 34rem at 50% -8rem, rgba(201,162,39,0.055), transparent 70%),
+    radial-gradient(ellipse 80% 30rem at 50% -10rem, rgba(201,162,39,0.05), transparent 70%),
     var(--bg);
-  background-size: 28px 28px, 28px 28px, 100% 100%, 100% 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-main { max-width: 47rem; margin: 0 auto; padding: 2.4rem 1.25rem 4.5rem; }
-main.wide { max-width: 61rem; }
+main { max-width: 46rem; margin: 0 auto; padding: 2.6rem 1.25rem 4.5rem; }
+main.wide { max-width: 62rem; }
 ::selection { background: var(--gold); color: #0a0c12; }
 
-h1 { font-family: var(--disp); font-weight: 700; font-size: clamp(2.1rem, 5.4vw, 2.9rem); margin-bottom: 0.2rem; letter-spacing: -0.015em; line-height: 1.08; }
-.tag { color: var(--gold); font-style: italic; margin-top: 0; font-size: 1.06em; }
+h1 { font-family: var(--disp); font-weight: 700; font-size: clamp(2rem, 5vw, 2.75rem); margin: 0 0 0.3rem; letter-spacing: -0.02em; line-height: 1.1; }
+.tag { color: var(--gold); font-size: 1.12rem; font-weight: 500; margin: 0.2rem 0 0.8rem; line-height: 1.45; }
+.lede { font-size: 1.14rem; line-height: 1.6; color: var(--ink); }
 h2 {
   font-family: var(--disp); font-weight: 600; color: var(--ink);
-  margin-top: 3.2rem; font-size: 1.28rem; text-transform: uppercase; letter-spacing: 0.06em;
-  padding-bottom: 0.45rem; border-bottom: 1px solid var(--line);
-  box-shadow: 0 3px 0 -2px var(--gold-dim);
+  margin: 3.4rem 0 1rem; font-size: 0.86rem; text-transform: uppercase; letter-spacing: 0.16em;
+  padding-bottom: 0.6rem; border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 0.6rem;
 }
-h2::before { content: ""; display: inline-block; width: 0.55em; height: 0.55em; background: var(--gold); margin-right: 0.55em; vertical-align: 0.08em; }
-h3 { font-family: var(--disp); font-weight: 600; font-size: 1.08rem; letter-spacing: 0.005em; }
-p, li { line-height: 1.62; }
-a { color: var(--gold); text-underline-offset: 0.18em; }
+h2::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex: none; margin-top: 0.35em; align-self: flex-start; }
+h3 { font-family: var(--disp); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.005em; line-height: 1.3; }
+p, li { line-height: 1.68; }
+a { color: var(--gold); text-underline-offset: 0.18em; text-decoration-color: var(--gold-dim); transition: color 0.15s ease; }
 a:hover { color: var(--gold-hi); }
-a:focus-visible, button:focus-visible { outline: 2px dashed var(--gold); outline-offset: 3px; }
-footer { margin-top: 3.5rem; color: var(--faint); font-size: 0.9rem; border-top: 1px solid var(--line-soft); padding-top: 1rem; }
-.skip { position: absolute; left: -9999px; top: 0; background: var(--panel-2); color: var(--ink); padding: 0.6rem 1rem; z-index: 20; font-family: var(--mono); font-size: 0.85rem; }
-.skip:focus { left: 0.5rem; top: 0.5rem; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+footer { margin-top: 4rem; color: var(--faint); font-size: 0.9rem; border-top: 1px solid var(--line-soft); padding-top: 1.2rem; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--panel-2); color: var(--ink); padding: 0.6rem 1rem; z-index: 30; font-family: var(--mono); font-size: 0.85rem; border-radius: 0 0 8px 0; }
+.skip:focus { left: 0; top: 0; }
 .mono { font-family: var(--mono); }
 img, svg { max-width: 100%; }
 
-/* The emblem — original stroke mark: hexagonal lantern frame, diamond
-   light core, ground line. Defined once per page as an SVG <symbol>
-   (#hl-emblem) and instanced with <use>. */
-.emblem { width: 30px; height: 30px; flex: none; }
-.emblem use, .emblem path, .emblem circle { vector-effect: non-scaling-stroke; }
+/* The emblem slot — a square field in the header sized for the studio
+   mark (gold on charcoal). Until a mark is adopted, the inline aperture
+   glyph renders in the slot; a raster or SVG logo can replace it
+   without layout change. */
+.emblem { width: 30px; height: 30px; flex: none; display: block; }
+.brandmark { width: 34px; height: 34px; flex: none; display: grid; place-items: center; border-radius: 8px; }
 
-/* Header — an ops-board bar: brand as a wordmark plate, links as mono
-   tabs; the current tab is punched with a gold underline block. */
-nav.top { background: var(--bg-deep); border-bottom: 1px solid var(--line); box-shadow: 0 4px 0 -3px var(--gold-dim); padding: 0.6rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 1.25rem; }
-nav.top .brandset { display: flex; align-items: center; gap: 0.6rem; margin-right: auto; }
-nav.top .brand { font-weight: 700; color: var(--ink); font-size: 1.06rem; letter-spacing: 0.01em; }
-nav.top a { text-decoration: none; font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--dim); padding: 0.3rem 0.1rem; }
-nav.top a:hover { color: var(--gold-hi); }
-nav.top a.here { color: var(--gold); box-shadow: inset 0 -3px 0 var(--gold); }
+/* Header — a quiet studio bar: wordmark left, plain navigation right,
+   sticky on tall screens, one hairline under it. */
+nav.top {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(7,9,13,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 0.7rem clamp(1rem, 4vw, 2.5rem);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.4rem;
+}
+nav.top .brandset { display: flex; align-items: center; gap: 0.65rem; margin-right: auto; text-decoration: none; }
+nav.top .brand { font-weight: 700; color: var(--ink); font-size: 1.05rem; letter-spacing: -0.01em; white-space: nowrap; }
+nav.top a { text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--dim); padding: 0.35rem 0.15rem; border-radius: 4px; }
+nav.top a:hover { color: var(--ink); }
+nav.top a.here { color: var(--gold); box-shadow: inset 0 -2px 0 var(--gold); }
 
-/* Sub-navigation — a flight-strip bay: dashed perforation under the
-   strip, mono destinations, section name as the strip's callsign. */
-nav.sub { padding: 0.5rem clamp(1rem, 4vw, 3rem); display: flex; flex-wrap: wrap; gap: 0.3rem 1.05rem; border-bottom: 1px dashed var(--line); font-size: 0.85rem; background: var(--panel-3); font-family: var(--mono); }
-nav.sub a { text-decoration: none; color: var(--dim); padding: 0.22rem 0.05rem; }
+/* Sub-navigation — the section's own bar: small caps mono links under
+   the header, the section name as a quiet label, status chip right. */
+nav.sub {
+  padding: 0.55rem clamp(1rem, 4vw, 2.5rem); display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.3rem 1.1rem; border-bottom: 1px solid var(--line-soft); background: var(--panel-3);
+  font-family: var(--mono); font-size: 0.83rem;
+}
+nav.sub a { text-decoration: none; color: var(--dim); padding: 0.25rem 0.05rem; }
 nav.sub a:hover { color: var(--gold-hi); }
-nav.sub a.here { color: var(--ink); box-shadow: inset 0 -2px 0 currentColor; }
-nav.sub .sect { color: var(--gold); margin-right: 0.4rem; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; align-self: center; }
-@media (min-width: 48rem) { nav.sub { position: sticky; top: 0; z-index: 5; } }
+nav.sub a.here { color: var(--ink); box-shadow: inset 0 -2px 0 var(--gold); }
+nav.sub .sect { color: var(--gold); margin-right: 0.3rem; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.76rem; font-weight: 600; }
+@media (min-width: 48rem) { nav.sub { position: sticky; top: 57px; z-index: 9; } }
 .status-chip { margin-left: auto; align-self: center; }
 .status-chip .pill + .pill { margin-left: 0.35rem; }
 
-/* Status stamps — statuses are annotations stamped onto the record,
-   not rounded pills: rectangular, mono, punched with a hole dot.
-   Held carries a double-rule stamp border; Shelved is dashed, like an
-   archive marking; Development is an active blue stamp. */
-.pill { display: inline-block; font-family: var(--mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; padding: 0.3rem 0.6rem 0.3rem 0.85rem; border-radius: 2px; border: 1.5px solid var(--line); color: var(--dim); vertical-align: 0.14em; white-space: nowrap; position: relative; background: var(--bg-deep); }
-.pill::before { content: ""; position: absolute; left: 0.32rem; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; border: 1px solid currentColor; opacity: 0.75; }
-.pill.held { border-color: var(--red-line); color: var(--bad); box-shadow: inset 0 0 0 2px var(--bg-deep), inset 0 0 0 3.5px rgba(176,64,47,0.6); }
-.pill.dev { border-color: #4a7fb5; color: var(--acc-as); }
-.pill.verified { border-color: #3f7d46; color: var(--ok); }
-.pill.shelved { border-style: dashed; border-color: #55617c; color: var(--faint); }
-.pill.intent { border-color: var(--gold); color: var(--gold); }
+/* Status marks — one quiet language everywhere: small mono labels in
+   soft-tinted chips. Green = finished/verified, blue = active, grey
+   dashed = waiting/archived, red = stopped/withheld, gold = an owner
+   decision or intent. */
+.pill { display: inline-block; font-family: var(--mono); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.11em; padding: 0.28rem 0.6rem; border-radius: 999px; border: 1px solid var(--line); color: var(--dim); vertical-align: 0.16em; white-space: nowrap; background: var(--panel-3); }
+.pill.held { border-color: rgba(176,64,47,0.65); color: var(--bad); background: rgba(176,64,47,0.1); }
+.pill.cancelled { border-color: rgba(176,64,47,0.65); color: var(--bad); background: rgba(176,64,47,0.1); }
+.pill.dev, .pill.prog { border-color: rgba(74,127,181,0.6); color: var(--acc-as); background: rgba(74,127,181,0.1); }
+.pill.done, .pill.closed, .pill.verified { border-color: rgba(63,125,70,0.65); color: var(--ok); background: rgba(63,125,70,0.12); }
+.pill.shelved, .pill.queue { border-style: dashed; border-color: #4d5468; color: var(--faint); background: transparent; }
+.pill.intent { border-color: var(--gold-dim); color: var(--gold); background: rgba(201,162,39,0.08); }
 
-/* Status notice — an ops bulletin: heavy gold rail, ruler ticks along
-   the top edge, panel ground. */
-.status { border: 1px solid var(--line); border-left: 6px solid var(--gold); padding: 1rem 1.15rem 0.9rem; background: var(--panel-2); background-image: var(--ruler); background-size: 100% 7px; background-position: top left; background-repeat: no-repeat; }
+/* Status notice — a calm bulletin panel with a gold rail. */
+.status { border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: 1.05rem 1.2rem; background: var(--panel); margin: 1.2rem 0; }
+.status p { margin: 0.3rem 0; }
 
-/* Homepage hero — the lantern over a blueprint field; the status strip
-   below it is a bay of three flight strips, one per project. */
-.hero { text-align: left; padding: 2.8rem 0 0.4rem; position: relative; }
-.hero::before { content: ""; position: absolute; inset: -1rem -2rem auto -2rem; height: 24rem; background: radial-gradient(ellipse 60% 55% at 18% 30%, rgba(201,162,39,0.10), transparent 70%); pointer-events: none; }
-.hero .emblem { width: 76px; height: 76px; }
-.hero h1 { font-size: clamp(2.7rem, 7.4vw, 3.9rem); margin: 0.8rem 0 0.2rem; }
-.hero .tag { font-size: 1.18rem; }
-.status-strip { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1.5rem 0 0.4rem; font-family: var(--mono); }
-.status-strip a { display: flex; align-items: center; gap: 0.65rem; border: 1px solid var(--line); border-left: 5px solid var(--line); background: var(--panel); padding: 0.6rem 0.9rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; letter-spacing: 0.05em; }
-.status-strip a:hover { border-color: var(--gold); border-left-color: var(--gold); }
+/* Homepage hero — the studio name set large in type, the emblem above
+   it, and the three project statuses as quiet linked rows. */
+.hero { padding: 3.2rem 0 0.6rem; position: relative; }
+.hero::before { content: ""; position: absolute; inset: -1rem -2rem auto -2rem; height: 22rem; background: radial-gradient(ellipse 55% 55% at 16% 28%, rgba(201,162,39,0.09), transparent 70%); pointer-events: none; }
+.hero .emblem { width: 64px; height: 64px; }
+.hero h1 { font-size: clamp(2.6rem, 7vw, 3.8rem); margin: 1rem 0 0.3rem; }
+.hero .tag { font-size: 1.22rem; max-width: 34em; }
+.hero p { max-width: 44em; }
+.status-strip { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.6rem 0 0.4rem; }
+.status-strip a { display: flex; align-items: center; gap: 0.7rem; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); padding: 0.5rem 1rem; text-decoration: none; color: var(--ink); font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em; transition: border-color 0.15s ease; }
+.status-strip a:hover { border-color: var(--gold); }
 
-/* Project bands on the homepage — full strips, not cards: sharp
-   corners, a heavy annotation rail, per-project field textures. */
-.band { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 1.4rem; margin: 1.3rem 0; position: relative; overflow: hidden; }
-.band .shot img { width: 100%; display: block; border: 1px solid var(--line); }
+/* Project bands on the homepage — clean editorial panels: soft radius,
+   a whisper of shadow, one thin accent rule per project. */
+.band { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; align-items: center; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: var(--shadow); padding: 1.7rem; margin: 1.4rem 0; position: relative; overflow: hidden; }
+.band::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--line); }
+.band.bs::before { background: var(--acc-bs); }
+.band.as::before { background: var(--acc-as); }
+.band.wf::before { background: var(--acc-wf); }
+.band .shot img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 8px; }
 .band figure.shot { margin: 0; }
-.band figure.shot figcaption { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); margin-top: 0.45rem; line-height: 1.5; }
-.band h3 { font-size: 1.7rem; margin: 0 0 0.3rem; letter-spacing: -0.01em; }
+.band figure.shot figcaption { margin-top: 0.6rem; }
+.band h3 { font-size: 1.65rem; margin: 0 0 0.4rem; letter-spacing: -0.015em; }
 .band h3 a { text-decoration: none; }
-.band p { margin: 0.35rem 0; }
-.band .links { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.88rem; }
-.band.bs { border-left-color: var(--acc-bs); }
-.band.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(217,126,64,0.028) 3px 4px), repeating-linear-gradient(45deg, transparent 0 12px, rgba(217,126,64,0.04) 12px 13px); pointer-events: none; }
 .band.bs h3 a { color: var(--acc-bs); }
-.band.as { border-left-color: var(--acc-as); background-image: var(--grid-as); background-size: 26px 26px; }
 .band.as h3 a { color: var(--acc-as); }
-.band.wf { border-left-color: var(--acc-wf); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23aec97e' stroke-opacity='0.07'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); }
 .band.wf h3 a { color: var(--acc-wf); }
-@media (max-width: 48rem) { .band { grid-template-columns: 1fr; } }
+.band p { margin: 0.4rem 0; }
+.band .links { margin-top: 0.7rem; font-family: var(--mono); font-size: 0.86rem; }
+@media (max-width: 48rem) { .band { grid-template-columns: 1fr; padding: 1.3rem; } }
 
-/* Engineering ladder + archive doors (homepage) — the ladder actually
-   steps: each rung sits lower than the last on wide screens. */
-.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; margin: 1rem 0; }
-.ladder div { border: 1px solid var(--line); border-top: 3px solid var(--line); background: var(--panel); padding: 0.85rem 1rem; }
-.ladder div:nth-child(2) { border-top-color: var(--gold); }
-.ladder div:nth-child(3) { border-top-color: var(--ok); }
-@media (min-width: 48rem) { .ladder div:nth-child(2) { margin-top: 0.7rem; } .ladder div:nth-child(3) { margin-top: 1.4rem; } }
-.ladder h3 { margin: 0 0 0.25rem; font-size: 1rem; font-family: var(--mono); font-weight: 600; letter-spacing: 0.02em; }
-.ladder p { margin: 0.2rem 0; font-size: 0.92rem; }
+/* Engineering ladder + archive doors (homepage). */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin: 1.1rem 0; }
+.ladder div { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 1rem 1.1rem; }
+.ladder div:nth-child(2) { border-top: 3px solid var(--gold); }
+.ladder div:nth-child(3) { border-top: 3px solid var(--ok); }
+.ladder h3 { margin: 0 0 0.3rem; font-size: 0.98rem; font-family: var(--mono); font-weight: 600; }
+.ladder p { margin: 0.2rem 0; font-size: 0.93rem; color: var(--dim); }
 @media (max-width: 48rem) { .ladder { grid-template-columns: 1fr; } }
-.doors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; margin: 1rem 0; }
-.doors a { border: 1px solid var(--line); background: var(--panel); padding: 0.9rem 1rem; text-decoration: none; background-image: linear-gradient(var(--gold-dim), var(--gold-dim)), linear-gradient(var(--gold-dim), var(--gold-dim)); background-size: 10px 1px, 1px 10px; background-position: top left, top left; background-repeat: no-repeat; }
-.doors a b { display: block; color: var(--ink); font-size: 1.02rem; margin-bottom: 0.2rem; font-weight: 600; }
-.doors a span { color: var(--dim); font-size: 0.88rem; line-height: 1.45; display: block; }
-.doors a:hover { border-color: var(--gold); }
+.doors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin: 1.1rem 0; }
+.doors a { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 1rem 1.1rem; text-decoration: none; transition: border-color 0.15s ease, transform 0.15s ease; }
+.doors a b { display: block; color: var(--ink); font-size: 1rem; margin-bottom: 0.25rem; font-weight: 600; }
+.doors a span { color: var(--dim); font-size: 0.88rem; line-height: 1.5; display: block; }
+.doors a:hover { border-color: var(--gold); transform: translateY(-2px); }
 @media (max-width: 48rem) { .doors { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 30rem) { .doors { grid-template-columns: 1fr; } }
 
-/* Project hero — a drawing title block: ruler ticks along the top,
-   callsign kicker in mono, the record strip as its instrument row.
-   Per-game fields: Blacksite terminal hatch, AirportSim the live sky,
-   WorldForge archival contours, gold for the workshop pages. */
-.projhero { border: 1px solid var(--line); background: var(--panel); background-image: var(--ruler); background-size: 100% 7px; background-position: top left; background-repeat: no-repeat; padding: 1.5rem 1.35rem 0.6rem; margin-bottom: 1.3rem; position: relative; overflow: hidden; }
-.projhero .kicker { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.76rem; color: var(--faint); margin: 0; }
-.projhero h1 { margin: 0.2rem 0 0.25rem; }
-.projhero.slim { padding-bottom: 1.05rem; }
-.projhero.bs { border-top: 3px solid var(--acc-bs); }
-.projhero.bs::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(217,126,64,0.028) 3px 4px), repeating-linear-gradient(45deg, transparent 0 12px, rgba(217,126,64,0.04) 12px 13px); pointer-events: none; }
-.projhero.as { border-top: 3px solid var(--acc-as); }
-.projhero.wf { border-top: 3px solid var(--acc-wf); background-image: var(--ruler), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg fill='none' stroke='%23aec97e' stroke-opacity='0.07'%3E%3Cpath d='M20 130c30-60 90-90 130-70 45 22 60 80 30 120-25 34-80 40-115 15C30 170 5 165 20 130z'/%3E%3Cpath d='M45 130c20-40 65-60 95-45 32 16 42 58 20 88-18 25-58 30-85 10C50 165 32 158 45 130z'/%3E%3Cpath d='M72 130c12-24 40-36 58-27 20 10 26 35 12 53-11 15-35 18-52 6C72 149 62 144 72 130z'/%3E%3C/g%3E%3C/svg%3E"); background-size: 100% 7px, 260px 260px; background-position: top left, top left; background-repeat: no-repeat, repeat; }
-.projhero.gold { border-top: 3px solid var(--gold); }
+/* Project hero — a calm title panel: mono kicker, the game's name,
+   its one-line promise, and the record strip as its instrument row. */
+.projhero { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: var(--shadow); padding: 1.8rem 1.6rem 0.9rem; margin-bottom: 1.4rem; position: relative; overflow: hidden; }
+.projhero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
+.projhero.bs::before { background: var(--acc-bs); }
+.projhero.as::before { background: var(--acc-as); }
+.projhero.wf::before { background: var(--acc-wf); }
+.projhero .kicker { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.74rem; color: var(--faint); margin: 0; }
+.projhero h1 { margin: 0.25rem 0 0.3rem; }
+.projhero.slim { padding-bottom: 1.2rem; }
 
-/* AirportSim hero sky — night routes behind the AirportSim heroes.
-   Inline SVG with CSS + SMIL animation; a static scene when animation
-   is unavailable, stilled for reduced-motion readers (query + script). */
-.skybg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+/* AirportSim hero sky — the animated night-routes scene, kept as the
+   one piece of theatre on the site; stilled for reduced motion. */
+.skybg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.55; }
 .projhero.as > :not(.skybg) { position: relative; z-index: 1; }
 .skyroute { animation: skydash 46s linear infinite; }
 .skyterm { animation: skysweep 85s linear infinite; }
@@ -184,168 +195,136 @@ nav.sub .sect { color: var(--gold); margin-right: 0.4rem; text-transform: upperc
 @keyframes skydash { to { stroke-dashoffset: -240; } }
 @keyframes skysweep { from { transform: translateX(0); } to { transform: translateX(2250px); } }
 @keyframes skydrift { from { transform: translateX(-34px); } to { transform: translateX(34px); } }
-@media (prefers-reduced-motion: reduce) {
-  .skyroute, .skyterm, .skycloud { animation: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { .skyroute, .skyterm, .skycloud { animation: none !important; } }
 
-/* Record strip — an instrument readout panel: inset dark ground,
-   segmented cells, values in the mono instrument voice. */
-.record-strip { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--line); overflow: hidden; margin: 1rem 0; font-family: var(--mono); background: var(--bg-deep); box-shadow: inset 0 1px 0 rgba(233,237,245,0.04); }
-.record-strip div { padding: 0.6rem 0.95rem; border-right: 1px solid var(--line-soft); }
+/* Record strip — the instrument row: segmented mono readouts. */
+.record-strip { display: flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin: 1.1rem 0; font-family: var(--mono); background: var(--panel-3); }
+.record-strip div { padding: 0.65rem 1rem; border-right: 1px solid var(--line-soft); }
 .record-strip div:last-child { border-right: none; }
-.record-strip span { display: block; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 0.15rem; }
-.record-strip b { font-size: 0.98rem; color: var(--ink); font-weight: 600; }
+.record-strip span { display: block; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 0.2rem; }
+.record-strip b { font-size: 0.95rem; color: var(--ink); font-weight: 600; }
 
-/* Project cards (kept for compatibility) + project page heads */
-.proj { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.9rem 1.1rem; margin: 0.9rem 0; }
+/* Legacy project heads and cards (kept for compatibility). */
+.proj { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 1rem 1.2rem; margin: 0.9rem 0; }
 .proj h3 { margin: 0 0 0.25rem; font-size: 1.2rem; }
 .proj p { margin: 0.25rem 0; font-size: 0.97rem; }
-.proj.bs { border-left-color: var(--acc-bs); } .proj.bs h3 a { color: var(--acc-bs); }
-.proj.as { border-left-color: var(--acc-as); } .proj.as h3 a { color: var(--acc-as); }
-.proj.wf { border-left-color: var(--acc-wf); } .proj.wf h3 a { color: var(--acc-wf); }
-.projhead { border-bottom: 3px solid var(--line); padding-bottom: 0.6rem; margin-bottom: 1rem; }
-.projhead .kicker { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.76rem; color: var(--faint); margin: 0; }
+.proj.bs h3 a { color: var(--acc-bs); } .proj.as h3 a { color: var(--acc-as); } .proj.wf h3 a { color: var(--acc-wf); }
+.projhead { border-bottom: 1px solid var(--line); padding-bottom: 0.7rem; margin-bottom: 1.1rem; }
+.projhead .kicker { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.74rem; color: var(--faint); margin: 0; }
 
-/* Evidence plates — screenshots and diagrams are exhibits: a matted
-   double frame, and a caption set as an evidence note in mono with a
-   gold tick. */
-figure { margin: 1.6rem 0; }
-figure img { width: 100%; border: 1px solid var(--line); display: block; box-shadow: 0 0 0 5px var(--panel-3), 0 0 0 6px var(--line); }
-figcaption { color: var(--dim); font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; margin-top: 0.85rem; padding-left: 0.8rem; border-left: 3px solid var(--gold-dim); }
+/* Evidence plates — screenshots as exhibits: a soft frame, and a
+   caption set as a quiet mono note with a gold tick. */
+figure { margin: 1.8rem 0; }
+figure img { width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; }
+figcaption { color: var(--dim); font-family: var(--mono); font-size: 0.83rem; line-height: 1.55; margin-top: 0.7rem; padding-left: 0.85rem; border-left: 2px solid var(--gold-dim); }
 figcaption strong { color: var(--ink); }
 
-/* Instrument readouts — big mono figures with hairline dividers. */
-.nums { display: flex; flex-wrap: wrap; gap: 0; margin: 1.1rem 0; border: 1px solid var(--line); background: var(--bg-deep); }
-.nums div { padding: 0.7rem 1rem; border-right: 1px solid var(--line-soft); }
+/* Instrument readouts — big figures with hairline dividers. */
+.nums { display: flex; flex-wrap: wrap; margin: 1.2rem 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel-3); overflow: hidden; }
+.nums div { padding: 0.85rem 1.1rem; border-right: 1px solid var(--line-soft); }
 .nums div:last-child { border-right: none; }
-.nums b { display: block; font-family: var(--mono); font-weight: 700; font-size: 1.35rem; color: var(--gold); letter-spacing: -0.01em; }
-.nums span { font-size: 0.84rem; color: var(--dim); }
+.nums b { display: block; font-family: var(--mono); font-weight: 700; font-size: 1.4rem; color: var(--gold); letter-spacing: -0.01em; }
+.nums span { font-size: 0.85rem; color: var(--dim); }
 
-/* Strips — the card family becomes flight strips: flat, sharp, a mono
-   annotation header (.st) ruled off from the body. */
-.card { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel-2); padding: 0.85rem 1.1rem; margin: 0.9rem 0; }
-.card h3 { margin: 0 0 0.25rem; }
-.card p { margin: 0.2rem 0; font-size: 0.96rem; }
-.st { font-family: var(--mono); font-size: 0.74rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; color: var(--dim); }
+/* Cards and system panels — one family: soft panels with a mono
+   annotation header (.st) ruled off above the body. */
+.card, .sys, .rung { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 1rem 1.2rem; margin: 0.9rem 0; }
+.card h3, .sys h3, .rung h3 { margin: 0 0 0.3rem; }
+.card p, .sys p, .rung p { margin: 0.25rem 0; font-size: 0.96rem; }
+.st { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; color: var(--dim); }
 .st.ok { color: var(--ok); } .st.mid { color: var(--gold); } .st.low { color: var(--faint); } .st.no { color: var(--bad); }
-.gap { border-color: var(--red-line); border-left-color: var(--red-line); background: #180d12; }
-.gap .st { color: var(--bad); }
-.sys { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.85rem 1.1rem; margin: 0.9rem 0; }
-.sys h3 { margin: 0 0 0.25rem; }
-.sys p { margin: 0.2rem 0; font-size: 0.95rem; }
 .sys .st { color: var(--ok); } .sys .st.plan { color: var(--faint); }
-.chain { border: 1px dashed var(--gold-dim); background: var(--panel); background-image: var(--grid-as); background-size: 26px 26px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+.gap { border-color: rgba(176,64,47,0.55); background: #171017; }
+.gap .st { color: var(--bad); }
+.chain { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel-3); padding: 1.1rem 1.3rem; margin: 1.2rem 0; }
 .chain p { margin: 0.3rem 0; text-align: center; font-size: 1.02rem; }
 .chain .arr { color: var(--gold); text-align: center; margin: 0; font-family: var(--mono); }
 .chain .loop { font-size: 0.9rem; color: var(--dim); font-style: italic; }
-.rung { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.85rem 1.1rem; margin: 0.9rem 0; }
-.rung h3 { margin: 0 0 0.25rem; }
-.rung p { margin: 0.2rem 0; font-size: 0.95rem; }
-.callout { border: 1px solid var(--gold-dim); border-left: 6px solid var(--gold); background: #12100a; padding: 0.9rem 1.1rem; margin: 1.1rem 0; }
-.callout p { margin: 0.25rem 0; }
+.callout { border: 1px solid var(--gold-dim); border-radius: var(--radius); background: rgba(201,162,39,0.06); padding: 1rem 1.2rem; margin: 1.2rem 0; }
+.callout p { margin: 0.3rem 0; }
 
-/* Tables — title-block header row, hairline body rules, mono data. */
-table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
-th, td { border-bottom: 1px solid var(--line-soft); border-right: 1px solid var(--line-soft); padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.45; }
-th:last-child, td:last-child { border-right: none; }
-tbody tr:nth-child(even) td { background: rgba(143,193,236,0.025); }
-td { overflow-wrap: anywhere; } /* long URLs and hashes wrap inside cells instead of forcing page-wide horizontal scroll */
-.timeline td:first-child { white-space: nowrap; font-family: var(--mono); font-size: 0.88rem; color: var(--gold); } /* dates as instrument readouts */
-@media (min-width: 34.01rem) { table.timeline { border-left: 3px solid var(--gold); } } /* the gold track of the timeline on wider screens */
-th { font-family: var(--mono); font-weight: 600; color: var(--gold); background: var(--panel-2); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; border-bottom: 2px solid var(--gold-dim); }
+/* Tables — quiet header row, hairline body rules, mono first voices. */
+table { border-collapse: collapse; width: 100%; margin: 1.1rem 0; font-size: 0.95rem; }
+th, td { border-bottom: 1px solid var(--line-soft); padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; line-height: 1.5; }
+tbody tr:nth-child(even) td { background: rgba(147,189,232,0.03); }
+td { overflow-wrap: anywhere; }
+th { font-family: var(--mono); font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.09em; font-size: 0.76rem; border-bottom: 1px solid var(--gold-dim); }
+.timeline td:first-child { white-space: nowrap; font-family: var(--mono); font-size: 0.87rem; color: var(--gold); }
 .ok { color: var(--ok); } .bad { color: var(--bad); }
 
-/* Diagrams — blueprint plates: deep blue field, drawing grid, double
-   frame; the drawing's own text speaks in the mono instrument voice. */
-.diagram { border: 1px solid var(--line); outline: 1px solid var(--line-soft); outline-offset: 4px; background: #081226; background-image: linear-gradient(rgba(143,193,236,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(143,193,236,0.07) 1px, transparent 1px); background-size: 24px 24px; padding: 1rem; margin: 1.4rem 0; overflow-x: auto; }
+/* Diagrams — drawing plates on a deep blue field, kept: they are the
+   project's own drawings and read as exhibits, not decoration. */
+.diagram { border: 1px solid var(--line); border-radius: var(--radius); background: #0a1526; padding: 1.1rem; margin: 1.5rem 0; overflow-x: auto; }
 .diagram svg { width: 100%; height: auto; display: block; }
-.diagram p.cap { color: var(--dim); font-family: var(--mono); font-size: 0.84rem; margin: 0.7rem 0 0; }
+.diagram p.cap, p.cap { color: var(--dim); font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; margin: 0.7rem 0 0; }
 svg text { font-family: var(--mono); }
 
-/* Roadmap stages — strips on a line: the state colour is the rail,
-   the state label (.st) is the strip header. */
-.stage { border: 1px solid var(--line); border-left: 6px solid var(--line); background: var(--panel); padding: 0.85rem 1.1rem; margin: 0 0 0.2rem; }
-.stage h3 { margin: 0 0 0.25rem; }
-.stage p { margin: 0.2rem 0; font-size: 0.95rem; }
-.done { border-left-color: #3f7d46; } .done .st { color: var(--ok); }
-.now { border-color: #4a7fb5; border-left-color: #4a7fb5; background: #0c1626; } .now .st { color: var(--acc-as); }
-.gate { border-left-color: var(--gold); } .gate .st { color: var(--gold); }
-.arrow { text-align: center; color: var(--gold-dim); font-size: 1.15rem; line-height: 1.5; font-family: var(--mono); }
+/* Roadmap stages — panels on a line: the state colour is a thin top
+   rule and the state label (.st) is the strip header. */
+.stage { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 1rem 1.2rem; margin: 0 0 0.25rem; }
+.stage h3 { margin: 0 0 0.3rem; }
+.stage p { margin: 0.25rem 0; font-size: 0.95rem; }
+.done { border-top: 3px solid #3f7d46; } .done .st { color: var(--ok); }
+.now { border-top: 3px solid #4a7fb5; background: #0d1524; } .now .st { color: var(--acc-as); }
+.gate { border-top: 3px solid var(--gold); } .gate .st { color: var(--gold); }
+.arrow { text-align: center; color: var(--gold-dim); font-size: 1.1rem; line-height: 1.5; font-family: var(--mono); }
 .arrow small { display: block; font-size: 0.8rem; letter-spacing: 0.04em; color: var(--faint); }
-.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.2rem 0 0.4rem; font-size: 0.92rem; font-family: var(--mono); font-size: 0.84rem; }
-.legend span::before { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.45rem; vertical-align: -0.08rem; border: 1px solid var(--line); }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.2rem 0 0.4rem; font-family: var(--mono); font-size: 0.84rem; }
+.legend span::before { content: ""; display: inline-block; width: 0.75rem; height: 0.75rem; margin-right: 0.45rem; vertical-align: -0.06rem; border-radius: 3px; border: 1px solid var(--line); }
 .lg-done::before { background: #3f7d46; } .lg-now::before { background: #4a7fb5; } .lg-gate::before { background: var(--gold); } .lg-next::before { background: var(--line); }
 
-/* Status stamps — the full outcome family (2026-11-03). One colour
-   language everywhere: green = finished (done / closed / verified),
-   blue = active (in progress / development), grey dashed = waiting
-   or archived (queued / shelved), red = stopped or withheld (held
-   carries the double-rule stamp; cancelled a single red rule),
-   gold = an owner decision or intent. */
-.pill.done { border-color: #3f7d46; color: var(--ok); }
-.pill.closed { border-color: #3f7d46; color: var(--ok); background: rgba(63,125,70,0.14); }
-.pill.prog { border-color: #4a7fb5; color: var(--acc-as); }
-.pill.queue { border-style: dashed; border-color: #55617c; color: var(--faint); }
-.pill.cancelled { border-color: var(--red-line); color: var(--bad); }
-
-/* Health ranking — a colour-field chart in pure CSS (2026-11-03).
-   Each row: rank, system, and a bar whose length and hue encode the
-   audit position (rank 1 = healthiest: full bar, green; rank 10 =
-   weakest: short bar, red). The field itself fades green → gold →
-   red down its height. Bars are decoration; rank and name carry the
-   data as text. Row values arrive as --v (width %) and --h (hue). */
-.rankchart { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(99,176,110,0.08), rgba(201,162,39,0.05) 52%, rgba(176,64,47,0.09)), var(--panel); padding: 1rem 1.1rem 0.7rem; margin: 1.2rem 0; }
-.rankchart .rc-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin-bottom: 0.55rem; }
-.rc-row { display: grid; grid-template-columns: 2.1rem minmax(9rem, 13.5rem) 1fr; align-items: center; gap: 0.7rem; padding: 0.36rem 0; border-bottom: 1px dashed var(--line-soft); }
+/* Health ranking — a colour-field chart in pure CSS. Each row: rank,
+   system, and a bar whose length and hue encode the audit position.
+   Bars are decoration; rank and name carry the data as text. */
+.rankchart { border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(99,176,110,0.07), rgba(201,162,39,0.04) 52%, rgba(176,64,47,0.08)), var(--panel); padding: 1.05rem 1.15rem 0.75rem; margin: 1.2rem 0; }
+.rankchart .rc-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; font-family: var(--mono); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); margin-bottom: 0.55rem; }
+.rc-row { display: grid; grid-template-columns: 2.1rem minmax(9rem, 13.5rem) 1fr; align-items: center; gap: 0.7rem; padding: 0.38rem 0; border-bottom: 1px dashed var(--line-soft); }
 .rc-row:last-child { border-bottom: none; }
 .rc-rank { font-family: var(--mono); font-weight: 700; font-size: 1.05rem; color: var(--gold); }
 .rc-name { font-weight: 600; font-size: 0.97rem; line-height: 1.3; }
 .rc-name small { display: block; font-weight: 400; color: var(--faint); font-size: 0.82rem; }
-.rc-bar { height: 0.85rem; background: rgba(233,237,245,0.06); border: 1px solid var(--line-soft); position: relative; }
+.rc-bar { height: 0.85rem; background: rgba(236,231,219,0.06); border-radius: 4px; position: relative; overflow: hidden; }
 .rc-bar i { position: absolute; top: 0; bottom: 0; left: 0; width: var(--v); background: hsl(var(--h) 42% 44%); display: block; }
 
-/* Vertical timeline — a gold track with punched event nodes
-   (2026-11-03), for sequences told in prose: a day's merges, a
-   version's steps. Node colour follows the same status language. */
-.tl { border-left: 3px solid var(--gold); margin: 1.1rem 0 1.1rem 0.35rem; padding-left: 1.15rem; }
+/* Vertical timeline — a gold track with event nodes, for sequences
+   told in prose. Node colour follows the status language. */
+.tl { border-left: 2px solid var(--gold-dim); margin: 1.1rem 0 1.1rem 0.35rem; padding-left: 1.15rem; }
 .tl .ev { position: relative; padding: 0.3rem 0 0.6rem; }
-.tl .ev::before { content: ""; position: absolute; left: calc(-1.15rem - 7px); top: 0.68em; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2.5px solid var(--gold); }
+.tl .ev::before { content: ""; position: absolute; left: calc(-1.15rem - 6px); top: 0.68em; width: 8px; height: 8px; border-radius: 50%; background: var(--bg); border: 2px solid var(--gold); }
 .tl .ev.done::before { border-color: #3f7d46; background: #3f7d46; }
 .tl .ev.now::before { border-color: #4a7fb5; background: #4a7fb5; }
 .tl .ev.held::before { border-color: var(--red-line); background: var(--red-line); }
-.tl .when { display: block; font-family: var(--mono); font-size: 0.76rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.1rem; }
+.tl .when { display: block; font-family: var(--mono); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.1rem; }
 .tl .ev p { margin: 0.15rem 0; font-size: 0.96rem; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
 }
 
+/* Phone — Andrew reads here first. One column, generous targets,
+   tables scroll inside their own box, the timeline stacks. */
 @media (max-width: 34rem) {
-  h1 { font-size: 1.85rem; }
-  .hero h1 { font-size: 2.3rem; }
-  .hero .emblem { width: 54px; height: 54px; }
-  main { padding-top: 1.4rem; }
-  nav.top, nav.sub { gap: 0.35rem 0.85rem; }
-  .band h3 { font-size: 1.45rem; }
+  h1 { font-size: 1.8rem; }
+  .hero { padding-top: 2rem; }
+  .hero h1 { font-size: 2.25rem; }
+  .hero .emblem { width: 48px; height: 48px; }
+  main { padding: 1.6rem 1.05rem 3.5rem; }
+  nav.top { padding: 0.6rem 1rem; gap: 0.3rem 1rem; }
+  nav.top .brand { font-size: 0.98rem; }
+  nav.sub { padding: 0.5rem 1rem; }
+  .band h3 { font-size: 1.4rem; }
+  .projhero { padding: 1.3rem 1.1rem 0.7rem; }
   .record-strip div, .nums div { flex: 1 1 8rem; border-bottom: 1px solid var(--line-soft); }
-  /* Wide tables (status, registry) scroll within their own box
-     on narrow screens instead of stretching the page. */
   table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  th, td { padding: 0.45rem 0.55rem; }
-  /* The timeline leaves the table grid entirely on narrow
-     screens: each event becomes a stacked, readable entry with
-     its date on one line. Desktop keeps the table above. */
+  th, td { padding: 0.5rem 0.6rem; }
   table.timeline { overflow-x: visible; }
-  .timeline tr { display: block; border: 1px solid var(--line); background: var(--panel); padding: 0.55rem 0.8rem; margin-bottom: 0.6rem; }
+  .timeline tr { display: block; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 0.6rem 0.85rem; margin-bottom: 0.6rem; }
   .timeline tr.hrow { display: none; }
   .timeline td { display: block; border: none; padding: 0.15rem 0; white-space: normal; }
   .timeline td:first-child { color: var(--gold); font-weight: bold; }
-}
-
-@media (max-width: 34rem) {
-  /* The ranking chart stacks: rank + name on one line, the bar
-     full-width beneath — nothing is squeezed sideways. */
   .rc-row { grid-template-columns: 2rem 1fr; }
   .rc-bar { grid-column: 1 / -1; }
   .tl { margin-left: 0.15rem; }
+  .status-strip a { flex: 1 1 100%; }
 }
